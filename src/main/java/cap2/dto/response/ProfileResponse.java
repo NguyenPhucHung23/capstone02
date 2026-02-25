@@ -2,13 +2,19 @@ package cap2.dto.response;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 @Data
+@Builder
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RegisterResponse {
+public class ProfileResponse {
+    String id;
     String userId;
-    String email;
+    String fullName;
+    String phone;
+    String address;
+    String gender;
 }

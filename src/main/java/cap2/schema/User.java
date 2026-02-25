@@ -1,25 +1,30 @@
 package cap2.schema;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Document(collection = "users")
 public class User {
 
     @Id
-    private String id;
+    String id;
 
     @Email
     @NotBlank
-    private String email;
+    String email;
 
     @NotBlank
-    private String password;
+    String password;
+
+    @Builder.Default
+    Role role = Role.USER;
 }

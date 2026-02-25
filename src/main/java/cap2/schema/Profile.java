@@ -1,23 +1,24 @@
 package cap2.schema;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Document(collection = "profiles")
 public class Profile {
 
     @Id
-    private String id;
+    String id;
 
-    private String userId;
-
-    private String fullName;
-    private String phone;
-    private String address;
-    private String gender;
+    String userId;
+    String fullName;
+    String phone;
+    String address;
+    String gender;
 }
