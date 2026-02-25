@@ -29,4 +29,10 @@ public class RegisterRequest {
 
     @Size(max = 255, message = "Address must not exceed 255 characters")
     private String address;
+
+    @Pattern(
+            regexp = "^(male|female|other)$",
+            message = "Gender must be male, female or other"
+    )
+    private String gender;
 }

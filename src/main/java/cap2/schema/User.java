@@ -21,5 +21,5 @@ public class User {
     private String email;
 
     @NotBlank
-    private String password; // nên hash trước khi lưu
+    private String password;
 }
