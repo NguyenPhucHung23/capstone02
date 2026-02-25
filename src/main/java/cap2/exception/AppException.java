@@ -1,10 +1,13 @@
 package cap2.exception;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 @Getter
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AppException extends RuntimeException {
-    private final ErrorCode errorCode;
+    ErrorCode errorCode;
 
     public AppException(ErrorCode errorCode) {
         super(errorCode.getMessage());

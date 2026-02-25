@@ -1,7 +1,5 @@
 package cap2.dto.request;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
@@ -10,17 +8,8 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RegisterRequest {
+public class UpdateProfileRequest {
 
-    @Email(message = "Invalid email format")
-    @NotBlank(message = "Email is required")
-    String email;
-
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password must be at least 6 characters")
-    String password;
-
-    @NotBlank(message = "Full name is required")
     @Size(min = 2, max = 100, message = "Full name must be between 2 and 100 characters")
     String fullName;
 
