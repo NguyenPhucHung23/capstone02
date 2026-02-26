@@ -19,8 +19,18 @@ public class UpdateProfileRequest {
     )
     String phone;
 
+
     @Size(max = 255, message = "Address must not exceed 255 characters")
     String address;
+
+    @Size(max = 100, message = "City must not exceed 100 characters")
+    String city;       // Tỉnh/Thành phố
+
+    @Size(max = 100, message = "District must not exceed 100 characters")
+    String district;   // Quận/Huyện
+
+    @Size(max = 100, message = "Ward must not exceed 100 characters")
+    String ward;       // Phường/Xã
 
     @Pattern(
             regexp = "^(male|female|other)$",

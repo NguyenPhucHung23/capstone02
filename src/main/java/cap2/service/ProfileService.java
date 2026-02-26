@@ -6,7 +6,10 @@ import cap2.dto.response.ProfileResponse;
 import cap2.exception.AppException;
 import cap2.exception.ErrorCode;
 import cap2.repository.ProfileRepository;
+import cap2.repository.UserRepository;
 import cap2.schema.Profile;
+import cap2.schema.User;
+import cap2.util.SecurityUtils;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -15,9 +18,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,9 +27,10 @@ import org.springframework.stereotype.Service;
 public class ProfileService {
 
     ProfileRepository profileRepository;
+    UserRepository userRepository;
 
     public PageResponse<ProfileResponse> getAllProfiles(int page, int size) {
-        checkAdminRole();
+        SecurityUtils.checkAdminRole();
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("fullName").ascending());
         Page<Profile> profilePage = profileRepository.findAll(pageable);
@@ -49,7 +50,7 @@ public class ProfileService {
 
     // Lấy profile của chính mình
     public ProfileResponse getMyProfile() {
-        String currentUserId = getCurrentUserId();
+        String currentUserId = SecurityUtils.getCurrentUserId();
         Profile profile = profileRepository.findByUserId(currentUserId)
                 .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
         return mapToProfileResponse(profile);
@@ -59,13 +60,13 @@ public class ProfileService {
     public ProfileResponse getProfileById(String id) {
         Profile profile = profileRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
-        checkPermission(profile.getUserId());
+        SecurityUtils.checkPermission(profile.getUserId());
         return mapToProfileResponse(profile);
     }
 
     // Lấy profile theo userId (chỉ xem của mình hoặc ADMIN)
     public ProfileResponse getProfileByUserId(String userId) {
-        checkPermission(userId);
+        SecurityUtils.checkPermission(userId);
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
         return mapToProfileResponse(profile);
@@ -73,7 +74,7 @@ public class ProfileService {
 
     // Cập nhật profile của chính mình
     public ProfileResponse updateMyProfile(UpdateProfileRequest request) {
-        String currentUserId = getCurrentUserId();
+        String currentUserId = SecurityUtils.getCurrentUserId();
         Profile profile = profileRepository.findByUserId(currentUserId)
                 .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
 
@@ -87,7 +88,7 @@ public class ProfileService {
     public ProfileResponse updateProfile(String id, UpdateProfileRequest request) {
         Profile profile = profileRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
-        checkPermission(profile.getUserId());
+        SecurityUtils.checkPermission(profile.getUserId());
 
         updateProfileFields(profile, request);
         Profile savedProfile = profileRepository.save(profile);
@@ -97,7 +98,7 @@ public class ProfileService {
 
     // Xóa profile của chính mình
     public void deleteMyProfile() {
-        String currentUserId = getCurrentUserId();
+        String currentUserId = SecurityUtils.getCurrentUserId();
         Profile profile = profileRepository.findByUserId(currentUserId)
                 .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
         profileRepository.delete(profile);
@@ -108,7 +109,7 @@ public class ProfileService {
     public void deleteProfile(String id) {
         Profile profile = profileRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
-        checkPermission(profile.getUserId());
+        SecurityUtils.checkPermission(profile.getUserId());
         profileRepository.delete(profile);
         log.info("Deleted profile: {}", id);
     }
@@ -125,43 +126,37 @@ public class ProfileService {
         if (request.getAddress() != null) {
             profile.setAddress(request.getAddress());
         }
+        if (request.getCity() != null) {
+            profile.setCity(request.getCity());
+        }
+        if (request.getDistrict() != null) {
+            profile.setDistrict(request.getDistrict());
+        }
+        if (request.getWard() != null) {
+            profile.setWard(request.getWard());
+        }
         if (request.getGender() != null) {
             profile.setGender(request.getGender());
         }
     }
 
-    private String getCurrentUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
-    }
-
-    private boolean isAdmin() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .anyMatch(role -> role.equals("ROLE_ADMIN"));
-    }
-
-    private void checkPermission(String targetUserId) {
-        String currentUserId = getCurrentUserId();
-        if (!currentUserId.equals(targetUserId) && !isAdmin()) {
-            throw new AppException(ErrorCode.UNAUTHORIZED);
-        }
-    }
-
-    private void checkAdminRole() {
-        if (!isAdmin()) {
-            throw new AppException(ErrorCode.UNAUTHORIZED);
-        }
-    }
 
     private ProfileResponse mapToProfileResponse(Profile profile) {
+        // Lấy email từ User
+        String email = userRepository.findById(profile.getUserId())
+                .map(User::getEmail)
+                .orElse(null);
+
         return ProfileResponse.builder()
                 .id(profile.getId())
                 .userId(profile.getUserId())
                 .fullName(profile.getFullName())
                 .phone(profile.getPhone())
+                .email(email)
                 .address(profile.getAddress())
+                .city(profile.getCity())
+                .district(profile.getDistrict())
+                .ward(profile.getWard())
                 .gender(profile.getGender())
                 .build();
     }
