@@ -14,9 +14,10 @@ public enum ErrorCode {
     USER_NOT_FOUND(1004, "User not found", HttpStatus.NOT_FOUND),
     INVALID_PASSWORD(1005, "Invalid password", HttpStatus.UNAUTHORIZED),
     INVALID_TOKEN(1006, "Invalid token", HttpStatus.UNAUTHORIZED),
-    PROFILE_NOT_FOUND(1007, "Profile not found", HttpStatus.NOT_FOUND),
-    INVALID_ROLE(1008, "Invalid role", HttpStatus.BAD_REQUEST),
-    UNAUTHORIZED(1009, "You don't have permission", HttpStatus.FORBIDDEN);
+    EXPIRED_TOKEN(1007, "Expired token", HttpStatus.UNAUTHORIZED),
+    PROFILE_NOT_FOUND(1008, "Profile not found", HttpStatus.NOT_FOUND),
+    INVALID_ROLE(1009, "Invalid role", HttpStatus.BAD_REQUEST),
+    UNAUTHORIZED(1010, "You don't have permission", HttpStatus.FORBIDDEN);
 
     private final int code;
     private final String message;
