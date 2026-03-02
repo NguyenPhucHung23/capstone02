@@ -260,6 +260,7 @@ PUT /users/{id}
 | 1007 | Profile not found | 404 |
 | 1008 | Invalid role | 400 |
 | 1009 | You don't have permission | 403 |
+| 1011 | Product not found | 404 |
 
 ---
 
@@ -269,3 +270,119 @@ PUT /users/{id}
 |------|-------|
 | USER | Xem/sửa/xóa thông tin của chính mình |
 | ADMIN | Xem/sửa/xóa tất cả users và profiles |
+
+---
+
+## 🛍️ PRODUCT APIs (ADMIN Only)
+
+### 16. Tạo/Cập nhật Product
+```
+POST /admin/products
+```
+**Lưu ý:**
+- Nếu `(sourceProvider, sourceUrl)` đã tồn tại → **UPDATE** thay vì tạo mới
+- Nếu chưa tồn tại → **CREATE** mới
+- Auto tạo `slug` từ `name`
+- Auto set `createdAt`, `updatedAt`
+
+**Body:**
+```json
+{
+  "name": "Ghế Sofa Gỗ",
+  "category": "Sofa",
+  "price": 15000000,
+  "currency": "VND",
+  "priceFormatted": "15.000.000 VND",
+  "sku": "SF-001",
+  "availabilityText": "Còn hàng",
+  "inStock": true,
+  "stock": null,
+  "material": "Gỗ sồi",
+  "color": {
+    "name": "Nâu",
+    "hex": "#8B4513"
+  },
+  "styles": ["Modern", "Minimalist"],
+  "origin": "Vietnam",
+  "dimensions": {
+    "width": 200,
+    "height": 80,
+    "depth": 90,
+    "unit": "cm"
+  },
+  "dimensionsRaw": "200x80x90 cm",
+  "description": "Ghế sofa cao cấp...",
+  "careInstructions": ["Lau bằng khăn ẩm", "Tránh ánh nắng trực tiếp"],
+  "notes": ["Bảo hành 12 tháng"],
+  "images": ["https://example.com/img1.jpg", "https://example.com/img2.jpg"],
+  "sourceUrl": "https://noithat.com/ghe-sofa-go",
+  "sourceProvider": "noithat.com"
+}
+```
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Product created/updated successfully",
+  "data": {
+    "id": "abc123...",
+    "name": "Ghế Sofa Gỗ",
+    "slug": "ghe-sofa-go-1234567890",
+    "category": "Sofa",
+    "price": 15000000,
+    "currency": "VND",
+    "priceFormatted": "15.000.000 VND",
+    "sku": "SF-001",
+    "availabilityText": "Còn hàng",
+    "inStock": true,
+    "stock": null,
+    "material": "Gỗ sồi",
+    "color": {
+      "name": "Nâu",
+      "hex": "#8B4513"
+    },
+    "styles": ["Modern", "Minimalist"],
+    "origin": "Vietnam",
+    "dimensions": {
+      "width": 200,
+      "height": 80,
+      "depth": 90,
+      "unit": "cm"
+    },
+    "dimensionsRaw": "200x80x90 cm",
+    "description": "Ghế sofa cao cấp...",
+    "careInstructions": ["Lau bằng khăn ẩm", "Tránh ánh nắng trực tiếp"],
+    "notes": ["Bảo hành 12 tháng"],
+    "images": ["https://example.com/img1.jpg"],
+    "sourceUrl": "https://noithat.com/ghe-sofa-go",
+    "sourceProvider": "noithat.com",
+    "createdAt": "2026-03-02T10:00:00Z",
+    "updatedAt": "2026-03-02T10:00:00Z"
+  }
+}
+```
+
+---
+
+### 17. Lấy danh sách Products
+```
+GET /admin/products?page=0&size=10
+```
+
+---
+
+### 18. Lấy Product theo ID
+```
+GET /admin/products/{id}
+```
+
+---
+
+### 19. Xóa Product
+```
+DELETE /admin/products/{id}
+```
+
+---
+

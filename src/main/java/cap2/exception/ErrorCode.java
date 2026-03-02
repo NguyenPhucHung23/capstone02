@@ -17,7 +17,8 @@ public enum ErrorCode {
     PROFILE_NOT_FOUND(1007, "Profile not found", HttpStatus.NOT_FOUND),
     INVALID_ROLE(1008, "Invalid role", HttpStatus.BAD_REQUEST),
     UNAUTHORIZED(1009, "You don't have permission", HttpStatus.FORBIDDEN),
-    UNAUTHENTICATED(1010, "Unauthenticated", HttpStatus.UNAUTHORIZED);
+    UNAUTHENTICATED(1010, "Unauthenticated", HttpStatus.UNAUTHORIZED),
+    PRODUCT_NOT_FOUND(1011, "Product not found", HttpStatus.NOT_FOUND);
 
     private final int code;
     private final String message;
