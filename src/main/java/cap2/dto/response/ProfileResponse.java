@@ -15,6 +15,10 @@ public class ProfileResponse {
     String userId;
     String fullName;
     String phone;
+    String email;
     String address;
+    String city;       // Tỉnh/Thành phố
+    String district;   // Quận/Huyện
+    String ward;       // Phường/Xã
     String gender;
 }

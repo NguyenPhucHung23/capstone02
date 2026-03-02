@@ -20,5 +20,8 @@ public class Profile {
     String fullName;
     String phone;
     String address;
+    String city;       // Tỉnh/Thành phố
+    String district;   // Quận/Huyện
+    String ward;       // Phường/Xã
     String gender;
 }

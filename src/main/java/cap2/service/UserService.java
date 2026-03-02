@@ -12,6 +12,7 @@ import cap2.repository.UserRepository;
 import cap2.schema.Profile;
 import cap2.schema.Role;
 import cap2.schema.User;
+import cap2.util.SecurityUtils;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,9 +21,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +57,9 @@ public class UserService {
                 .fullName(req.getFullName())
                 .phone(req.getPhone())
                 .address(req.getAddress())
+                .city(req.getCity())
+                .district(req.getDistrict())
+                .ward(req.getWard())
                 .gender(req.getGender())
                 .build();
 
@@ -69,7 +70,7 @@ public class UserService {
 
     // Lấy danh sách user theo trang (chỉ ADMIN)
     public PageResponse<UserResponse> getAllUsers(int page, int size) {
-        checkAdminRole();
+        SecurityUtils.checkAdminRole();
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("email").ascending());
         Page<User> userPage = userRepository.findAll(pageable);
@@ -89,7 +90,7 @@ public class UserService {
 
     // Lấy thông tin user hiện tại (từ token)
     public UserResponse getMyInfo() {
-        String currentUserId = getCurrentUserId();
+        String currentUserId = SecurityUtils.getCurrentUserId();
         User user = userRepository.findById(currentUserId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
         return mapToUserResponse(user);
@@ -97,7 +98,7 @@ public class UserService {
 
     // Lấy user theo ID (chỉ xem của mình hoặc ADMIN xem tất cả)
     public UserResponse getUserById(String id) {
-        checkPermission(id);
+        SecurityUtils.checkPermission(id);
 
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
@@ -106,7 +107,7 @@ public class UserService {
 
     // Cập nhật user (chỉ sửa của mình hoặc ADMIN sửa tất cả)
     public UserResponse updateUser(String id, UpdateUserRequest request) {
-        checkPermission(id);
+        SecurityUtils.checkPermission(id);
 
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
@@ -121,7 +122,7 @@ public class UserService {
 
         // Chỉ ADMIN mới được đổi role
         if (request.getRole() != null) {
-            checkAdminRole();
+            SecurityUtils.checkAdminRole();
             try {
                 user.setRole(Role.valueOf(request.getRole().toUpperCase()));
             } catch (IllegalArgumentException e) {
@@ -136,7 +137,7 @@ public class UserService {
     // Xóa user (chỉ xóa của mình hoặc ADMIN xóa tất cả)
     @Transactional
     public void deleteUser(String id) {
-        checkPermission(id);
+        SecurityUtils.checkPermission(id);
 
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
@@ -146,34 +147,6 @@ public class UserService {
         log.info("Deleted user and profile: {}", id);
     }
 
-    // Lấy userId từ token hiện tại
-    private String getCurrentUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
-    }
-
-    // Kiểm tra có phải ADMIN không
-    private boolean isAdmin() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .anyMatch(role -> role.equals("ROLE_ADMIN"));
-    }
-
-    // Kiểm tra quyền: phải là chính mình hoặc ADMIN
-    private void checkPermission(String targetUserId) {
-        String currentUserId = getCurrentUserId();
-        if (!currentUserId.equals(targetUserId) && !isAdmin()) {
-            throw new AppException(ErrorCode.UNAUTHORIZED);
-        }
-    }
-
-    // Kiểm tra phải là ADMIN
-    private void checkAdminRole() {
-        if (!isAdmin()) {
-            throw new AppException(ErrorCode.UNAUTHORIZED);
-        }
-    }
 
     private UserResponse mapToUserResponse(User user) {
         return UserResponse.builder()
