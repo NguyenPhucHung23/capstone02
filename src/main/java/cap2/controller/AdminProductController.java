@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/admin/products")
 @RequiredArgsConstructor
@@ -20,7 +22,7 @@ public class AdminProductController {
     ProductService productService;
 
     /**
-     * Tạo hoặc cập nhật product
+     * Tạo hoặc cập nhật 1 product
      * Nếu đã tồn tại (sourceProvider + sourceUrl) → update
      * Nếu chưa tồn tại → create
      */
@@ -28,6 +30,18 @@ public class AdminProductController {
     public ApiResponse<ProductResponse> createOrUpdateProduct(@Valid @RequestBody ProductRequest request) {
         ProductResponse response = productService.createOrUpdateProduct(request);
         return ApiResponse.ok("Product created/updated successfully", response);
+    }
+
+    /**
+     * Batch import nhiều products (nhận array)
+     * Nếu đã tồn tại (sourceProvider + sourceUrl) → update
+     * Nếu chưa tồn tại → create
+     */
+    @PostMapping("/batch")
+    public ApiResponse<List<ProductResponse>> batchCreateOrUpdateProducts(
+            @Valid @RequestBody List<ProductRequest> requests) {
+        List<ProductResponse> responses = productService.batchCreateOrUpdateProducts(requests);
+        return ApiResponse.ok("Batch import successful: " + responses.size() + " product(s)", responses);
     }
 
     /**

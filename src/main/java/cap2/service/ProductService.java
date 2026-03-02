@@ -20,6 +20,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,7 +39,33 @@ public class ProductService {
      */
     public ProductResponse createOrUpdateProduct(ProductRequest request) {
         SecurityUtils.checkAdminRole();
+        return processProductRequest(request);
+    }
 
+    /**
+     * Batch import nhiều products cùng lúc
+     */
+    public List<ProductResponse> batchCreateOrUpdateProducts(List<ProductRequest> requests) {
+        SecurityUtils.checkAdminRole();
+
+        List<ProductResponse> responses = new ArrayList<>();
+        for (ProductRequest request : requests) {
+            try {
+                ProductResponse response = processProductRequest(request);
+                responses.add(response);
+            } catch (Exception e) {
+                log.error("Error processing product: {} - {}", request.getName(), e.getMessage());
+                // Tiếp tục xử lý các product khác
+            }
+        }
+        log.info("Batch import completed: {}/{} products", responses.size(), requests.size());
+        return responses;
+    }
+
+    /**
+     * Xử lý tạo/cập nhật 1 product
+     */
+    private ProductResponse processProductRequest(ProductRequest request) {
         String sourceProvider = request.getSourceProvider().trim();
         String sourceUrl = request.getSourceUrl().trim();
 
