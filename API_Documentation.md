@@ -447,3 +447,176 @@ DELETE /admin/products/{id}
 
 ---
 
+## 🛒 CART APIs (User đã đăng nhập)
+
+**Header:** `Authorization: Bearer <token>`
+
+> **Lưu ý:** Mỗi user có 1 giỏ hàng riêng. User chỉ có thể xem/sửa giỏ hàng của chính mình.
+
+### 23. Xem giỏ hàng của tôi
+```
+GET /cart
+```
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Get cart successfully",
+  "data": {
+    "id": "cart123...",
+    "userId": "user456...",
+    "items": [
+      {
+        "productId": "prod789...",
+        "productName": "Ghế Sofa Gỗ",
+        "productImage": "https://example.com/img1.jpg",
+        "price": 15000000,
+        "quantity": 2,
+        "subtotal": 30000000
+      },
+      {
+        "productId": "prod012...",
+        "productName": "Bàn Trà Gỗ Óc Chó",
+        "productImage": "https://example.com/img2.jpg",
+        "price": 9500000,
+        "quantity": 1,
+        "subtotal": 9500000
+      }
+    ],
+    "totalItems": 3,
+    "totalPrice": 39500000,
+    "createdAt": "2026-03-02T10:00:00Z",
+    "updatedAt": "2026-03-02T12:30:00Z"
+  }
+}
+```
+
+---
+
+### 24. Thêm sản phẩm vào giỏ hàng
+```
+POST /cart/items
+```
+**Lưu ý:**
+- Nếu sản phẩm đã có trong giỏ → **tăng số lượng**
+- Nếu chưa có → **thêm mới**
+
+**Body:**
+```json
+{
+  "productId": "prod789...",
+  "quantity": 2
+}
+```
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Added to cart successfully",
+  "data": {
+    "id": "cart123...",
+    "userId": "user456...",
+    "items": [...],
+    "totalItems": 2,
+    "totalPrice": 30000000,
+    ...
+  }
+}
+```
+
+---
+
+### 25. Cập nhật số lượng sản phẩm trong giỏ
+```
+PUT /cart/items/{productId}
+```
+**Ví dụ:**
+```
+PUT /cart/items/prod789...
+```
+**Lưu ý:**
+- Cập nhật số lượng của 1 sản phẩm cụ thể
+- Quantity phải >= 1
+
+**Body:**
+```json
+{
+  "quantity": 5
+}
+```
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Cart item updated successfully",
+  "data": {
+    "id": "cart123...",
+    "items": [...],
+    "totalItems": 5,
+    "totalPrice": 75000000,
+    ...
+  }
+}
+```
+
+---
+
+### 26. Xóa 1 sản phẩm khỏi giỏ hàng
+```
+DELETE /cart/items/{productId}
+```
+**Ví dụ:**
+```
+DELETE /cart/items/prod789...
+```
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Removed from cart successfully",
+  "data": {
+    "id": "cart123...",
+    "userId": "user456...",
+    "items": [
+      {
+        "productId": "prod012...",
+        "productName": "Bàn Trà Gỗ Óc Chó",
+        "productImage": "https://example.com/img2.jpg",
+        "price": 9500000,
+        "quantity": 1,
+        "subtotal": 9500000
+      }
+    ],
+    "totalItems": 1,
+    "totalPrice": 9500000,
+    "createdAt": "2026-03-02T10:00:00Z",
+    "updatedAt": "2026-03-03T08:15:00Z"
+  }
+}
+```
+
+---
+
+
+## ❌ Error Codes (Cập nhật)
+
+| Code | Message | HTTP Status |
+|------|---------|-------------|
+| 1001 | Email already exists | 400 |
+| 1004 | User not found | 404 |
+| 1005 | Invalid password | 401 |
+| 1006 | Invalid token | 401 |
+| 1007 | Expired token | 401 |
+| 1008 | Profile not found | 404 |
+| 1009 | Invalid role | 400 |
+| 1010 | You don't have permission | 403 |
+| 1011 | Unauthenticated | 401 |
+| 1012 | Product not found | 404 |
+| 1013 | Cart not found | 404 |
+| 1014 | Cart item not found | 404 |
+
+---

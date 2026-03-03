@@ -23,7 +23,10 @@ public enum ErrorCode {
     UNAUTHORIZED(1010, "You don't have permission", HttpStatus.FORBIDDEN),
     UNAUTHENTICATED(1011, "Unauthenticated", HttpStatus.UNAUTHORIZED),
 
-    PRODUCT_NOT_FOUND(1012, "Product not found", HttpStatus.NOT_FOUND);
+    PRODUCT_NOT_FOUND(1012, "Product not found", HttpStatus.NOT_FOUND),
+
+    CART_NOT_FOUND(1013, "Cart not found", HttpStatus.NOT_FOUND),
+    CART_ITEM_NOT_FOUND(1014, "Cart item not found", HttpStatus.NOT_FOUND);
 
     private final int code;
     private final String message;
