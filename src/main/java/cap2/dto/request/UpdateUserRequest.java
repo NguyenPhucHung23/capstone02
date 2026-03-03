@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UpdateUserRequest {
 
-    @Email(message = "Invalid email format")
+    @Email(message = "Email không hợp lệ")
     String email;
 
     String role;

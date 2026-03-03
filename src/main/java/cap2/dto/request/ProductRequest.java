@@ -13,12 +13,12 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductRequest {
 
-    @NotBlank(message = "Product name is required")
+    @NotBlank(message = "Tên sản phẩm không được để trống")
     String name;
 
     String category;
 
-    @PositiveOrZero(message = "Price must be positive or zero")
+    @PositiveOrZero(message = "Giá phải lớn hơn hoặc bằng 0")
     Double price;
 
     String currency;
@@ -49,10 +49,10 @@ public class ProductRequest {
 
     List<String> images;
 
-    @NotBlank(message = "Source URL is required")
+    @NotBlank(message = "URL nguồn không được để trống")
     String sourceUrl;
 
-    @NotBlank(message = "Source provider is required")
+    @NotBlank(message = "Nhà cung cấp nguồn không được để trống")
     String sourceProvider;
 
     @Data

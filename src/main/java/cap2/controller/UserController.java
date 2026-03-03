@@ -24,29 +24,27 @@ public class UserController {
     @PostMapping
     public ApiResponse<RegisterResponse> register(@Valid @RequestBody RegisterRequest request) {
         RegisterResponse response = userService.register(request);
-        return ApiResponse.ok("Register successfully", response);
+        return ApiResponse.ok("Đăng ký thành công", response);
     }
 
-    // Lấy thông tin của chính mình
     @GetMapping("/me")
     public ApiResponse<UserResponse> getMyInfo() {
         UserResponse response = userService.getMyInfo();
-        return ApiResponse.ok("Get my info successfully", response);
+        return ApiResponse.ok("Lấy thông tin thành công", response);
     }
 
-    // Lấy danh sách tất cả users (chỉ ADMIN)
     @GetMapping
     public ApiResponse<PageResponse<UserResponse>> getAllUsers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         PageResponse<UserResponse> response = userService.getAllUsers(page, size);
-        return ApiResponse.ok("Get all users successfully", response);
+        return ApiResponse.ok("Lấy danh sách người dùng thành công", response);
     }
 
     @GetMapping("/{id}")
     public ApiResponse<UserResponse> getUserById(@PathVariable String id) {
         UserResponse response = userService.getUserById(id);
-        return ApiResponse.ok("Get user successfully", response);
+        return ApiResponse.ok("Lấy thông tin người dùng thành công", response);
     }
 
     @PutMapping("/{id}")
@@ -54,12 +52,12 @@ public class UserController {
             @PathVariable String id,
             @Valid @RequestBody UpdateUserRequest request) {
         UserResponse response = userService.updateUser(id, request);
-        return ApiResponse.ok("Update user successfully", response);
+        return ApiResponse.ok("Cập nhật người dùng thành công", response);
     }
 
     @DeleteMapping("/{id}")
     public ApiResponse<Void> deleteUser(@PathVariable String id) {
         userService.deleteUser(id);
-        return ApiResponse.ok("Delete user successfully", null);
+        return ApiResponse.ok("Xóa người dùng thành công", null);
     }
 }

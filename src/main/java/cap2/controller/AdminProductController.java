@@ -21,55 +21,36 @@ public class AdminProductController {
 
     ProductService productService;
 
-    /**
-     * Tạo hoặc cập nhật 1 product
-     * Nếu đã tồn tại (sourceProvider + sourceUrl) → update
-     * Nếu chưa tồn tại → create
-     */
     @PostMapping
     public ApiResponse<ProductResponse> createOrUpdateProduct(@Valid @RequestBody ProductRequest request) {
         ProductResponse response = productService.createOrUpdateProduct(request);
-        return ApiResponse.ok("Product created/updated successfully", response);
+        return ApiResponse.ok("Tạo/cập nhật sản phẩm thành công", response);
     }
 
-    /**
-     * Batch import nhiều products (nhận array)
-     * Nếu đã tồn tại (sourceProvider + sourceUrl) → update
-     * Nếu chưa tồn tại → create
-     */
     @PostMapping("/batch")
     public ApiResponse<List<ProductResponse>> batchCreateOrUpdateProducts(
             @Valid @RequestBody List<ProductRequest> requests) {
         List<ProductResponse> responses = productService.batchCreateOrUpdateProducts(requests);
-        return ApiResponse.ok("Batch import successful: " + responses.size() + " product(s)", responses);
+        return ApiResponse.ok("Import thành công: " + responses.size() + " sản phẩm", responses);
     }
 
-    /**
-     * Lấy danh sách tất cả products (phân trang)
-     */
     @GetMapping
     public ApiResponse<PageResponse<ProductResponse>> getAllProducts(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         PageResponse<ProductResponse> response = productService.getAllProducts(page, size);
-        return ApiResponse.ok("Get all products successfully", response);
+        return ApiResponse.ok("Lấy danh sách sản phẩm thành công", response);
     }
 
-    /**
-     * Lấy product theo ID
-     */
     @GetMapping("/{id}")
     public ApiResponse<ProductResponse> getProductById(@PathVariable String id) {
         ProductResponse response = productService.getProductById(id);
-        return ApiResponse.ok("Get product successfully", response);
+        return ApiResponse.ok("Lấy sản phẩm thành công", response);
     }
 
-    /**
-     * Xóa product theo ID
-     */
     @DeleteMapping("/{id}")
     public ApiResponse<Void> deleteProduct(@PathVariable String id) {
         productService.deleteProduct(id);
-        return ApiResponse.ok("Delete product successfully", null);
+        return ApiResponse.ok("Xóa sản phẩm thành công", null);
     }
 }

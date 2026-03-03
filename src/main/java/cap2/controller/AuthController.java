@@ -23,18 +23,18 @@ public class AuthController {
     @PostMapping("/login")
     public ApiResponse<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
         LoginResponse response = authService.login(request);
-        return ApiResponse.ok("Login successful", response);
+        return ApiResponse.ok("Đăng nhập thành công", response);
     }
 
     @PostMapping("/forgot-password")
     public ApiResponse<Void> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
         authService.forgotPassword(request);
-        return ApiResponse.ok("Password reset link has been sent to your email", null);
+        return ApiResponse.ok("Đã gửi link đặt lại mật khẩu đến email của bạn", null);
     }
 
     @PostMapping("/reset-password")
     public ApiResponse<Void> resetPassword(@Valid @RequestBody ResetPasswordRequest request) {
         authService.resetPassword(request);
-        return ApiResponse.ok("Password has been reset successfully", null);
+        return ApiResponse.ok("Đặt lại mật khẩu thành công", null);
     }
 }

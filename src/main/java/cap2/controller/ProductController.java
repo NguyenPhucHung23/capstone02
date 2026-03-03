@@ -17,23 +17,17 @@ public class ProductController {
 
     ProductService productService;
 
-    /**
-     * Lấy danh sách products (phân trang) - User đã đăng nhập có thể xem
-     */
     @GetMapping
     public ApiResponse<PageResponse<ProductResponse>> getAllProducts(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         PageResponse<ProductResponse> response = productService.getAllProducts(page, size);
-        return ApiResponse.ok("Get all products successfully", response);
+        return ApiResponse.ok("Lấy danh sách sản phẩm thành công", response);
     }
 
-    /**
-     * Lấy product theo ID - User đã đăng nhập có thể xem
-     */
     @GetMapping("/{id}")
     public ApiResponse<ProductResponse> getProductById(@PathVariable String id) {
         ProductResponse response = productService.getProductById(id);
-        return ApiResponse.ok("Get product successfully", response);
+        return ApiResponse.ok("Lấy sản phẩm thành công", response);
     }
 }

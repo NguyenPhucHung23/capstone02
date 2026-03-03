@@ -10,31 +10,31 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UpdateProfileRequest {
 
-    @Size(min = 2, max = 100, message = "Full name must be between 2 and 100 characters")
+    @Size(min = 2, max = 100, message = "Họ tên phải từ 2 đến 100 ký tự")
     String fullName;
 
     @Pattern(
             regexp = "^[0-9]{9,11}$",
-            message = "Phone number must be 9-11 digits"
+            message = "Số điện thoại phải có 9-11 chữ số"
     )
     String phone;
 
 
-    @Size(max = 255, message = "Address must not exceed 255 characters")
+    @Size(max = 255, message = "Địa chỉ không được vượt quá 255 ký tự")
     String address;
 
-    @Size(max = 100, message = "City must not exceed 100 characters")
-    String city;       // Tỉnh/Thành phố
+    @Size(max = 100, message = "Tỉnh/Thành phố không được vượt quá 100 ký tự")
+    String city;
 
-    @Size(max = 100, message = "District must not exceed 100 characters")
-    String district;   // Quận/Huyện
+    @Size(max = 100, message = "Quận/Huyện không được vượt quá 100 ký tự")
+    String district;
 
-    @Size(max = 100, message = "Ward must not exceed 100 characters")
-    String ward;       // Phường/Xã
+    @Size(max = 100, message = "Phường/Xã không được vượt quá 100 ký tự")
+    String ward;
 
     @Pattern(
             regexp = "^(male|female|other)$",
-            message = "Gender must be male, female or other"
+            message = "Giới tính phải là male, female hoặc other"
     )
     String gender;
 }

@@ -12,39 +12,39 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RegisterRequest {
 
-    @Email(message = "Invalid email format")
-    @NotBlank(message = "Email is required")
+    @Email(message = "Email không hợp lệ")
+    @NotBlank(message = "Email không được để trống")
     String email;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password must be at least 6 characters")
+    @NotBlank(message = "Mật khẩu không được để trống")
+    @Size(min = 6, message = "Mật khẩu phải có ít nhất 6 ký tự")
     String password;
 
-    @NotBlank(message = "Full name is required")
-    @Size(min = 2, max = 100, message = "Full name must be between 2 and 100 characters")
+    @NotBlank(message = "Họ tên không được để trống")
+    @Size(min = 2, max = 100, message = "Họ tên phải từ 2 đến 100 ký tự")
     String fullName;
 
     @Pattern(
             regexp = "^[0-9]{9,11}$",
-            message = "Phone number must be 9-11 digits"
+            message = "Số điện thoại phải có 9-11 chữ số"
     )
     String phone;
 
-    @Size(max = 255, message = "Address must not exceed 255 characters")
+    @Size(max = 255, message = "Địa chỉ không được vượt quá 255 ký tự")
     String address;
 
-    @Size(max = 100, message = "City must not exceed 100 characters")
+    @Size(max = 100, message = "Tỉnh/Thành phố không được vượt quá 100 ký tự")
     String city;       // Tỉnh/Thành phố
 
-    @Size(max = 100, message = "District must not exceed 100 characters")
+    @Size(max = 100, message = "Quận/Huyện không được vượt quá 100 ký tự")
     String district;   // Quận/Huyện
 
-    @Size(max = 100, message = "Ward must not exceed 100 characters")
+    @Size(max = 100, message = "Phường/Xã không được vượt quá 100 ký tự")
     String ward;       // Phường/Xã
 
     @Pattern(
             regexp = "^(male|female|other)$",
-            message = "Gender must be male, female or other"
+            message = "Giới tính phải là male, female hoặc other"
     )
     String gender;
 }

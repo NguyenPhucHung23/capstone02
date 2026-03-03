@@ -19,41 +19,29 @@ public class CartController {
 
     CartService cartService;
 
-    /**
-     * Lấy giỏ hàng của user hiện tại
-     */
     @GetMapping
     public ApiResponse<CartResponse> getMyCart() {
         CartResponse response = cartService.getMyCart();
-        return ApiResponse.ok("Get cart successfully", response);
+        return ApiResponse.ok("Lấy giỏ hàng thành công", response);
     }
 
-    /**
-     * Thêm sản phẩm vào giỏ hàng
-     */
     @PostMapping("/items")
     public ApiResponse<CartResponse> addToCart(@Valid @RequestBody AddToCartRequest request) {
         CartResponse response = cartService.addToCart(request);
-        return ApiResponse.ok("Added to cart successfully", response);
+        return ApiResponse.ok("Thêm vào giỏ hàng thành công", response);
     }
 
-    /**
-     * Cập nhật số lượng sản phẩm trong giỏ hàng
-     */
     @PutMapping("/items/{productId}")
     public ApiResponse<CartResponse> updateCartItem(
             @PathVariable String productId,
             @Valid @RequestBody UpdateCartItemRequest request) {
         CartResponse response = cartService.updateCartItem(productId, request);
-        return ApiResponse.ok("Cart item updated successfully", response);
+        return ApiResponse.ok("Cập nhật số lượng thành công", response);
     }
 
-    /**
-     * Xóa một sản phẩm khỏi giỏ hàng
-     */
     @DeleteMapping("/items/{productId}")
     public ApiResponse<CartResponse> removeFromCart(@PathVariable String productId) {
         CartResponse response = cartService.removeFromCart(productId);
-        return ApiResponse.ok("Removed from cart successfully", response);
+        return ApiResponse.ok("Xóa sản phẩm khỏi giỏ hàng thành công", response);
     }
 }
