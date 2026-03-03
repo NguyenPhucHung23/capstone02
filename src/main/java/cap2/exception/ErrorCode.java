@@ -26,7 +26,15 @@ public enum ErrorCode {
     PRODUCT_NOT_FOUND(1012, "Không tìm thấy sản phẩm", HttpStatus.NOT_FOUND),
 
     CART_NOT_FOUND(1013, "Không tìm thấy giỏ hàng", HttpStatus.NOT_FOUND),
-    CART_ITEM_NOT_FOUND(1014, "Không tìm thấy sản phẩm trong giỏ hàng", HttpStatus.NOT_FOUND);
+    CART_ITEM_NOT_FOUND(1014, "Không tìm thấy sản phẩm trong giỏ hàng", HttpStatus.NOT_FOUND),
+    CART_EMPTY(1015, "Giỏ hàng trống", HttpStatus.BAD_REQUEST),
+
+    ORDER_NOT_FOUND(1016, "Không tìm thấy đơn hàng", HttpStatus.NOT_FOUND),
+    ORDER_CANNOT_CANCEL(1017, "Không thể hủy đơn hàng này", HttpStatus.BAD_REQUEST),
+    ORDER_ALREADY_CANCELLED(1018, "Đơn hàng đã bị hủy", HttpStatus.BAD_REQUEST),
+    ORDER_ALREADY_DELIVERED(1019, "Đơn hàng đã được giao", HttpStatus.BAD_REQUEST),
+    INVALID_PAYMENT_METHOD(1020, "Phương thức thanh toán không hợp lệ", HttpStatus.BAD_REQUEST),
+    INVALID_ORDER_STATUS(1021, "Trạng thái đơn hàng không hợp lệ", HttpStatus.BAD_REQUEST);
 
     private final int code;
     private final String message;

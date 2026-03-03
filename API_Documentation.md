@@ -602,21 +602,254 @@ DELETE /cart/items/prod789...
 ---
 
 
+## 📦 ORDER APIs (User đã đăng nhập)
+
+**Header:** `Authorization: Bearer <token>`
+
+### 27. Tạo đơn hàng
+```
+POST /orders
+```
+**Luồng thanh toán 3 bước:**
+1. **Giỏ hàng** - Xem sản phẩm trong giỏ
+2. **Thông tin** - Điền/chỉnh sửa thông tin giao hàng (tự động điền từ Profile, có thể sửa)
+3. **Thanh toán** - Chọn mã giảm giá + phương thức thanh toán
+
+**Lưu ý:**
+- Tạo đơn hàng từ giỏ hàng hiện tại
+- Thông tin giao hàng **mặc định lấy từ Profile**, nhưng user **có thể thay đổi** khi đặt hàng
+- Sau khi tạo đơn, giỏ hàng sẽ được xóa trống
+
+**Body:**
+```json
+{
+  "customerName": "Nguyễn Văn A",
+  "customerPhone": "0123456789",
+  "shippingAddress": "123 Đường ABC",
+  "shippingCity": "Hồ Chí Minh",
+  "shippingDistrict": "Quận 1",
+  "shippingWard": "Phường Bến Nghé",
+  "paymentMethod": "VNPAY",
+  "discountCode": "FREESHIP",
+  "note": "Giao giờ hành chính"
+}
+```
+
+> **Lưu ý:** Các field `customerName`, `customerPhone`, `shippingAddress`, `shippingCity`, `shippingDistrict`, `shippingWard` là **optional**. Nếu không gửi sẽ tự động lấy từ Profile.
+
+**paymentMethod:** `COD`, `VNPAY`, `MOMO`
+
+**discountCode hỗ trợ:**
+- `FREESHIP` - Miễn phí vận chuyển (500.000đ)
+- `SALE10` - Giảm 10%
+- `SALE20` - Giảm 20%
+- `NEWYEAR2024` - Giảm 1.000.000đ cho đơn từ 20 triệu
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Đặt hàng thành công",
+  "data": {
+    "id": "order123...",
+    "orderCode": "#ORD-2026-001",
+    "customerName": "Nguyễn Văn A",
+    "customerEmail": "nguyenvana@gmail.com",
+    "customerPhone": "0123456789",
+    "fullShippingAddress": "123 Đường ABC, Phường Bến Nghé, Quận 1, Hồ Chí Minh",
+    "items": [...],
+    "totalItems": 3,
+    "subtotal": 25900000,
+    "shippingFee": 500000,
+    "discount": 500000,
+    "discountCode": "FREESHIP",
+    "totalAmount": 25900000,
+    "paymentMethod": "VNPAY",
+    "paymentMethodDisplay": "VNPay",
+    "paymentStatus": "PENDING",
+    "paymentStatusDisplay": "Chờ thanh toán",
+    "status": "PENDING",
+    "statusDisplay": "Đang xử lý",
+    "createdAt": "2026-03-03T10:00:00Z"
+  }
+}
+```
+
+---
+
+### 28. Xem danh sách đơn hàng của tôi
+```
+GET /orders?page=0&size=10
+```
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy danh sách đơn hàng thành công",
+  "data": {
+    "content": [...],
+    "page": 0,
+    "size": 10,
+    "totalElements": 5,
+    "totalPages": 1
+  }
+}
+```
+
+---
+
+### 29. Xem chi tiết đơn hàng theo ID
+```
+GET /orders/{id}
+```
+
+---
+
+### 30. Xem chi tiết đơn hàng theo mã đơn
+```
+GET /orders/code/{orderCode}
+```
+**Ví dụ:**
+```
+GET /orders/code/%23ORD-2026-001
+```
+> Lưu ý: `#` trong URL cần encode thành `%23`
+
+---
+
+### 31. Hủy đơn hàng
+```
+PUT /orders/{id}/cancel
+```
+**Lưu ý:** 
+- User chỉ hủy được đơn hàng **của mình**
+- Chỉ hủy được đơn có trạng thái `PENDING`
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Hủy đơn hàng thành công",
+  "data": {
+    "orderCode": "#ORD-2026-001",
+    "status": "CANCELLED",
+    "statusDisplay": "Đã hủy"
+  }
+}
+```
+
+---
+
+## 👑 ADMIN ORDER APIs (Chỉ ADMIN)
+
+### 32. Xem tất cả đơn hàng
+```
+GET /admin/orders?page=0&size=10
+```
+
+---
+
+### 33. Lọc đơn hàng theo trạng thái
+```
+GET /admin/orders/status/{status}?page=0&size=10
+```
+**status:** `PENDING`, `CONFIRMED`, `SHIPPING`, `DELIVERED`, `CANCELLED`
+
+**Ví dụ:**
+```
+GET /admin/orders/status/PENDING
+GET /admin/orders/status/SHIPPING
+```
+
+---
+
+### 34. Xem chi tiết đơn hàng (Admin)
+```
+GET /admin/orders/{id}
+```
+
+---
+
+### 35. Cập nhật trạng thái đơn hàng (bao gồm Hủy)
+```
+PUT /admin/orders/{id}/status
+```
+**Body:**
+```json
+{
+  "status": "SHIPPING"
+}
+```
+**Các trạng thái hợp lệ:**
+| Status | Hiển thị |
+|--------|----------|
+| `PENDING` | Đang xử lý |
+| `CONFIRMED` | Đã xác nhận |
+| `SHIPPING` | Đang giao |
+| `DELIVERED` | Đã giao |
+| `CANCELLED` | Đã hủy |
+
+**Lưu ý:**
+- Không thể cập nhật đơn hàng đã hủy
+- Không thể cập nhật đơn hàng đã giao
+- Khi chuyển sang `DELIVERED` và phương thức là `COD`, tự động cập nhật `paymentStatus` thành `PAID`
+- **Để hủy đơn:** truyền `status: "CANCELLED"` - chỉ hủy được đơn có trạng thái `PENDING` hoặc `CONFIRMED`
+
+**Response (cập nhật trạng thái):**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Cập nhật trạng thái đơn hàng thành công",
+  "data": {
+    "orderCode": "#ORD-2026-001",
+    "status": "SHIPPING",
+    "statusDisplay": "Đang giao"
+  }
+}
+```
+
+**Response (hủy đơn hàng):**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Hủy đơn hàng thành công",
+  "data": {
+    "orderCode": "#ORD-2026-001",
+    "status": "CANCELLED",
+    "statusDisplay": "Đã hủy"
+  }
+}
+```
+
+---
+
 ## ❌ Error Codes (Cập nhật)
 
 | Code | Message | HTTP Status |
 |------|---------|-------------|
-| 1001 | Email already exists | 400 |
-| 1004 | User not found | 404 |
-| 1005 | Invalid password | 401 |
-| 1006 | Invalid token | 401 |
-| 1007 | Expired token | 401 |
-| 1008 | Profile not found | 404 |
-| 1009 | Invalid role | 400 |
-| 1010 | You don't have permission | 403 |
-| 1011 | Unauthenticated | 401 |
-| 1012 | Product not found | 404 |
-| 1013 | Cart not found | 404 |
-| 1014 | Cart item not found | 404 |
+| 1001 | Email đã tồn tại | 400 |
+| 1004 | Không tìm thấy người dùng | 404 |
+| 1005 | Mật khẩu không đúng | 401 |
+| 1006 | Token không hợp lệ | 401 |
+| 1007 | Token đã hết hạn | 401 |
+| 1008 | Không tìm thấy hồ sơ | 404 |
+| 1009 | Vai trò không hợp lệ | 400 |
+| 1010 | Bạn không có quyền truy cập | 403 |
+| 1011 | Chưa đăng nhập | 401 |
+| 1012 | Không tìm thấy sản phẩm | 404 |
+| 1013 | Không tìm thấy giỏ hàng | 404 |
+| 1014 | Không tìm thấy sản phẩm trong giỏ hàng | 404 |
+| 1015 | Giỏ hàng trống | 400 |
+| 1016 | Không tìm thấy đơn hàng | 404 |
+| 1017 | Không thể hủy đơn hàng này | 400 |
+| 1018 | Đơn hàng đã bị hủy | 400 |
+| 1019 | Đơn hàng đã được giao | 400 |
+| 1020 | Phương thức thanh toán không hợp lệ | 400 |
+| 1021 | Trạng thái đơn hàng không hợp lệ | 400 |
 
 ---
