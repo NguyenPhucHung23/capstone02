@@ -635,7 +635,10 @@ POST /orders
 }
 ```
 
-> **Lưu ý:** Các field `customerName`, `customerPhone`, `shippingAddress`, `shippingCity`, `shippingDistrict`, `shippingWard` là **optional**. Nếu không gửi sẽ tự động lấy từ Profile.
+> **Lưu ý:** 
+> - Các field `customerName`, `customerPhone`, `shippingAddress`, `shippingCity`, `shippingDistrict`, `shippingWard` là **optional**. Nếu không gửi sẽ tự động lấy từ Profile.
+> - Nếu user **chưa có Profile** thì **bắt buộc** phải gửi đầy đủ các thông tin giao hàng trong request.
+> - `orderCode` được tự động tạo theo format: `ORD{yyyyMMdd}{timestamp}{random}` để đảm bảo unique.
 
 **paymentMethod:** `COD`, `VNPAY`, `MOMO`
 
@@ -653,7 +656,7 @@ POST /orders
   "message": "Đặt hàng thành công",
   "data": {
     "id": "order123...",
-    "orderCode": "#ORD-2026-001",
+    "orderCode": "ORD20260305123456789",
     "customerName": "Nguyễn Văn A",
     "customerEmail": "nguyenvana@gmail.com",
     "customerPhone": "0123456789",
@@ -734,7 +737,7 @@ PUT /orders/{id}/cancel
   "code": 0,
   "message": "Hủy đơn hàng thành công",
   "data": {
-    "orderCode": "#ORD-2026-001",
+    "orderCode": "ORD20260305123456789",
     "status": "CANCELLED",
     "statusDisplay": "Đã hủy"
   }
@@ -805,7 +808,7 @@ PUT /admin/orders/{id}/status
   "code": 0,
   "message": "Cập nhật trạng thái đơn hàng thành công",
   "data": {
-    "orderCode": "#ORD-2026-001",
+    "orderCode": "ORD20260305123456789",
     "status": "SHIPPING",
     "statusDisplay": "Đang giao"
   }
@@ -819,12 +822,412 @@ PUT /admin/orders/{id}/status
   "code": 0,
   "message": "Hủy đơn hàng thành công",
   "data": {
-    "orderCode": "#ORD-2026-001",
+    "orderCode": "ORD20260305987654321",
     "status": "CANCELLED",
     "statusDisplay": "Đã hủy"
   }
 }
 ```
+
+---
+
+## 💳 VNPAY PAYMENT APIs
+
+### 37. Tạo URL thanh toán VNPay
+```
+POST /payments/vnpay/create/{orderId}
+```
+**Headers:**
+```
+Authorization: Bearer <token>
+```
+
+**Path Parameters:**
+- `orderId`: ID của đơn hàng cần thanh toán
+
+**Response:**
+```json
+{
+  "code": 200,
+  "message": "Tao url thanh toan VNPay thanh cong",
+  "data": {
+    "orderId": "65f123abc456789def012345",
+    "orderCode": "ORDER20260304001",
+    "paymentUrl": "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=100000000&vnp_Command=pay&vnp_CreateDate=20260304120000&vnp_CurrCode=VND&vnp_ExpireDate=20260304121500&vnp_IpAddr=192.168.1.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+ORDER20260304001&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Flocalhost%3A8000%2Fpayments%2Fvnpay%2Freturn&vnp_TmnCode=CGXZLS0Z&vnp_TxnRef=ORDER20260304001&vnp_Version=2.1.0&vnp_SecureHash=abc123..."
+  }
+}
+```
+
+**Lưu ý:**
+- Đơn hàng phải có `paymentMethod = VNPAY`
+- Đơn hàng phải có `paymentStatus = PENDING`
+- User phải là chủ đơn hàng hoặc admin
+- Redirect user đến `paymentUrl` để thanh toán
+
+**Test Cases:**
+
+1. **Test thanh toán thành công:**
+   - Tạo order với paymentMethod = "VNPAY"
+   - Gọi API tạo payment URL
+   - Mở paymentUrl trên browser
+   - Sử dụng thẻ test:
+     - Số thẻ: `9704198526191432198`
+     - Tên: `NGUYEN VAN A`
+     - Ngày hết hạn: `07/15`
+     - OTP: `123456`
+   - Chọn "Thanh toán"
+   - Kiểm tra redirect về `/return` với `vnp_ResponseCode=00` và `vnp_TransactionStatus=00`
+
+2. **Test thanh toán thất bại:**
+   - Tương tự test 1 nhưng chọn "Hủy thanh toán"
+   - Kiểm tra redirect về `/return` với `vnp_ResponseCode=24`
+
+3. **Test order không tồn tại:**
+   ```bash
+   POST /payments/vnpay/create/invalid_order_id
+   # Expected: 404 - Order not found
+   ```
+
+4. **Test order không phải VNPAY:**
+   ```bash
+   # Tạo order với paymentMethod = "COD"
+   POST /payments/vnpay/create/{orderId}
+   # Expected: 400 - Invalid payment method
+   ```
+
+5. **Test order đã thanh toán:**
+   ```bash
+   # Order có paymentStatus = "PAID"
+   POST /payments/vnpay/create/{orderId}
+   # Expected: 400 - Order already paid
+   ```
+
+---
+
+### 38. VNPay Return Callback (User redirect)
+```
+GET /payments/vnpay/return
+```
+
+**Query Parameters (từ VNPay gửi về):**
+- `vnp_TxnRef`: Mã đơn hàng
+- `vnp_Amount`: Số tiền (x100)
+- `vnp_ResponseCode`: Mã phản hồi (00 = không lỗi)
+- `vnp_TransactionStatus`: Mã giao dịch (00 = thành công)
+- `vnp_SecureHash`: Chữ ký bảo mật
+- ... (các tham số khác)
+
+**Response (Thanh toán thành công):**
+```json
+{
+  "code": 200,
+  "message": "VNPay return callback",
+  "data": {
+    "orderCode": "ORDER20260304001",
+    "amount": "100000000",
+    "responseCode": "00",
+    "transactionStatus": "00",
+    "success": "true",
+    "message": "Thanh toan thanh cong"
+  }
+}
+```
+
+**Response (Thanh toán thất bại):**
+```json
+{
+  "code": 200,
+  "message": "VNPay return callback",
+  "data": {
+    "orderCode": "ORDER20260304001",
+    "amount": "100000000",
+    "responseCode": "24",
+    "transactionStatus": "02",
+    "success": "false",
+    "message": "Thanh toan that bai - Ma loi: 24"
+  }
+}
+```
+
+**Lưu ý:**
+- Endpoint này **KHÔNG CẬP NHẬT DATABASE**
+- Chỉ để hiển thị kết quả cho user
+- Frontend nên hiển thị message phù hợp dựa vào `success` field
+- Database sẽ được cập nhật bởi IPN callback
+
+**Test Cases:**
+
+1. **Test return với chữ ký hợp lệ:**
+   ```bash
+   GET /payments/vnpay/return?vnp_TxnRef=ORDER001&vnp_Amount=100000000&vnp_ResponseCode=00&vnp_TransactionStatus=00&vnp_SecureHash=valid_hash...
+   # Expected: 200 - success: true
+   ```
+
+2. **Test return với chữ ký không hợp lệ:**
+   ```bash
+   GET /payments/vnpay/return?vnp_TxnRef=ORDER001&vnp_Amount=100000000&vnp_ResponseCode=00&vnp_SecureHash=invalid_hash
+   # Expected: 401 - Unauthorized
+   ```
+
+3. **Test return với order không tồn tại:**
+   ```bash
+   GET /payments/vnpay/return?vnp_TxnRef=INVALID_ORDER&vnp_SecureHash=valid_hash...
+   # Expected: 404 - Order not found
+   ```
+
+4. **Test F5 trang return nhiều lần:**
+   ```bash
+   # Gọi endpoint return nhiều lần với cùng params
+   # Expected: Vẫn trả về kết quả giống nhau (không update DB)
+   # Check DB: paymentStatus không thay đổi
+   ```
+
+---
+
+### 39. VNPay IPN Callback (Server-to-server)
+```
+GET /payments/vnpay/ipn
+```
+
+**Query Parameters (từ VNPay gọi server-to-server):**
+- `vnp_TxnRef`: Mã đơn hàng
+- `vnp_Amount`: Số tiền (x100)
+- `vnp_ResponseCode`: Mã phản hồi
+- `vnp_TransactionStatus`: Mã giao dịch
+- `vnp_SecureHash`: Chữ ký bảo mật
+- ... (các tham số khác)
+
+**Response (Thành công):**
+```json
+{
+  "RspCode": "00",
+  "Message": "Confirm Success"
+}
+```
+
+**Response (Chữ ký không hợp lệ):**
+```json
+{
+  "RspCode": "97",
+  "Message": "Invalid signature"
+}
+```
+
+**Response (Order không tồn tại):**
+```json
+{
+  "RspCode": "01",
+  "Message": "Order not found"
+}
+```
+
+**Response (Số tiền không khớp):**
+```json
+{
+  "RspCode": "04",
+  "Message": "Invalid amount"
+}
+```
+
+**Response (Order đã thanh toán - Idempotent):**
+```json
+{
+  "RspCode": "00",
+  "Message": "Order already confirmed"
+}
+```
+
+**Lưu ý:**
+- Endpoint này **CẬP NHẬT DATABASE**
+- VNPay gọi server-to-server (không phải user browser)
+- Phải **idempotent** (gọi nhiều lần không ảnh hưởng)
+- Chỉ cập nhật khi:
+  - `vnp_ResponseCode = "00"` (không lỗi)
+  - `vnp_TransactionStatus = "00"` (giao dịch thành công)
+  - CẢ HAI phải = "00" thì mới set `paymentStatus = PAID`
+- Sử dụng `@Transactional` để đảm bảo atomic
+
+**Test Cases:**
+
+1. **Test IPN với giao dịch thành công:**
+   ```bash
+   GET /payments/vnpay/ipn?vnp_TxnRef=ORDER001&vnp_Amount=100000000&vnp_ResponseCode=00&vnp_TransactionStatus=00&vnp_SecureHash=valid_hash...
+   # Expected: RspCode=00, Message=Confirm Success
+   # Check DB: order.paymentStatus = PAID, order.status = CONFIRMED
+   ```
+
+2. **Test IPN với giao dịch thất bại:**
+   ```bash
+   GET /payments/vnpay/ipn?vnp_TxnRef=ORDER001&vnp_Amount=100000000&vnp_ResponseCode=24&vnp_TransactionStatus=02&vnp_SecureHash=valid_hash...
+   # Expected: RspCode=00, Message=Confirm Success
+   # Check DB: order.paymentStatus = FAILED, order.status = PENDING
+   ```
+
+3. **Test IPN với chữ ký không hợp lệ:**
+   ```bash
+   GET /payments/vnpay/ipn?vnp_TxnRef=ORDER001&vnp_SecureHash=invalid_hash
+   # Expected: RspCode=97, Message=Invalid signature
+   # Check DB: Không thay đổi
+   ```
+
+4. **Test IPN với order không tồn tại:**
+   ```bash
+   GET /payments/vnpay/ipn?vnp_TxnRef=INVALID&vnp_SecureHash=valid_hash...
+   # Expected: RspCode=01, Message=Order not found
+   ```
+
+5. **Test IPN với số tiền không khớp:**
+   ```bash
+   GET /payments/vnpay/ipn?vnp_TxnRef=ORDER001&vnp_Amount=99999999&vnp_SecureHash=valid_hash...
+   # Expected: RspCode=04, Message=Invalid amount
+   # Check DB: Không thay đổi
+   ```
+
+6. **Test IPN idempotent (gọi nhiều lần):**
+   ```bash
+   # Lần 1: Order chưa thanh toán
+   GET /payments/vnpay/ipn?vnp_TxnRef=ORDER001&vnp_Amount=100000000&vnp_ResponseCode=00&vnp_TransactionStatus=00&vnp_SecureHash=valid_hash...
+   # Expected: RspCode=00, DB updated
+   
+   # Lần 2: Order đã thanh toán (gọi lại với cùng params)
+   GET /payments/vnpay/ipn?vnp_TxnRef=ORDER001&vnp_Amount=100000000&vnp_ResponseCode=00&vnp_TransactionStatus=00&vnp_SecureHash=valid_hash...
+   # Expected: RspCode=00, Message=Order already confirmed
+   # Check DB: Không thay đổi (vẫn PAID)
+   ```
+
+7. **Test IPN với ResponseCode=00 nhưng TransactionStatus!=00:**
+   ```bash
+   GET /payments/vnpay/ipn?vnp_TxnRef=ORDER001&vnp_ResponseCode=00&vnp_TransactionStatus=01&vnp_SecureHash=valid_hash...
+   # Expected: RspCode=00
+   # Check DB: order.paymentStatus = FAILED (vì TransactionStatus != 00)
+   ```
+
+---
+
+## 🔍 VNPay Response Codes
+
+### vnp_ResponseCode (Mã phản hồi)
+| Code | Mô tả |
+|------|-------|
+| 00 | Giao dịch thành công |
+| 07 | Trừ tiền thành công. Giao dịch bị nghi ngờ (liên quan tới lừa đảo, giao dịch bất thường) |
+| 09 | Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng chưa đăng ký dịch vụ InternetBanking tại ngân hàng |
+| 10 | Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần |
+| 11 | Giao dịch không thành công do: Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch |
+| 12 | Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa |
+| 13 | Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch (OTP) |
+| 24 | Giao dịch không thành công do: Khách hàng hủy giao dịch |
+| 51 | Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực hiện giao dịch |
+| 65 | Giao dịch không thành công do: Tài khoản của Quý khách đã vượt quá hạn mức giao dịch trong ngày |
+| 75 | Ngân hàng thanh toán đang bảo trì |
+| 79 | Giao dịch không thành công do: KH nhập sai mật khẩu thanh toán quá số lần quy định |
+| 99 | Các lỗi khác |
+
+### vnp_TransactionStatus (Mã giao dịch)
+| Code | Mô tả |
+|------|-------|
+| 00 | Giao dịch thành công |
+| 01 | Giao dịch chưa hoàn tất |
+| 02 | Giao dịch bị lỗi |
+| 04 | Giao dịch đảo (Khách hàng đã bị trừ tiền tại Ngân hàng nhưng GD chưa thành công ở VNPAY) |
+| 05 | VNPAY đang xử lý giao dịch này (GD hoàn tiền) |
+| 06 | VNPAY đã gửi yêu cầu hoàn tiền sang Ngân hàng (GD hoàn tiền) |
+| 07 | Giao dịch bị nghi ngờ gian lận |
+| 09 | GD Hoàn trả bị từ chối |
+
+### IPN RspCode (Response từ merchant về VNPay)
+| Code | Mô tả |
+|------|-------|
+| 00 | Confirm thành công |
+| 01 | Order not found |
+| 02 | Order already confirmed |
+| 04 | Invalid amount |
+| 97 | Invalid signature |
+| 99 | Unknown error |
+
+---
+
+## 🧪 VNPay Testing Guide
+
+### Môi trường Sandbox
+- **URL:** https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+- **TMN Code:** `CGXZLS0Z`
+- **Hash Secret:** `XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN`
+
+### Thẻ test
+| Loại | Số thẻ | Tên | Ngày HH | OTP |
+|------|--------|-----|---------|-----|
+| NCB | 9704198526191432198 | NGUYEN VAN A | 07/15 | 123456 |
+| Sacombank | 9704052526191432198 | NGUYEN VAN A | 07/15 | 123456 |
+| Vietcombank | 9704062526191432198 | NGUYEN VAN A | 07/15 | 123456 |
+
+### Luồng test đầy đủ
+
+#### 1. Tạo đơn hàng
+```bash
+POST /orders
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "fullName": "Nguyen Van A",
+  "phone": "0123456789",
+  "address": "123 ABC Street, Da Nang",
+  "paymentMethod": "VNPAY",
+  "discountCode": "",
+  "note": "Test VNPAY payment"
+}
+```
+
+#### 2. Lấy payment URL
+```bash
+POST /payments/vnpay/create/{orderId}
+Authorization: Bearer <token>
+
+# Response:
+{
+  "data": {
+    "paymentUrl": "https://sandbox.vnpayment.vn/..."
+  }
+}
+```
+
+#### 3. Mở payment URL trên browser
+- Copy `paymentUrl` và mở trên trình duyệt
+- Chọn ngân hàng: NCB
+- Nhập thông tin thẻ test
+- Nhập OTP: 123456
+- Click "Thanh toán"
+
+#### 4. Kiểm tra Return callback
+- VNPay sẽ redirect về: `http://localhost:8000/payments/vnpay/return?vnp_...`
+- Kiểm tra response JSON có `success: true`
+- **Lưu ý:** Ở bước này DB chưa được update
+
+#### 5. Kiểm tra IPN callback (trong logs)
+- Xem console logs của server:
+  ```
+  VNPay IPN callback: {vnp_TxnRef=ORDER001, vnp_ResponseCode=00, ...}
+  Order ORDER001 payment SUCCESS
+  ```
+- Check database:
+  ```bash
+  GET /orders/{orderId}
+  # Expected: paymentStatus = PAID, status = CONFIRMED
+  ```
+
+#### 6. Test idempotent
+- Gọi lại IPN endpoint với cùng params
+- Expected: RspCode=00, DB không thay đổi
+
+### Debug checklist
+- [ ] `vnp_SecureHash` được tạo đúng (hashData dùng raw value, không encode)
+- [ ] `vnp_Amount` = totalAmount * 100
+- [ ] `vnp_ReturnUrl` và `vnp_IpnUrl` accessible từ internet (khi deploy)
+- [ ] Check cả `vnp_ResponseCode` VÀ `vnp_TransactionStatus`
+- [ ] IPN endpoint phải public (không cần authentication)
+- [ ] Return endpoint chỉ hiển thị, IPN endpoint mới update DB
+- [ ] Logs đầy đủ để trace vấn đề
 
 ---
 
@@ -851,5 +1254,6 @@ PUT /admin/orders/{id}/status
 | 1019 | Đơn hàng đã được giao | 400 |
 | 1020 | Phương thức thanh toán không hợp lệ | 400 |
 | 1021 | Trạng thái đơn hàng không hợp lệ | 400 |
+| 1022 | Vui lòng cung cấp đầy đủ thông tin giao hàng | 400 |
 
 ---
