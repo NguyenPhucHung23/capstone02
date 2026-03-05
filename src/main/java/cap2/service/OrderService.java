@@ -29,7 +29,6 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @RequiredArgsConstructor
@@ -42,16 +41,15 @@ public class OrderService {
     UserRepository userRepository;
     ProfileRepository profileRepository;
 
-    static AtomicInteger orderCounter = new AtomicInteger(1);
-
     public OrderResponse createOrder(CreateOrderRequest request) {
         String userId = SecurityUtils.getCurrentUserId();
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
-        Profile profile = profileRepository.findByUserId(userId)
-                .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
+
+        // Profile không bắt buộc - lấy nếu có
+        Profile profile = profileRepository.findByUserId(userId).orElse(null);
 
         Cart cart = cartRepository.findByUserId(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.CART_NOT_FOUND));
@@ -81,13 +79,23 @@ public class OrderService {
 
         Order.PaymentMethod paymentMethod = parsePaymentMethod(request.getPaymentMethod());
 
-        // Ưu tiên dùng thông tin từ request, nếu không có thì lấy từ Profile
-        String customerName = hasValue(request.getCustomerName()) ? request.getCustomerName() : profile.getFullName();
-        String customerPhone = hasValue(request.getCustomerPhone()) ? request.getCustomerPhone() : profile.getPhone();
-        String shippingAddress = hasValue(request.getShippingAddress()) ? request.getShippingAddress() : profile.getAddress();
-        String shippingCity = hasValue(request.getShippingCity()) ? request.getShippingCity() : profile.getCity();
-        String shippingDistrict = hasValue(request.getShippingDistrict()) ? request.getShippingDistrict() : profile.getDistrict();
-        String shippingWard = hasValue(request.getShippingWard()) ? request.getShippingWard() : profile.getWard();
+        // Ưu tiên dùng thông tin từ request, nếu không có thì lấy từ Profile (nếu có profile)
+        String customerName = hasValue(request.getCustomerName()) ? request.getCustomerName() :
+                              (profile != null ? profile.getFullName() : null);
+        String customerPhone = hasValue(request.getCustomerPhone()) ? request.getCustomerPhone() :
+                               (profile != null ? profile.getPhone() : null);
+        String shippingAddress = hasValue(request.getShippingAddress()) ? request.getShippingAddress() :
+                                 (profile != null ? profile.getAddress() : null);
+        String shippingCity = hasValue(request.getShippingCity()) ? request.getShippingCity() :
+                              (profile != null ? profile.getCity() : null);
+        String shippingDistrict = hasValue(request.getShippingDistrict()) ? request.getShippingDistrict() :
+                                  (profile != null ? profile.getDistrict() : null);
+        String shippingWard = hasValue(request.getShippingWard()) ? request.getShippingWard() :
+                              (profile != null ? profile.getWard() : null);
+
+        // Validate thông tin giao hàng bắt buộc
+        validateShippingInfo(customerName, customerPhone, shippingAddress, shippingCity,
+                           shippingDistrict, shippingWard);
 
         Order order = Order.builder()
                 .orderCode(generateOrderCode())
@@ -250,14 +258,26 @@ public class OrderService {
 
     // ===== Helper methods =====
 
+    private void validateShippingInfo(String customerName, String customerPhone,
+                                     String shippingAddress, String shippingCity,
+                                     String shippingDistrict, String shippingWard) {
+        if (!hasValue(customerName) || !hasValue(customerPhone) ||
+            !hasValue(shippingAddress) || !hasValue(shippingCity) ||
+            !hasValue(shippingDistrict) || !hasValue(shippingWard)) {
+            throw new AppException(ErrorCode.MISSING_SHIPPING_INFO);
+        }
+    }
+
     private boolean hasValue(String value) {
         return value != null && !value.isBlank();
     }
 
     private String generateOrderCode() {
-        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy"));
-        int counter = orderCounter.getAndIncrement();
-        return String.format("#ORD-%s-%03d", date, counter);
+        // Sử dụng timestamp + random để đảm bảo unique
+        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        String time = String.format("%d", System.currentTimeMillis() % 100000); // 5 chữ số cuối của timestamp
+        int random = (int) (Math.random() * 1000); // Random 0-999
+        return String.format("ORD%s%s%03d", date, time, random);
     }
 
     private double calculateShippingFee(double subtotal) {

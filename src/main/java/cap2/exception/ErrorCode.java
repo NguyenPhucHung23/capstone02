@@ -34,7 +34,8 @@ public enum ErrorCode {
     ORDER_ALREADY_CANCELLED(1018, "Đơn hàng đã bị hủy", HttpStatus.BAD_REQUEST),
     ORDER_ALREADY_DELIVERED(1019, "Đơn hàng đã được giao", HttpStatus.BAD_REQUEST),
     INVALID_PAYMENT_METHOD(1020, "Phương thức thanh toán không hợp lệ", HttpStatus.BAD_REQUEST),
-    INVALID_ORDER_STATUS(1021, "Trạng thái đơn hàng không hợp lệ", HttpStatus.BAD_REQUEST);
+    INVALID_ORDER_STATUS(1021, "Trạng thái đơn hàng không hợp lệ", HttpStatus.BAD_REQUEST),
+    MISSING_SHIPPING_INFO(1022, "Vui lòng cung cấp đầy đủ thông tin giao hàng", HttpStatus.BAD_REQUEST);
 
     private final int code;
     private final String message;
