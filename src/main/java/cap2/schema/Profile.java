@@ -5,6 +5,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -24,4 +26,5 @@ public class Profile {
     String district;   // Quận/Huyện
     String ward;       // Phường/Xã
     String gender;
+    LocalDate dateOfBirth;  // Ngày sinh
 }

@@ -2,11 +2,14 @@ package cap2.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+
+import java.time.LocalDate;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -17,16 +20,25 @@ public class RegisterRequest {
     String email;
 
     @NotBlank(message = "Mật khẩu không được để trống")
-    @Size(min = 6, message = "Mật khẩu phải có ít nhất 6 ký tự")
+    @Size(min = 6, max = 50, message = "Mật khẩu phải từ 6 đến 50 ký tự")
+    @Pattern(
+            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$",
+            message = "Mật khẩu phải chứa ít nhất 1 chữ hoa, 1 chữ thường và 1 số"
+    )
     String password;
 
     @NotBlank(message = "Họ tên không được để trống")
     @Size(min = 2, max = 100, message = "Họ tên phải từ 2 đến 100 ký tự")
+    @Pattern(
+            regexp = "^[\\p{L}\\s]+$",
+            message = "Họ tên chỉ được chứa chữ cái và khoảng trắng"
+    )
     String fullName;
 
+    @NotBlank(message = "Số điện thoại không được để trống")
     @Pattern(
-            regexp = "^[0-9]{9,11}$",
-            message = "Số điện thoại phải có 9-11 chữ số"
+            regexp = "^(0|\\+84)[0-9]{9,10}$",
+            message = "Số điện thoại không hợp lệ (VD: 0912345678 hoặc +84912345678)"
     )
     String phone;
 
@@ -47,4 +59,7 @@ public class RegisterRequest {
             message = "Giới tính phải là male, female hoặc other"
     )
     String gender;
+
+    @Past(message = "Ngày sinh phải là ngày trong quá khứ")
+    LocalDate dateOfBirth;  // Ngày sinh
 }

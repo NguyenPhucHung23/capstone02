@@ -14,13 +14,32 @@ POST /users
 ```json
 {
   "email": "test@gmail.com",
-  "password": "123456",
+  "password": "Test@123",
   "fullName": "Nguyen Van A",
-  "phone": "0123456789",
-  "address": "Da Nang",
-  "gender": "male"
+  "phone": "0912345678",
+  "address": "123 Đường ABC",
+  "city": "Hồ Chí Minh",
+  "district": "Quận 1",
+  "ward": "Phường Bến Nghé",
+  "gender": "male",
+  "dateOfBirth": "1990-05-15"
 }
 ```
+
+**Validation Rules:**
+| Field | Rules |
+|-------|-------|
+| email | ✅ Bắt buộc, định dạng email hợp lệ |
+| password | ✅ Bắt buộc, 6-50 ký tự, phải có chữ hoa + chữ thường + số |
+| fullName | ✅ Bắt buộc, 2-100 ký tự, chỉ chữ cái và khoảng trắng |
+| phone | ✅ Bắt buộc, format VN (0912345678 hoặc +84912345678) |
+| address | Max 255 ký tự |
+| city | Max 100 ký tự |
+| district | Max 100 ký tự |
+| ward | Max 100 ký tự |
+| gender | `male`, `female`, `other` |
+| dateOfBirth | Ngày trong quá khứ (format: YYYY-MM-DD) |
+
 **Response:**
 ```json
 {
@@ -102,9 +121,14 @@ GET /profiles/me
     "id": "xyz789...",
     "userId": "abc123...",
     "fullName": "Nguyen Van A",
-    "phone": "0123456789",
-    "address": "Da Nang",
-    "gender": "male"
+    "phone": "0912345678",
+    "email": "test@gmail.com",
+    "address": "123 Đường ABC",
+    "city": "Hồ Chí Minh",
+    "district": "Quận 1",
+    "ward": "Phường Bến Nghé",
+    "gender": "male",
+    "dateOfBirth": "1990-05-15"
   }
 }
 ```
@@ -120,9 +144,26 @@ PUT /profiles/me
 {
   "fullName": "Nguyen Van B",
   "phone": "0987654321",
-  "address": "Ha Noi",
-  "gender": "male"
+  "address": "456 Đường XYZ",
+  "city": "Hà Nội",
+  "district": "Quận Ba Đình",
+  "ward": "Phường Trúc Bạch",
+  "gender": "male",
+  "dateOfBirth": "1992-08-20"
 }
+```
+
+**Validation Rules:**
+| Field | Rules |
+|-------|-------|
+| fullName | 2-100 ký tự, chỉ chữ cái và khoảng trắng |
+| phone | Format VN (0912345678 hoặc +84912345678) |
+| address | Max 255 ký tự |
+| city | Max 100 ký tự |
+| district | Max 100 ký tự |
+| ward | Max 100 ký tự |
+| gender | `male`, `female`, `other` |
+| dateOfBirth | Ngày trong quá khứ (format: YYYY-MM-DD) |
 ```
 
 ---
@@ -209,7 +250,13 @@ PUT /profiles/{id}
 ```json
 {
   "fullName": "New Name",
-  "phone": "0123456789"
+  "phone": "0912345678",
+  "address": "New Address",
+  "city": "Hồ Chí Minh",
+  "district": "Quận 1",
+  "ward": "Phường Bến Nghé",
+  "gender": "male",
+  "dateOfBirth": "1995-03-10"
 }
 ```
 
@@ -237,14 +284,35 @@ PUT /users/{id}
 
 ## 📋 Validation Rules
 
+### Đăng ký (RegisterRequest)
+| Field | Required | Rules |
+|-------|----------|-------|
+| email | ✅ | Định dạng email hợp lệ |
+| password | ✅ | 6-50 ký tự, phải có: chữ hoa + chữ thường + số |
+| fullName | ✅ | 2-100 ký tự, chỉ chữ cái và khoảng trắng (hỗ trợ tiếng Việt) |
+| phone | ✅ | Format VN: `0912345678` hoặc `+84912345678` |
+| address | | Max 255 ký tự |
+| city | | Max 100 ký tự |
+| district | | Max 100 ký tự |
+| ward | | Max 100 ký tự |
+| gender | | `male`, `female`, `other` |
+| dateOfBirth | | Ngày trong quá khứ, format: `YYYY-MM-DD` |
+
+### Cập nhật Profile (UpdateProfileRequest)
 | Field | Rules |
 |-------|-------|
-| email | Required, Valid email format |
-| password | Required, Min 6 characters |
-| fullName | Required, 2-100 characters |
-| phone | 9-11 digits |
-| address | Max 255 characters |
+| fullName | 2-100 ký tự, chỉ chữ cái và khoảng trắng |
+| phone | Format VN: `0912345678` hoặc `+84912345678` |
+| address | Max 255 ký tự |
+| city | Max 100 ký tự |
+| district | Max 100 ký tự |
+| ward | Max 100 ký tự |
 | gender | `male`, `female`, `other` |
+| dateOfBirth | Ngày trong quá khứ, format: `YYYY-MM-DD` |
+
+### User
+| Field | Rules |
+|-------|-------|
 | role | `USER`, `ADMIN` |
 
 ---
@@ -716,9 +784,9 @@ GET /orders/code/{orderCode}
 ```
 **Ví dụ:**
 ```
-GET /orders/code/%23ORD-2026-001
+GET /orders/code/ORD202603051234560789
 ```
-> Lưu ý: `#` trong URL cần encode thành `%23`
+> **Lưu ý:** `orderCode` có format `ORD{yyyyMMdd}{nanoTime}{random}` (18 chữ số sau ORD), đảm bảo unique cho mỗi đơn hàng.
 
 ---
 
@@ -737,7 +805,7 @@ PUT /orders/{id}/cancel
   "code": 0,
   "message": "Hủy đơn hàng thành công",
   "data": {
-    "orderCode": "ORD20260305123456789",
+    "orderCode": "ORD202603051234560789",
     "status": "CANCELLED",
     "statusDisplay": "Đã hủy"
   }
@@ -808,7 +876,7 @@ PUT /admin/orders/{id}/status
   "code": 0,
   "message": "Cập nhật trạng thái đơn hàng thành công",
   "data": {
-    "orderCode": "ORD20260305123456789",
+    "orderCode": "ORD202603051234560789",
     "status": "SHIPPING",
     "statusDisplay": "Đang giao"
   }
@@ -822,7 +890,7 @@ PUT /admin/orders/{id}/status
   "code": 0,
   "message": "Hủy đơn hàng thành công",
   "data": {
-    "orderCode": "ORD20260305987654321",
+    "orderCode": "ORD202603059876540321",
     "status": "CANCELLED",
     "statusDisplay": "Đã hủy"
   }

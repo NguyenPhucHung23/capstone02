@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -21,4 +23,5 @@ public class ProfileResponse {
     String district;   // Quận/Huyện
     String ward;       // Phường/Xã
     String gender;
+    LocalDate dateOfBirth;  // Ngày sinh
 }

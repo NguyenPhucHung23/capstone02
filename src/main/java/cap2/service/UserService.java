@@ -61,6 +61,7 @@ public class UserService {
                 .district(req.getDistrict())
                 .ward(req.getWard())
                 .gender(req.getGender())
+                .dateOfBirth(req.getDateOfBirth())
                 .build();
 
         profileRepository.save(profile);

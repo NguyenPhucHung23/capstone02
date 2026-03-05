@@ -273,11 +273,25 @@ public class OrderService {
     }
 
     private String generateOrderCode() {
-        // Sử dụng timestamp + random để đảm bảo unique
-        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        String time = String.format("%d", System.currentTimeMillis() % 100000); // 5 chữ số cuối của timestamp
-        int random = (int) (Math.random() * 1000); // Random 0-999
-        return String.format("ORD%s%s%03d", date, time, random);
+        // Sử dụng timestamp + random + kiểm tra unique
+        String orderCode;
+        int maxAttempts = 10;
+        int attempts = 0;
+
+        do {
+            String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+            long nanoTime = System.nanoTime() % 1000000; // 6 chữ số cuối của nano time
+            int random = (int) (Math.random() * 10000); // Random 0-9999
+            orderCode = String.format("ORD%s%06d%04d", date, nanoTime, random);
+            attempts++;
+        } while (orderRepository.existsByOrderCode(orderCode) && attempts < maxAttempts);
+
+        if (attempts >= maxAttempts) {
+            // Fallback: dùng UUID nếu không tạo được mã unique sau nhiều lần thử
+            orderCode = "ORD" + java.util.UUID.randomUUID().toString().substring(0, 16).toUpperCase();
+        }
+
+        return orderCode;
     }
 
     private double calculateShippingFee(double subtotal) {

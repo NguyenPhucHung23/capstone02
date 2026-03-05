@@ -158,6 +158,7 @@ public class ProfileService {
                 .district(profile.getDistrict())
                 .ward(profile.getWard())
                 .gender(profile.getGender())
+                .dateOfBirth(profile.getDateOfBirth())
                 .build();
     }
 }
