@@ -27,9 +27,9 @@ public class AuthController {
     }
 
     @PostMapping("/forgot-password")
-    public ApiResponse<Void> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
-        authService.forgotPassword(request);
-        return ApiResponse.ok("Password reset link has been sent to your email", null);
+    public ApiResponse<String> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
+        String otp = authService.forgotPassword(request);
+        return ApiResponse.ok("OTP has been generated. Please check your email or use the returned OTP for testing.", otp);
     }
 
     @PostMapping("/reset-password")

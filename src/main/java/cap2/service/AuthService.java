@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -58,41 +58,51 @@ public class AuthService {
                 .build();
     }
 
-    public void forgotPassword(ForgotPasswordRequest request) {
+    public String forgotPassword(ForgotPasswordRequest request) {
         String email = request.getEmail().trim().toLowerCase();
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
-        String token = UUID.randomUUID().toString();
-        user.setPasswordResetToken(token);
-        user.setPasswordResetExpires(LocalDateTime.now().plusHours(1)); // Token expires in 1 hour
+        // Generate 6-digit OTP
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+        String otp = String.format("%06d", number);
 
+        user.setOtp(otp);
+        user.setOtpExpires(LocalDateTime.now().plusHours(1)); // OTP expires in 1 hour
         userRepository.save(user);
 
-        // This URL should point to your frontend application's reset password page
-        String resetUrl = "http://localhost:3000/reset-password?token=" + token;
-
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(fromEmail);
-        message.setTo(user.getEmail());
-        message.setSubject("Password Reset Request");
-        message.setText("To reset your password, click the link below:\n" + resetUrl);
-
-        mailSender.send(message);
-        log.info("Password reset email sent to {}", user.getEmail());
+        // Send email
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom(fromEmail);
+            message.setTo(user.getEmail());
+            message.setSubject("Password Reset OTP");
+            message.setText("Your OTP for password reset is: " + otp);
+            mailSender.send(message);
+            log.info("OTP sent to {}", user.getEmail());
+        } catch (Exception e) {
+            log.error("Failed to send OTP email to {}: {}", user.getEmail(), e.getMessage());
+        }
+        return otp;
     }
 
     public void resetPassword(ResetPasswordRequest request) {
-        User user = userRepository.findByPasswordResetToken(request.getToken())
-                .orElseThrow(() -> new AppException(ErrorCode.INVALID_TOKEN));
+        String email = request.getEmail().trim().toLowerCase();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
-        if (user.getPasswordResetExpires().isBefore(LocalDateTime.now())) {
+        if (user.getOtp() == null || !user.getOtp().equals(request.getOtp())) {
+            throw new AppException(ErrorCode.INVALID_TOKEN);
+        }
+
+        if (user.getOtpExpires().isBefore(LocalDateTime.now())) {
             throw new AppException(ErrorCode.EXPIRED_TOKEN);
         }
 
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
-        user.setPasswordResetToken(null);
-        user.setPasswordResetExpires(null);
+        user.setOtp(null);
+        user.setOtpExpires(null);
 
         userRepository.save(user);
         log.info("Password reset successfully for user: {}", user.getId());
