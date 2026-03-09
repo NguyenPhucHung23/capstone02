@@ -55,6 +55,10 @@ public class Product {
 
     List<String> images;
 
+    // Sales tracking
+    @Builder.Default
+    Integer soldCount = 0;
+
     // Source info
     String sourceUrl;
     String sourceProvider;

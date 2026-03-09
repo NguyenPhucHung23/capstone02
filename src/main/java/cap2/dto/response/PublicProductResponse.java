@@ -4,16 +4,21 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import java.time.Instant;
 import java.util.List;
 
+/**
+ * Response dành cho USER khi xem sản phẩm.
+ * Ẩn các field nội bộ: soldCount, sourceUrl, sourceProvider, createdAt, updatedAt
+ */
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ProductResponse {
+public class PublicProductResponse {
 
     String id;
     String name;
@@ -44,16 +49,11 @@ public class ProductResponse {
 
     List<String> images;
 
-    Integer soldCount;
-
-    String sourceUrl;
-    String sourceProvider;
-
-    Instant createdAt;
-    Instant updatedAt;
+    // KHÔNG có: soldCount, sourceUrl, sourceProvider, createdAt, updatedAt
 
     @Data
     @Builder
+    @NoArgsConstructor
     @AllArgsConstructor
     @FieldDefaults(level = AccessLevel.PRIVATE)
     public static class ColorResponse {
@@ -63,6 +63,7 @@ public class ProductResponse {
 
     @Data
     @Builder
+    @NoArgsConstructor
     @AllArgsConstructor
     @FieldDefaults(level = AccessLevel.PRIVATE)
     public static class DimensionsResponse {
