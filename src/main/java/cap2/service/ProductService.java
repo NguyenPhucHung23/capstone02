@@ -3,6 +3,7 @@ package cap2.service;
 import cap2.dto.request.ProductRequest;
 import cap2.dto.response.PageResponse;
 import cap2.dto.response.ProductResponse;
+import cap2.dto.response.PublicProductResponse;
 import cap2.exception.AppException;
 import cap2.exception.ErrorCode;
 import cap2.repository.ProductRepository;
@@ -95,7 +96,36 @@ public class ProductService {
     }
 
     /**
-     * Lấy product theo ID
+     * Lấy product theo ID (USER - ẩn soldCount, sourceUrl, sourceProvider)
+     */
+    public PublicProductResponse getProductByIdPublic(String id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
+        return mapToPublicProductResponse(product);
+    }
+
+    /**
+     * Lấy danh sách products (USER - ẩn soldCount, sourceUrl, sourceProvider)
+     */
+    public PageResponse<PublicProductResponse> getAllProductsPublic(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+        Page<Product> productPage = productRepository.findAll(pageable);
+
+        return PageResponse.<PublicProductResponse>builder()
+                .content(productPage.getContent().stream()
+                        .map(this::mapToPublicProductResponse)
+                        .toList())
+                .page(productPage.getNumber())
+                .size(productPage.getSize())
+                .totalElements(productPage.getTotalElements())
+                .totalPages(productPage.getTotalPages())
+                .first(productPage.isFirst())
+                .last(productPage.isLast())
+                .build();
+    }
+
+    /**
+     * Lấy product theo ID (ADMIN - đầy đủ thông tin)
      */
     public ProductResponse getProductById(String id) {
         Product product = productRepository.findById(id)
@@ -244,6 +274,7 @@ public class ProductService {
                 .careInstructions(product.getCareInstructions())
                 .notes(product.getNotes())
                 .images(product.getImages())
+                .soldCount(product.getSoldCount() != null ? product.getSoldCount() : 0)
                 .sourceUrl(product.getSourceUrl())
                 .sourceProvider(product.getSourceProvider())
                 .createdAt(product.getCreatedAt())
@@ -270,6 +301,49 @@ public class ProductService {
                 .height(dimensions.getHeight())
                 .depth(dimensions.getDepth())
                 .unit(dimensions.getUnit())
+                .build();
+    }
+
+    /**
+     * Map sang PublicProductResponse dành cho USER
+     * Ẩn: soldCount, sourceUrl, sourceProvider, createdAt, updatedAt
+     */
+    private PublicProductResponse mapToPublicProductResponse(Product product) {
+        return PublicProductResponse.builder()
+                .id(product.getId())
+                .name(product.getName())
+                .slug(product.getSlug())
+                .category(product.getCategory())
+                .price(product.getPrice())
+                .currency(product.getCurrency())
+                .priceFormatted(product.getPriceFormatted())
+                .sku(product.getSku())
+                .availabilityText(product.getAvailabilityText())
+                .inStock(product.getInStock())
+                .stock(product.getStock())
+                .material(product.getMaterial())
+                .color(product.getColor() != null
+                        ? PublicProductResponse.ColorResponse.builder()
+                                .name(product.getColor().getName())
+                                .hex(product.getColor().getHex())
+                                .build()
+                        : null)
+                .styles(product.getStyles())
+                .origin(product.getOrigin())
+                .dimensions(product.getDimensions() != null
+                        ? PublicProductResponse.DimensionsResponse.builder()
+                                .width(product.getDimensions().getWidth())
+                                .height(product.getDimensions().getHeight())
+                                .depth(product.getDimensions().getDepth())
+                                .unit(product.getDimensions().getUnit())
+                                .build()
+                        : null)
+                .dimensionsRaw(product.getDimensionsRaw())
+                .description(product.getDescription())
+                .careInstructions(product.getCareInstructions())
+                .notes(product.getNotes())
+                .images(product.getImages())
+                // soldCount, sourceUrl, sourceProvider KHÔNG được map ra ngoài
                 .build();
     }
 }

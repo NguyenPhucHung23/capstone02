@@ -901,7 +901,7 @@ PUT /admin/orders/{id}/status
 
 ## 💳 VNPAY PAYMENT APIs
 
-### 37. Tạo URL thanh toán VNPay
+### 42. Tạo URL thanh toán VNPay
 ```
 POST /payments/vnpay/create/{orderId}
 ```
@@ -972,7 +972,7 @@ Authorization: Bearer <token>
 
 ---
 
-### 38. VNPay Return Callback (User redirect)
+### 43. VNPay Return Callback (User redirect)
 ```
 GET /payments/vnpay/return
 ```
@@ -1052,7 +1052,7 @@ GET /payments/vnpay/return
 
 ---
 
-### 39. VNPay IPN Callback (Server-to-server)
+### 44. VNPay IPN Callback (Server-to-server)
 ```
 GET /payments/vnpay/ipn
 ```
@@ -1296,6 +1296,748 @@ Authorization: Bearer <token>
 - [ ] IPN endpoint phải public (không cần authentication)
 - [ ] Return endpoint chỉ hiển thị, IPN endpoint mới update DB
 - [ ] Logs đầy đủ để trace vấn đề
+
+---
+
+## 📊 ADMIN DASHBOARD APIs (Chỉ ADMIN)
+
+**Header:** `Authorization: Bearer <admin_token>`
+
+> Các API này trả về dữ liệu thống kê phục vụ trang Dashboard quản trị.  
+> Bao gồm: Tổng doanh thu, Đơn hàng mới, Sản phẩm, Khách hàng, Biểu đồ doanh thu theo tháng, Đơn hàng gần đây, Sản phẩm bán chạy.
+
+---
+
+### 36. Lấy toàn bộ dữ liệu Dashboard (1 request)
+```
+GET /admin/dashboard?recentOrders=5&topProducts=5
+```
+
+**Query Parameters:**
+| Param | Default | Mô tả |
+|-------|---------|-------|
+| `recentOrders` | `5` | Số lượng đơn hàng gần đây cần lấy |
+| `topProducts` | `5` | Số lượng sản phẩm bán chạy cần lấy |
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy dữ liệu dashboard thành công",
+  "data": {
+    "overview": {
+      "totalRevenue": 458500000,
+      "totalRevenueFormatted": "458.500.000 ₫",
+      "revenueGrowthPercent": 12.5,
+      "totalNewOrders": 127,
+      "orderGrowthPercent": 8.2,
+      "totalProducts": 342,
+      "productGrowthPercent": 5.1,
+      "totalCustomers": 1253,
+      "customerGrowthPercent": 15.3,
+      "totalOrders": 890
+    },
+    "monthlyRevenue": [
+      { "year": 2026, "month": 1, "monthLabel": "T1", "revenue": 32000000, "orderCount": 18 },
+      { "year": 2026, "month": 2, "monthLabel": "T2", "revenue": 41500000, "orderCount": 24 },
+      { "year": 2026, "month": 3, "monthLabel": "T3", "revenue": 58000000, "orderCount": 31 }
+    ],
+    "recentOrders": [
+      {
+        "id": "order123...",
+        "orderCode": "ORD20260309001234",
+        "customerName": "Nguyễn Văn A",
+        "totalAmount": 25900000,
+        "status": "PENDING",
+        "statusDisplay": "Đang xử lý",
+        "paymentMethod": "VNPAY",
+        "paymentMethodDisplay": "VNPay",
+        "paymentStatus": "PENDING",
+        "createdAt": "2026-03-09T10:00:00Z"
+      },
+      {
+        "id": "order456...",
+        "orderCode": "ORD20260309005678",
+        "customerName": "Trần Thị B",
+        "totalAmount": 15900000,
+        "status": "SHIPPING",
+        "statusDisplay": "Đang giao",
+        "paymentMethod": "COD",
+        "paymentMethodDisplay": "COD",
+        "paymentStatus": "PENDING",
+        "createdAt": "2026-03-09T09:30:00Z"
+      }
+    ],
+    "bestSellingProducts": [
+      {
+        "id": "prod789...",
+        "name": "Ghế Sofa Modern 3 Chỗ",
+        "category": "Sofa",
+        "price": 15900000,
+        "priceFormatted": "15.900.000 ₫",
+        "image": "https://example.com/sofa.jpg",
+        "soldCount": 142,
+        "stock": 25,
+        "inStock": true
+      },
+      {
+        "id": "prod012...",
+        "name": "Bàn Cafe Tròn Gỗ Sồi",
+        "category": "Bàn",
+        "price": 4500000,
+        "priceFormatted": "4.500.000 ₫",
+        "image": "https://example.com/table.jpg",
+        "soldCount": 89,
+        "stock": 48,
+        "inStock": true
+      }
+    ],
+    "orderStatusSummary": {
+      "pending": 127,
+      "confirmed": 45,
+      "shipping": 38,
+      "delivered": 652,
+      "cancelled": 28
+    }
+  }
+}
+```
+
+---
+
+### 37. Lấy 4 thẻ thống kê tổng quan
+```
+GET /admin/dashboard/overview
+```
+
+> Trả về 4 thẻ trên cùng của dashboard: **Tổng doanh thu**, **Đơn hàng mới**, **Sản phẩm**, **Khách hàng** cùng % tăng trưởng so với tháng trước.
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy thống kê tổng quan thành công",
+  "data": {
+    "totalRevenue": 458500000,
+    "totalRevenueFormatted": "458.500.000 ₫",
+    "revenueGrowthPercent": 12.5,
+    "totalNewOrders": 127,
+    "orderGrowthPercent": 8.2,
+    "totalProducts": 342,
+    "productGrowthPercent": 5.1,
+    "totalCustomers": 1253,
+    "customerGrowthPercent": 15.3,
+    "totalOrders": 890
+  }
+}
+```
+
+**Mapping với UI:**
+| Field | Thẻ trên UI |
+|-------|------------|
+| `totalRevenue` / `totalRevenueFormatted` | 💰 Tổng doanh thu: đ458,500,000 |
+| `revenueGrowthPercent` | ↑ +12.5% |
+| `totalNewOrders` | 🛒 Đơn hàng mới: 127 |
+| `orderGrowthPercent` | ↑ +8.2% |
+| `totalProducts` | 📦 Sản phẩm: 342 |
+| `productGrowthPercent` | ↑ +5.1% |
+| `totalCustomers` | 👥 Khách hàng: 1,253 |
+| `customerGrowthPercent` | ↑ +15.3% |
+
+---
+
+### 38. Lấy doanh thu theo tháng (Biểu đồ)
+```
+GET /admin/dashboard/revenue/monthly?months=12
+```
+
+**Query Parameters:**
+| Param | Default | Mô tả |
+|-------|---------|-------|
+| `months` | `12` | Số tháng gần nhất cần lấy |
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy doanh thu theo tháng thành công",
+  "data": [
+    { "year": 2025, "month": 4,  "monthLabel": "T4",  "revenue": 28000000, "orderCount": 15 },
+    { "year": 2025, "month": 5,  "monthLabel": "T5",  "revenue": 35000000, "orderCount": 20 },
+    { "year": 2025, "month": 6,  "monthLabel": "T6",  "revenue": 29500000, "orderCount": 17 },
+    { "year": 2025, "month": 7,  "monthLabel": "T7",  "revenue": 42000000, "orderCount": 26 },
+    { "year": 2025, "month": 8,  "monthLabel": "T8",  "revenue": 38000000, "orderCount": 22 },
+    { "year": 2025, "month": 9,  "monthLabel": "T9",  "revenue": 31000000, "orderCount": 19 },
+    { "year": 2025, "month": 10, "monthLabel": "T10", "revenue": 45000000, "orderCount": 28 },
+    { "year": 2025, "month": 11, "monthLabel": "T11", "revenue": 52000000, "orderCount": 33 },
+    { "year": 2025, "month": 12, "monthLabel": "T12", "revenue": 68000000, "orderCount": 41 },
+    { "year": 2026, "month": 1,  "monthLabel": "T1",  "revenue": 32000000, "orderCount": 18 },
+    { "year": 2026, "month": 2,  "monthLabel": "T2",  "revenue": 41500000, "orderCount": 24 },
+    { "year": 2026, "month": 3,  "monthLabel": "T3",  "revenue": 58000000, "orderCount": 31 }
+  ]
+}
+```
+
+**Lưu ý:**
+- Chỉ tính doanh thu từ đơn hàng có `paymentStatus = PAID`
+- Timezone: `Asia/Ho_Chi_Minh (GMT+7)`
+- Dữ liệu sắp xếp từ tháng xa nhất → gần nhất
+
+---
+
+### 39. Lấy đơn hàng gần đây
+```
+GET /admin/dashboard/orders/recent?limit=5
+```
+
+**Query Parameters:**
+| Param | Default | Mô tả |
+|-------|---------|-------|
+| `limit` | `5` | Số lượng đơn hàng cần lấy |
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy đơn hàng gần đây thành công",
+  "data": [
+    {
+      "id": "order123...",
+      "orderCode": "ORD20260309001234",
+      "customerName": "Nguyễn Văn A",
+      "totalAmount": 25900000,
+      "status": "PENDING",
+      "statusDisplay": "Đang xử lý",
+      "paymentMethod": "VNPAY",
+      "paymentMethodDisplay": "VNPay",
+      "paymentStatus": "PENDING",
+      "createdAt": "2026-03-09T10:00:00Z"
+    },
+    {
+      "id": "order456...",
+      "orderCode": "ORD20260309005678",
+      "customerName": "Trần Thị B",
+      "totalAmount": 15900000,
+      "status": "SHIPPING",
+      "statusDisplay": "Đang giao",
+      "paymentMethod": "COD",
+      "paymentMethodDisplay": "COD",
+      "paymentStatus": "PENDING",
+      "createdAt": "2026-03-09T09:30:00Z"
+    }
+  ]
+}
+```
+
+**Mapping với UI (section "Đơn hàng gần đây"):**
+| Field | Hiển thị trên UI |
+|-------|-----------------|
+| `orderCode` | #ORD-2024-001 (màu cam) |
+| `customerName` | Nguyễn Văn A |
+| `totalAmount` | 25.900.000 đ |
+| `statusDisplay` | 🔵 Đang xử lý / 🟡 Đang giao |
+
+---
+
+### 40. Lấy sản phẩm bán chạy nhất
+```
+GET /admin/dashboard/products/best-selling?limit=5
+```
+
+**Query Parameters:**
+| Param | Default | Mô tả |
+|-------|---------|-------|
+| `limit` | `5` | Số lượng sản phẩm cần lấy |
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy sản phẩm bán chạy thành công",
+  "data": [
+    {
+      "id": "prod789...",
+      "name": "Ghế Sofa Modern 3 Chỗ",
+      "category": "Sofa",
+      "price": 15900000,
+      "priceFormatted": "15.900.000 ₫",
+      "image": "https://example.com/sofa.jpg",
+      "soldCount": 142,
+      "stock": 25,
+      "inStock": true
+    },
+    {
+      "id": "prod012...",
+      "name": "Bàn Cafe Tròn Gỗ Sồi",
+      "category": "Bàn",
+      "price": 4500000,
+      "priceFormatted": "4.500.000 ₫",
+      "image": "https://example.com/table.jpg",
+      "soldCount": 89,
+      "stock": 48,
+      "inStock": true
+    },
+    {
+      "id": "prod345...",
+      "name": "Đèn Thả Trang Trí",
+      "category": "Đèn",
+      "price": 3200000,
+      "priceFormatted": "3.200.000 ₫",
+      "image": "https://example.com/lamp.jpg",
+      "soldCount": 76,
+      "stock": 12,
+      "inStock": true
+    }
+  ]
+}
+```
+
+**Lưu ý:**
+- `soldCount` tự động tăng mỗi khi tạo đơn hàng thành công
+- Danh sách sắp xếp theo `soldCount` giảm dần
+- `image` là ảnh đầu tiên trong `images` của sản phẩm
+
+**Mapping với UI (section "Sản phẩm bán chạy"):**
+| Field | Hiển thị trên UI |
+|-------|-----------------|
+| `image` | Ảnh thumbnail |
+| `name` | Ghế Sofa Modern 3 Chỗ |
+| `soldCount` | Đã bán: 142 (màu cam) |
+| `priceFormatted` | 15.900.000 đ |
+| `stock` | Kho: 25 |
+
+---
+
+### 41. Lấy tổng kết trạng thái đơn hàng
+```
+GET /admin/dashboard/orders/status-summary
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy tổng kết trạng thái đơn hàng thành công",
+  "data": {
+    "pending": 127,
+    "confirmed": 45,
+    "shipping": 38,
+    "delivered": 652,
+    "cancelled": 28
+  }
+}
+```
+
+---
+
+## 📐 Dashboard API – Tóm tắt Endpoints
+
+| # | Method | Endpoint | Mô tả |
+|---|--------|----------|-------|
+| 36 | GET | `/admin/dashboard` | Toàn bộ dashboard (1 request) |
+| 37 | GET | `/admin/dashboard/overview` | 4 thẻ thống kê tổng quan |
+| 38 | GET | `/admin/dashboard/revenue/monthly` | Biểu đồ doanh thu theo tháng |
+| 39 | GET | `/admin/dashboard/orders/recent` | Đơn hàng gần đây |
+| 40 | GET | `/admin/dashboard/products/best-selling` | Sản phẩm bán chạy nhất |
+| 41 | GET | `/admin/dashboard/orders/status-summary` | Tổng kết trạng thái đơn |
+| 42 | POST | `/payments/vnpay/create/{orderId}` | Tạo URL thanh toán VNPay |
+| 43 | GET | `/payments/vnpay/return` | VNPay Return callback |
+| 44 | GET | `/payments/vnpay/ipn` | VNPay IPN callback |
+
+---
+
+## ❌ Error Codes
+
+| Code | Message | HTTP Status |
+|------|---------|-------------|
+| 1001 | Email đã tồn tại | 400 |
+| 1002 | Email không hợp lệ | 400 |
+| 1003 | Mật khẩu quá ngắn | 400 |
+| 1004 | Không tìm thấy người dùng | 404 |
+| 1005 | Mật khẩu không đúng | 401 |
+| 1006 | Token không hợp lệ | 401 |
+| 1007 | Token đã hết hạn | 401 |
+| 1008 | Không tìm thấy hồ sơ | 404 |
+| 1009 | Vai trò không hợp lệ | 400 |
+| 1010 | Bạn không có quyền truy cập | 403 |
+| 1011 | Chưa đăng nhập | 401 |
+| 1012 | Không tìm thấy sản phẩm | 404 |
+| 1013 | Không tìm thấy giỏ hàng | 404 |
+| 1014 | Không tìm thấy sản phẩm trong giỏ hàng | 404 |
+| 1015 | Giỏ hàng trống | 400 |
+| 1016 | Không tìm thấy đơn hàng | 404 |
+| 1017 | Không thể hủy đơn hàng này | 400 |
+| 1018 | Đơn hàng đã bị hủy | 400 |
+| 1019 | Đơn hàng đã được giao | 400 |
+| 1020 | Phương thức thanh toán không hợp lệ | 400 |
+| 1021 | Trạng thái đơn hàng không hợp lệ | 400 |
+| 1022 | Vui lòng cung cấp đầy đủ thông tin giao hàng | 400 |
+
+---
+
+| 1004 | Không tìm thấy người dùng | 404 |
+| 1005 | Mật khẩu không đúng | 401 |
+| 1006 | Token không hợp lệ | 401 |
+| 1007 | Token đã hết hạn | 401 |
+| 1008 | Không tìm thấy hồ sơ | 404 |
+| 1009 | Vai trò không hợp lệ | 400 |
+| 1010 | Bạn không có quyền truy cập | 403 |
+| 1011 | Chưa đăng nhập | 401 |
+| 1012 | Không tìm thấy sản phẩm | 404 |
+| 1013 | Không tìm thấy giỏ hàng | 404 |
+| 1014 | Không tìm thấy sản phẩm trong giỏ hàng | 404 |
+| 1015 | Giỏ hàng trống | 400 |
+| 1016 | Không tìm thấy đơn hàng | 404 |
+| 1017 | Không thể hủy đơn hàng này | 400 |
+| 1018 | Đơn hàng đã bị hủy | 400 |
+| 1019 | Đơn hàng đã được giao | 400 |
+| 1020 | Phương thức thanh toán không hợp lệ | 400 |
+| 1021 | Trạng thái đơn hàng không hợp lệ | 400 |
+| 1022 | Vui lòng cung cấp đầy đủ thông tin giao hàng | 400 |
+
+---
+
+
+
+**Query Parameters:**
+| Param | Default | Mô tả |
+|-------|---------|-------|
+| `recentOrders` | `5` | Số lượng đơn hàng gần đây cần lấy |
+| `topProducts` | `5` | Số lượng sản phẩm bán chạy cần lấy |
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy dữ liệu dashboard thành công",
+  "data": {
+    "overview": {
+      "totalRevenue": 458500000,
+      "totalRevenueFormatted": "458.500.000 ₫",
+      "revenueGrowthPercent": 12.5,
+      "totalNewOrders": 127,
+      "orderGrowthPercent": 8.2,
+      "totalProducts": 342,
+      "productGrowthPercent": 5.1,
+      "totalCustomers": 1253,
+      "customerGrowthPercent": 15.3,
+      "totalOrders": 890
+    },
+    "monthlyRevenue": [
+      { "year": 2026, "month": 1, "monthLabel": "T1", "revenue": 32000000, "orderCount": 18 },
+      { "year": 2026, "month": 2, "monthLabel": "T2", "revenue": 41500000, "orderCount": 24 },
+      { "year": 2026, "month": 3, "monthLabel": "T3", "revenue": 58000000, "orderCount": 31 }
+    ],
+    "recentOrders": [
+      {
+        "id": "order123...",
+        "orderCode": "ORD20260309001234",
+        "customerName": "Nguyễn Văn A",
+        "totalAmount": 25900000,
+        "status": "PENDING",
+        "statusDisplay": "Đang xử lý",
+        "paymentMethod": "VNPAY",
+        "paymentMethodDisplay": "VNPay",
+        "paymentStatus": "PENDING",
+        "createdAt": "2026-03-09T10:00:00Z"
+      },
+      {
+        "id": "order456...",
+        "orderCode": "ORD20260309005678",
+        "customerName": "Trần Thị B",
+        "totalAmount": 15900000,
+        "status": "SHIPPING",
+        "statusDisplay": "Đang giao",
+        "paymentMethod": "COD",
+        "paymentMethodDisplay": "COD",
+        "paymentStatus": "PENDING",
+        "createdAt": "2026-03-09T09:30:00Z"
+      }
+    ],
+    "bestSellingProducts": [
+      {
+        "id": "prod789...",
+        "name": "Ghế Sofa Modern 3 Chỗ",
+        "category": "Sofa",
+        "price": 15900000,
+        "priceFormatted": "15.900.000 ₫",
+        "image": "https://example.com/sofa.jpg",
+        "soldCount": 142,
+        "stock": 25,
+        "inStock": true
+      },
+      {
+        "id": "prod012...",
+        "name": "Bàn Cafe Tròn Gỗ Sồi",
+        "category": "Bàn",
+        "price": 4500000,
+        "priceFormatted": "4.500.000 ₫",
+        "image": "https://example.com/table.jpg",
+        "soldCount": 89,
+        "stock": 48,
+        "inStock": true
+      }
+    ],
+    "orderStatusSummary": {
+      "pending": 127,
+      "confirmed": 45,
+      "shipping": 38,
+      "delivered": 652,
+      "cancelled": 28
+    }
+  }
+}
+```
+
+---
+
+### 37. Lấy 4 thẻ thống kê tổng quan
+```
+GET /admin/dashboard/overview
+```
+
+> Trả về 4 thẻ trên cùng của dashboard: **Tổng doanh thu**, **Đơn hàng mới**, **Sản phẩm**, **Khách hàng** cùng % tăng trưởng so với tháng trước.
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy thống kê tổng quan thành công",
+  "data": {
+    "totalRevenue": 458500000,
+    "totalRevenueFormatted": "458.500.000 ₫",
+    "revenueGrowthPercent": 12.5,
+    "totalNewOrders": 127,
+    "orderGrowthPercent": 8.2,
+    "totalProducts": 342,
+    "productGrowthPercent": 5.1,
+    "totalCustomers": 1253,
+    "customerGrowthPercent": 15.3,
+    "totalOrders": 890
+  }
+}
+```
+
+**Mapping với UI:**
+| Field | Thẻ trên UI |
+|-------|------------|
+| `totalRevenue` / `totalRevenueFormatted` | 💰 Tổng doanh thu |
+| `revenueGrowthPercent` | ↑ +12.5% |
+| `totalNewOrders` | 🛒 Đơn hàng mới |
+| `orderGrowthPercent` | ↑ +8.2% |
+| `totalProducts` | 📦 Sản phẩm |
+| `productGrowthPercent` | ↑ +5.1% |
+| `totalCustomers` | 👥 Khách hàng |
+| `customerGrowthPercent` | ↑ +15.3% |
+
+---
+
+### 38. Lấy doanh thu theo tháng (Biểu đồ)
+```
+GET /admin/dashboard/revenue/monthly?months=12
+```
+
+**Query Parameters:**
+| Param | Default | Mô tả |
+|-------|---------|-------|
+| `months` | `12` | Số tháng gần nhất cần lấy (tối đa 24) |
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy doanh thu theo tháng thành công",
+  "data": [
+    { "year": 2025, "month": 4,  "monthLabel": "T4",  "revenue": 28000000, "orderCount": 15 },
+    { "year": 2025, "month": 5,  "monthLabel": "T5",  "revenue": 35000000, "orderCount": 20 },
+    { "year": 2025, "month": 6,  "monthLabel": "T6",  "revenue": 29500000, "orderCount": 17 },
+    { "year": 2025, "month": 7,  "monthLabel": "T7",  "revenue": 42000000, "orderCount": 26 },
+    { "year": 2025, "month": 8,  "monthLabel": "T8",  "revenue": 38000000, "orderCount": 22 },
+    { "year": 2025, "month": 9,  "monthLabel": "T9",  "revenue": 31000000, "orderCount": 19 },
+    { "year": 2025, "month": 10, "monthLabel": "T10", "revenue": 45000000, "orderCount": 28 },
+    { "year": 2025, "month": 11, "monthLabel": "T11", "revenue": 52000000, "orderCount": 33 },
+    { "year": 2025, "month": 12, "monthLabel": "T12", "revenue": 68000000, "orderCount": 41 },
+    { "year": 2026, "month": 1,  "monthLabel": "T1",  "revenue": 32000000, "orderCount": 18 },
+    { "year": 2026, "month": 2,  "monthLabel": "T2",  "revenue": 41500000, "orderCount": 24 },
+    { "year": 2026, "month": 3,  "monthLabel": "T3",  "revenue": 58000000, "orderCount": 31 }
+  ]
+}
+```
+
+**Lưu ý:**
+- Chỉ tính doanh thu từ đơn hàng có `paymentStatus = PAID`
+- Timezone: `Asia/Ho_Chi_Minh (GMT+7)`
+- Dữ liệu được sắp xếp từ tháng xa nhất → gần nhất
+
+---
+
+### 39. Lấy đơn hàng gần đây
+```
+GET /admin/dashboard/orders/recent?limit=5
+```
+
+**Query Parameters:**
+| Param | Default | Mô tả |
+|-------|---------|-------|
+| `limit` | `5` | Số lượng đơn hàng cần lấy |
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy đơn hàng gần đây thành công",
+  "data": [
+    {
+      "id": "order123...",
+      "orderCode": "ORD20260309001234",
+      "customerName": "Nguyễn Văn A",
+      "totalAmount": 25900000,
+      "status": "PENDING",
+      "statusDisplay": "Đang xử lý",
+      "paymentMethod": "VNPAY",
+      "paymentMethodDisplay": "VNPay",
+      "paymentStatus": "PENDING",
+      "createdAt": "2026-03-09T10:00:00Z"
+    },
+    {
+      "id": "order456...",
+      "orderCode": "ORD20260309005678",
+      "customerName": "Trần Thị B",
+      "totalAmount": 15900000,
+      "status": "SHIPPING",
+      "statusDisplay": "Đang giao",
+      "paymentMethod": "COD",
+      "paymentMethodDisplay": "COD",
+      "paymentStatus": "PENDING",
+      "createdAt": "2026-03-09T09:30:00Z"
+    }
+  ]
+}
+```
+
+**Mapping với UI (Đơn hàng gần đây):**
+| Field | Hiển thị trên UI |
+|-------|-----------------|
+| `orderCode` | #ORD-2024-001 |
+| `customerName` | Nguyễn Văn A |
+| `totalAmount` | 25.900.000 đ |
+| `statusDisplay` | 🔵 Đang xử lý / 🟡 Đang giao |
+
+---
+
+### 40. Lấy sản phẩm bán chạy nhất
+```
+GET /admin/dashboard/products/best-selling?limit=5
+```
+
+**Query Parameters:**
+| Param | Default | Mô tả |
+|-------|---------|-------|
+| `limit` | `5` | Số lượng sản phẩm cần lấy |
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy sản phẩm bán chạy thành công",
+  "data": [
+    {
+      "id": "prod789...",
+      "name": "Ghế Sofa Modern 3 Chỗ",
+      "category": "Sofa",
+      "price": 15900000,
+      "priceFormatted": "15.900.000 ₫",
+      "image": "https://example.com/sofa.jpg",
+      "soldCount": 142,
+      "stock": 25,
+      "inStock": true
+    },
+    {
+      "id": "prod012...",
+      "name": "Bàn Cafe Tròn Gỗ Sồi",
+      "category": "Bàn",
+      "price": 4500000,
+      "priceFormatted": "4.500.000 ₫",
+      "image": "https://example.com/table.jpg",
+      "soldCount": 89,
+      "stock": 48,
+      "inStock": true
+    },
+    {
+      "id": "prod345...",
+      "name": "Đèn Thả Trang Trí",
+      "category": "Đèn",
+      "price": 3200000,
+      "priceFormatted": "3.200.000 ₫",
+      "image": "https://example.com/lamp.jpg",
+      "soldCount": 76,
+      "stock": 12,
+      "inStock": true
+    }
+  ]
+}
+```
+
+**Lưu ý:**
+- `soldCount` được cộng dồn mỗi khi có đơn hàng mới được tạo thành công
+- Danh sách được sắp xếp theo `soldCount` giảm dần
+- `image` là ảnh đầu tiên trong danh sách `images` của sản phẩm
+
+**Mapping với UI (Sản phẩm bán chạy):**
+| Field | Hiển thị trên UI |
+|-------|-----------------|
+| `image` | Ảnh thumbnail sản phẩm |
+| `name` | Ghế Sofa Modern 3 Chỗ |
+| `soldCount` | Đã bán: 142 |
+| `priceFormatted` | 15.900.000 đ |
+| `stock` | Kho: 25 |
+
+---
+
+### 41. Lấy tổng kết trạng thái đơn hàng
+```
+GET /admin/dashboard/orders/status-summary
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "Lấy tổng kết trạng thái đơn hàng thành công",
+  "data": {
+    "pending": 127,
+    "confirmed": 45,
+    "shipping": 38,
+    "delivered": 652,
+    "cancelled": 28
+  }
+}
+```
+
+---
+
+## 📐 Dashboard API – Tóm tắt Endpoints
+
+| # | Method | Endpoint | Mô tả |
+|---|--------|----------|-------|
+| 36 | GET | `/admin/dashboard` | Toàn bộ dashboard (1 request) |
+| 37 | GET | `/admin/dashboard/overview` | 4 thẻ thống kê tổng quan |
+| 38 | GET | `/admin/dashboard/revenue/monthly` | Biểu đồ doanh thu theo tháng |
+| 39 | GET | `/admin/dashboard/orders/recent` | Đơn hàng gần đây |
+| 40 | GET | `/admin/dashboard/products/best-selling` | Sản phẩm bán chạy nhất |
+| 41 | GET | `/admin/dashboard/orders/status-summary` | Tổng kết trạng thái đơn |
 
 ---
 

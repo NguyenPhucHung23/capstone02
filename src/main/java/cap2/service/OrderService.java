@@ -10,6 +10,7 @@ import cap2.repository.CartRepository;
 import cap2.repository.OrderRepository;
 import cap2.repository.ProfileRepository;
 import cap2.repository.UserRepository;
+import cap2.repository.ProductRepository;
 import cap2.schema.Cart;
 import cap2.schema.Order;
 import cap2.schema.Profile;
@@ -40,6 +41,7 @@ public class OrderService {
     CartRepository cartRepository;
     UserRepository userRepository;
     ProfileRepository profileRepository;
+    ProductRepository productRepository;
 
     public OrderResponse createOrder(CreateOrderRequest request) {
         String userId = SecurityUtils.getCurrentUserId();
@@ -122,6 +124,15 @@ public class OrderService {
                 .build();
 
         Order savedOrder = orderRepository.save(order);
+
+        // Cập nhật soldCount cho từng sản phẩm
+        for (Order.OrderItem item : orderItems) {
+            productRepository.findById(item.getProductId()).ifPresent(product -> {
+                int current = product.getSoldCount() != null ? product.getSoldCount() : 0;
+                product.setSoldCount(current + item.getQuantity());
+                productRepository.save(product);
+            });
+        }
 
         cart.getItems().clear();
         cart.setUpdatedAt(Instant.now());
