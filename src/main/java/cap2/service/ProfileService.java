@@ -128,9 +128,11 @@ public class ProfileService {
         }
         if (request.getCity() != null) {
             profile.setCity(request.getCity());
+            profile.setProvince(null); // city và province không tồn tại cùng lúc
         }
-        if (request.getDistrict() != null) {
-            profile.setDistrict(request.getDistrict());
+        if (request.getProvince() != null) {
+            profile.setProvince(request.getProvince());
+            profile.setCity(null); // city và province không tồn tại cùng lúc
         }
         if (request.getWard() != null) {
             profile.setWard(request.getWard());
@@ -155,7 +157,7 @@ public class ProfileService {
                 .email(email)
                 .address(profile.getAddress())
                 .city(profile.getCity())
-                .district(profile.getDistrict())
+                .province(profile.getProvince())
                 .ward(profile.getWard())
                 .gender(profile.getGender())
                 .dateOfBirth(profile.getDateOfBirth())

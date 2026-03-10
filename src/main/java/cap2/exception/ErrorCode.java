@@ -35,7 +35,10 @@ public enum ErrorCode {
     ORDER_ALREADY_DELIVERED(1019, "Đơn hàng đã được giao", HttpStatus.BAD_REQUEST),
     INVALID_PAYMENT_METHOD(1020, "Phương thức thanh toán không hợp lệ", HttpStatus.BAD_REQUEST),
     INVALID_ORDER_STATUS(1021, "Trạng thái đơn hàng không hợp lệ", HttpStatus.BAD_REQUEST),
-    MISSING_SHIPPING_INFO(1022, "Vui lòng cung cấp đầy đủ thông tin giao hàng", HttpStatus.BAD_REQUEST);
+    MISSING_SHIPPING_INFO(1022, "Vui lòng cung cấp đầy đủ thông tin giao hàng", HttpStatus.BAD_REQUEST),
+    INVALID_SHIPPING_ADDRESS(1023, "Địa chỉ giao hàng không hợp lệ: không thể chọn cả city và province cùng lúc", HttpStatus.BAD_REQUEST),
+    PROVINCE_NOT_FOUND(1024, "Không tìm thấy tỉnh/thành phố", HttpStatus.NOT_FOUND),
+    WARD_NOT_FOUND(1025, "Không tìm thấy phường/xã", HttpStatus.NOT_FOUND);
 
     private final int code;
     private final String message;

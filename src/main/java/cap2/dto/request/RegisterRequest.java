@@ -46,10 +46,10 @@ public class RegisterRequest {
     String address;
 
     @Size(max = 100, message = "Tỉnh/Thành phố không được vượt quá 100 ký tự")
-    String city;       // Tỉnh/Thành phố
+    String city;       // Thành phố trực thuộc TW
 
-    @Size(max = 100, message = "Quận/Huyện không được vượt quá 100 ký tự")
-    String district;   // Quận/Huyện
+    @Size(max = 100, message = "Tỉnh không được vượt quá 100 ký tự")
+    String province;   // Tỉnh (dùng city hoặc province, không dùng cả 2)
 
     @Size(max = 100, message = "Phường/Xã không được vượt quá 100 ký tự")
     String ward;       // Phường/Xã

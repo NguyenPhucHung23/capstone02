@@ -19,8 +19,8 @@ public class ProfileResponse {
     String phone;
     String email;
     String address;
-    String city;       // Tỉnh/Thành phố
-    String district;   // Quận/Huyện
+    String city;       // Thành phố (null nếu dùng province)
+    String province;   // Tỉnh (null nếu dùng city)
     String ward;       // Phường/Xã
     String gender;
     LocalDate dateOfBirth;  // Ngày sinh

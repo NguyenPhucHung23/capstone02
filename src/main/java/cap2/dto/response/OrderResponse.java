@@ -22,8 +22,8 @@ public class OrderResponse {
     String customerPhone;
 
     String shippingAddress;
-    String shippingCity;
-    String shippingDistrict;
+    String shippingCity;     // Thành phố (null nếu dùng province)
+    String shippingProvince; // Tỉnh (null nếu dùng city)
     String shippingWard;
     String fullShippingAddress;
 

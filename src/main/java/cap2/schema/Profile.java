@@ -21,9 +21,9 @@ public class Profile {
     String userId;
     String fullName;
     String phone;
-    String address;
-    String city;       // Tỉnh/Thành phố
-    String district;   // Quận/Huyện
+    String address;    // Địa chỉ chi tiết (số nhà, tên đường, thôn/tổ...)
+    String city;       // Thành phố (nếu chọn thành phố)
+    String province;   // Tỉnh (nếu chọn tỉnh) - chỉ 1 trong city/province
     String ward;       // Phường/Xã
     String gender;
     LocalDate dateOfBirth;  // Ngày sinh

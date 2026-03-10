@@ -36,6 +36,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(org.springframework.http.HttpMethod.POST, "/users").permitAll()
                         .requestMatchers("/payments/vnpay/return", "/payments/vnpay/ipn").permitAll()
+                        .requestMatchers("/locations/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

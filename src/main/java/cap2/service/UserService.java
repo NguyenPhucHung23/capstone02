@@ -58,7 +58,7 @@ public class UserService {
                 .phone(req.getPhone())
                 .address(req.getAddress())
                 .city(req.getCity())
-                .district(req.getDistrict())
+                .province(req.getProvince())
                 .ward(req.getWard())
                 .gender(req.getGender())
                 .dateOfBirth(req.getDateOfBirth())

@@ -28,10 +28,10 @@ public class Order {
     String customerEmail;
     String customerPhone;
 
-    String shippingAddress;
-    String shippingCity;
-    String shippingDistrict;
-    String shippingWard;
+    String shippingAddress;  // Địa chỉ chi tiết
+    String shippingCity;     // Thành phố (null nếu dùng province)
+    String shippingProvince; // Tỉnh (null nếu dùng city)
+    String shippingWard;     // Phường/Xã
 
     List<OrderItem> items;
 

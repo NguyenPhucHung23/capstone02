@@ -88,16 +88,31 @@ public class OrderService {
                                (profile != null ? profile.getPhone() : null);
         String shippingAddress = hasValue(request.getShippingAddress()) ? request.getShippingAddress() :
                                  (profile != null ? profile.getAddress() : null);
-        String shippingCity = hasValue(request.getShippingCity()) ? request.getShippingCity() :
-                              (profile != null ? profile.getCity() : null);
-        String shippingDistrict = hasValue(request.getShippingDistrict()) ? request.getShippingDistrict() :
-                                  (profile != null ? profile.getDistrict() : null);
+
+        // Xác định city/province: ưu tiên request, fallback từ profile
+        // city và province không được tồn tại cùng lúc
+        String shippingCity;
+        String shippingProvince;
+        if (hasValue(request.getShippingCity())) {
+            shippingCity = request.getShippingCity();
+            shippingProvince = null;
+        } else if (hasValue(request.getShippingProvince())) {
+            shippingProvince = request.getShippingProvince();
+            shippingCity = null;
+        } else if (profile != null) {
+            shippingCity = profile.getCity();
+            shippingProvince = profile.getProvince();
+        } else {
+            shippingCity = null;
+            shippingProvince = null;
+        }
+
         String shippingWard = hasValue(request.getShippingWard()) ? request.getShippingWard() :
                               (profile != null ? profile.getWard() : null);
 
         // Validate thông tin giao hàng bắt buộc
         validateShippingInfo(customerName, customerPhone, shippingAddress, shippingCity,
-                           shippingDistrict, shippingWard);
+                           shippingProvince, shippingWard);
 
         Order order = Order.builder()
                 .orderCode(generateOrderCode())
@@ -107,7 +122,7 @@ public class OrderService {
                 .customerPhone(customerPhone)
                 .shippingAddress(shippingAddress)
                 .shippingCity(shippingCity)
-                .shippingDistrict(shippingDistrict)
+                .shippingProvince(shippingProvince)
                 .shippingWard(shippingWard)
                 .items(orderItems)
                 .subtotal(subtotal)
@@ -271,11 +286,18 @@ public class OrderService {
 
     private void validateShippingInfo(String customerName, String customerPhone,
                                      String shippingAddress, String shippingCity,
-                                     String shippingDistrict, String shippingWard) {
+                                     String shippingProvince, String shippingWard) {
         if (!hasValue(customerName) || !hasValue(customerPhone) ||
-            !hasValue(shippingAddress) || !hasValue(shippingCity) ||
-            !hasValue(shippingDistrict) || !hasValue(shippingWard)) {
+            !hasValue(shippingAddress) || !hasValue(shippingWard)) {
             throw new AppException(ErrorCode.MISSING_SHIPPING_INFO);
+        }
+        // Phải có ít nhất 1 trong 2: city hoặc province
+        if (!hasValue(shippingCity) && !hasValue(shippingProvince)) {
+            throw new AppException(ErrorCode.MISSING_SHIPPING_INFO);
+        }
+        // Không được tồn tại cả 2 cùng lúc
+        if (hasValue(shippingCity) && hasValue(shippingProvince)) {
+            throw new AppException(ErrorCode.INVALID_SHIPPING_ADDRESS);
         }
     }
 
@@ -371,11 +393,12 @@ public class OrderService {
                 .mapToInt(Order.OrderItem::getQuantity)
                 .sum();
 
-        String fullAddress = String.format("%s, %s, %s, %s",
+        // Xây dựng địa chỉ đầy đủ: dùng city nếu có, ngược lại dùng province
+        String locationName = hasValue(order.getShippingCity()) ? order.getShippingCity() : order.getShippingProvince();
+        String fullAddress = String.format("%s, %s, %s",
                 order.getShippingAddress(),
                 order.getShippingWard(),
-                order.getShippingDistrict(),
-                order.getShippingCity());
+                locationName);
 
         return OrderResponse.builder()
                 .id(order.getId())
@@ -386,7 +409,7 @@ public class OrderService {
                 .customerPhone(order.getCustomerPhone())
                 .shippingAddress(order.getShippingAddress())
                 .shippingCity(order.getShippingCity())
-                .shippingDistrict(order.getShippingDistrict())
+                .shippingProvince(order.getShippingProvince())
                 .shippingWard(order.getShippingWard())
                 .fullShippingAddress(fullAddress)
                 .items(itemResponses)

@@ -29,11 +29,11 @@ public class UpdateProfileRequest {
     @Size(max = 255, message = "Địa chỉ không được vượt quá 255 ký tự")
     String address;
 
-    @Size(max = 100, message = "Tỉnh/Thành phố không được vượt quá 100 ký tự")
+    @Size(max = 100, message = "Thành phố không được vượt quá 100 ký tự")
     String city;
 
-    @Size(max = 100, message = "Quận/Huyện không được vượt quá 100 ký tự")
-    String district;
+    @Size(max = 100, message = "Tỉnh không được vượt quá 100 ký tự")
+    String province;
 
     @Size(max = 100, message = "Phường/Xã không được vượt quá 100 ký tự")
     String ward;
