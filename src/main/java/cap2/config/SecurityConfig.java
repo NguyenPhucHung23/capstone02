@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -33,11 +34,19 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // 1. Các endpoint công khai (Public)
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers(org.springframework.http.HttpMethod.POST, "/users").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers("/payments/vnpay/return", "/payments/vnpay/ipn").permitAll()
                         .requestMatchers("/locations/**").permitAll()
+
+                        // 2. Các endpoint yêu cầu đăng nhập (Từ nhánh feature/ai-design-option)
+                        .requestMatchers("/api/design-requests/**").authenticated()
+
+                        // 3. Phân quyền Admin
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                        // 4. Các request còn lại
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex

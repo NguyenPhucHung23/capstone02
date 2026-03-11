@@ -29,6 +29,6 @@ public class User {
     @Builder.Default
     Role role = Role.USER;
 
-    String passwordResetToken;
-    LocalDateTime passwordResetExpires;
+    String otp;
+    LocalDateTime otpExpires;
 }
