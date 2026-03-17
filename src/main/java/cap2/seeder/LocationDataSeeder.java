@@ -1,4 +1,4 @@
-package cap2.config;
+package cap2.seeder;
 
 import cap2.repository.ProvinceRepository;
 import cap2.repository.WardRepository;
