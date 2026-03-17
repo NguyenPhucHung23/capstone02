@@ -58,7 +58,7 @@ public class AuthService {
                 .build();
     }
 
-    public String forgotPassword(ForgotPasswordRequest request) {
+    public void forgotPassword(ForgotPasswordRequest request) {
         String email = request.getEmail().trim().toLowerCase();
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
@@ -84,7 +84,6 @@ public class AuthService {
         } catch (Exception e) {
             log.error("Failed to send OTP email to {}: {}", user.getEmail(), e.getMessage());
         }
-        return otp;
     }
 
     public void resetPassword(ResetPasswordRequest request) {
