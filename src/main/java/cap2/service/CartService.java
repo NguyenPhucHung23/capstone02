@@ -62,11 +62,13 @@ public class CartService {
             log.info("Updated quantity for product {} in cart of user {}", request.getProductId(), userId);
         } else {
             // Nếu chưa có → thêm mới
+            String imageUrl = (product.getImages() != null && !product.getImages().isEmpty())
+                    ? product.getImages().get(0)
+                    : null;
             Cart.CartItem newItem = Cart.CartItem.builder()
                     .productId(product.getId())
                     .productName(product.getName())
-                    .productImage(product.getImages() != null && !product.getImages().isEmpty()
-                            ? product.getImages().getFirst() : null)
+                    .productImage(imageUrl)
                     .price(product.getPrice())
                     .quantity(request.getQuantity())
                     .build();

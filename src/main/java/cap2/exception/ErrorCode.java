@@ -24,6 +24,7 @@ public enum ErrorCode {
     UNAUTHENTICATED(1011, "Chưa đăng nhập", HttpStatus.UNAUTHORIZED),
 
     PRODUCT_NOT_FOUND(1012, "Không tìm thấy sản phẩm", HttpStatus.NOT_FOUND),
+    DESIGN_REQUEST_NOT_FOUND(1026, "Không tìm thấy yêu cầu thiết kế", HttpStatus.NOT_FOUND),
 
     CART_NOT_FOUND(1013, "Không tìm thấy giỏ hàng", HttpStatus.NOT_FOUND),
     CART_ITEM_NOT_FOUND(1014, "Không tìm thấy sản phẩm trong giỏ hàng", HttpStatus.NOT_FOUND),

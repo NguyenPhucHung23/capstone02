@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -19,7 +20,10 @@ public class DesignResponse {
     private String style;
     private String furnitureDensity;
     private String gender;
-    private List<String> imageUrls;
+    private String imageUrl;
+    private String reasoning;
+    private List<AiProductResponse> recommendedProducts;
+    private Instant createdAt;
 
     @Data
     @Builder

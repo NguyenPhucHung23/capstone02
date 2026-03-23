@@ -40,8 +40,11 @@ public class SecurityConfig {
                         .requestMatchers("/payments/vnpay/return", "/payments/vnpay/ipn").permitAll()
                         .requestMatchers("/locations/**").permitAll()
 
+                        .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
+
                         // 2. Các endpoint yêu cầu đăng nhập (Từ nhánh feature/ai-design-option)
                         .requestMatchers("/api/design-requests/**").authenticated()
+                        .requestMatchers("/api/behaviors/**").authenticated()
 
                         // 3. Phân quyền Admin
                         .requestMatchers("/admin/**").hasRole("ADMIN")

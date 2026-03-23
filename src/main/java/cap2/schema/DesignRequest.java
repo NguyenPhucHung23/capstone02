@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Instant;
 import java.util.List;
 
 @Document(collection = "design_requests")
@@ -19,12 +21,22 @@ public class DesignRequest {
     @Id
     private String id;
 
+    private String userId;
+
     private String roomType;
     private Dimensions dimensions;
     private String style;
     private String furnitureDensity;
     private String gender;
-    private List<String> imageUrls;
+    private int age;
+    private String imageUrl;
+
+    private String reasoning;
+
+    private List<String> recommendedProductIds;
+
+    @CreatedDate
+    private Instant createdAt;
 
     @Data
     @Builder

@@ -74,9 +74,11 @@ public class Product {
     @NoArgsConstructor
     @AllArgsConstructor
     @FieldDefaults(level = AccessLevel.PRIVATE)
-    public static class Color {
-        String name;
-        String hex;
+    public static class Dimensions {
+        Double width;
+        Double height;
+        Double depth;
+        String unit;
     }
 
     @Data
@@ -84,10 +86,8 @@ public class Product {
     @NoArgsConstructor
     @AllArgsConstructor
     @FieldDefaults(level = AccessLevel.PRIVATE)
-    public static class Dimensions {
-        Double width;
-        Double height;
-        Double depth;
-        String unit;
+    public static class Color {
+        String name;
+        String hex;
     }
 }
