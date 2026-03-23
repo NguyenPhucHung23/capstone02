@@ -27,10 +27,9 @@ public class AuthController {
     }
 
     @PostMapping("/forgot-password")
-    public ApiResponse<String> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
-        // Giữ lại logic trả về OTP từ nhánh feature
-        String otp = authService.forgotPassword(request);
-        return ApiResponse.ok("OTP has been generated. Please check your email or use the returned OTP for testing.", otp);
+    public ApiResponse<Void> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
+        authService.forgotPassword(request);
+        return ApiResponse.ok("OTP has been sent to your email. Please check your inbox.", null);
     }
 
     @PostMapping("/reset-password")

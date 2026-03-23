@@ -48,6 +48,12 @@ public class PublicProductResponse {
     List<String> notes;
 
     List<String> images;
+    
+    /** Chấm sao trung bình */
+    Double avgRating;
+
+    /** Tổng số lượt đánh giá */
+    Integer reviewCount;
 
     // KHÔNG có: soldCount, sourceUrl, sourceProvider, createdAt, updatedAt
 

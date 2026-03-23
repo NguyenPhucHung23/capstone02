@@ -27,4 +27,5 @@ public interface OrderRepository extends MongoRepository<Order, String> {
     List<Order> findAllPaidOrders();
 
     List<Order> findByCreatedAtBetween(Instant start, Instant end);
+    long countByCreatedAtBetween(Instant start, Instant end);
 }

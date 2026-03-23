@@ -1,5 +1,6 @@
 package cap2.service;
 
+import cap2.dto.request.AdminOrderFilterRequest;
 import cap2.dto.request.CreateOrderRequest;
 import cap2.dto.request.UpdateOrderStatusRequest;
 import cap2.dto.response.OrderResponse;
@@ -24,11 +25,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,6 +48,7 @@ public class OrderService {
     UserRepository userRepository;
     ProfileRepository profileRepository;
     ProductRepository productRepository;
+    MongoTemplate mongoTemplate;
 
     public OrderResponse createOrder(CreateOrderRequest request) {
         String userId = SecurityUtils.getCurrentUserId();
@@ -60,16 +67,29 @@ public class OrderService {
             throw new AppException(ErrorCode.CART_EMPTY);
         }
 
-        List<Order.OrderItem> orderItems = cart.getItems().stream()
-                .map(item -> Order.OrderItem.builder()
-                        .productId(item.getProductId())
-                        .productName(item.getProductName())
-                        .productImage(item.getProductImage())
-                        .price(item.getPrice())
-                        .quantity(item.getQuantity())
-                        .subtotal(item.getPrice() * item.getQuantity())
-                        .build())
-                .toList();
+        List<Order.OrderItem> orderItems = new java.util.ArrayList<>();
+        for (cap2.schema.Cart.CartItem item : cart.getItems()) {
+            cap2.schema.Product product = productRepository.findById(item.getProductId())
+                    .orElseThrow(() -> new AppException(cap2.exception.ErrorCode.PRODUCT_NOT_FOUND));
+
+            if (product.getStock() != null) {
+                if (product.getStock() < item.getQuantity()) {
+                    throw new AppException(cap2.exception.ErrorCode.OUT_OF_STOCK);
+                }
+                product.setStock(product.getStock() - item.getQuantity());
+                product.setInStock(product.getStock() > 0);
+                productRepository.save(product);
+            }
+
+            orderItems.add(Order.OrderItem.builder()
+                    .productId(item.getProductId())
+                    .productName(item.getProductName())
+                    .productImage(item.getProductImage())
+                    .price(item.getPrice())
+                    .quantity(item.getQuantity())
+                    .subtotal(item.getPrice() * item.getQuantity())
+                    .build());
+        }
 
         double subtotal = orderItems.stream()
                 .mapToDouble(Order.OrderItem::getSubtotal)
@@ -83,11 +103,11 @@ public class OrderService {
 
         // Ưu tiên dùng thông tin từ request, nếu không có thì lấy từ Profile (nếu có profile)
         String customerName = hasValue(request.getCustomerName()) ? request.getCustomerName() :
-                              (profile != null ? profile.getFullName() : null);
+                               (profile != null ? profile.getFullName() : null);
         String customerPhone = hasValue(request.getCustomerPhone()) ? request.getCustomerPhone() :
-                               (profile != null ? profile.getPhone() : null);
+                                (profile != null ? profile.getPhone() : null);
         String shippingAddress = hasValue(request.getShippingAddress()) ? request.getShippingAddress() :
-                                 (profile != null ? profile.getAddress() : null);
+                                  (profile != null ? profile.getAddress() : null);
 
         // Xác định city/province: ưu tiên request, fallback từ profile
         // city và province không được tồn tại cùng lúc
@@ -108,7 +128,7 @@ public class OrderService {
         }
 
         String shippingWard = hasValue(request.getShippingWard()) ? request.getShippingWard() :
-                              (profile != null ? profile.getWard() : null);
+                               (profile != null ? profile.getWard() : null);
 
         // Validate thông tin giao hàng bắt buộc
         validateShippingInfo(customerName, customerPhone, shippingAddress, shippingCity,
@@ -204,6 +224,7 @@ public class OrderService {
         order.setStatus(Order.OrderStatus.CANCELLED);
         order.setUpdatedAt(Instant.now());
         Order savedOrder = orderRepository.save(order);
+        restoreInventory(savedOrder);
 
         log.info("Đơn hàng {} đã bị hủy bởi {}", order.getOrderCode(),
                 SecurityUtils.isAdmin() ? "admin" : "user " + userId);
@@ -224,6 +245,63 @@ public class OrderService {
         Order.OrderStatus orderStatus = parseOrderStatus(status);
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
         Page<Order> orderPage = orderRepository.findByStatus(orderStatus, pageable);
+        return buildPageResponse(orderPage);
+    }
+
+    /**
+     * Tìm kiếm và lọc đơn hàng (Admin)
+     */
+    public PageResponse<OrderResponse> searchOrders(AdminOrderFilterRequest request, int page, int size) {
+        SecurityUtils.checkAdminRole();
+
+        List<Criteria> criteriaList = new ArrayList<>();
+
+        if (hasValue(request.getKeyword())) {
+            String kw = request.getKeyword().trim();
+            Criteria kwCriteria = new Criteria().orOperator(
+                    Criteria.where("orderCode").regex(kw, "i"),
+                    Criteria.where("customerName").regex(kw, "i"),
+                    Criteria.where("customerEmail").regex(kw, "i")
+            );
+            criteriaList.add(kwCriteria);
+        }
+
+        if (hasValue(request.getStatus())) {
+            criteriaList.add(Criteria.where("status").is(request.getStatus().toUpperCase()));
+        }
+
+        if (hasValue(request.getPaymentMethod())) {
+            criteriaList.add(Criteria.where("paymentMethod").is(request.getPaymentMethod().toUpperCase()));
+        }
+
+        if (hasValue(request.getPaymentStatus())) {
+            criteriaList.add(Criteria.where("paymentStatus").is(request.getPaymentStatus().toUpperCase()));
+        }
+
+        if (request.getFromDate() != null) {
+            Instant from = request.getFromDate().atStartOfDay(ZoneId.systemDefault()).toInstant();
+            criteriaList.add(Criteria.where("createdAt").gte(from));
+        }
+
+        if (request.getToDate() != null) {
+            Instant to = request.getToDate().plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant();
+            criteriaList.add(Criteria.where("createdAt").lt(to));
+        }
+
+        Query query = new Query();
+        if (!criteriaList.isEmpty()) {
+            query.addCriteria(new Criteria().andOperator(criteriaList.toArray(new Criteria[0])));
+        }
+
+        long total = mongoTemplate.count(query, Order.class);
+        Sort sort = Sort.by(Sort.Direction.DESC, "createdAt");
+        query.with(sort).skip((long) page * size).limit(size);
+
+        List<Order> orders = mongoTemplate.find(query, Order.class);
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<Order> orderPage = new org.springframework.data.domain.PageImpl<>(orders, pageable, total);
+
         return buildPageResponse(orderPage);
     }
 
@@ -255,6 +333,8 @@ public class OrderService {
             order.setStatus(Order.OrderStatus.CANCELLED);
             order.setUpdatedAt(Instant.now());
             Order savedOrder = orderRepository.save(order);
+            restoreInventory(savedOrder);
+
             log.info("Admin hủy đơn hàng {}", order.getOrderCode());
             return mapToOrderResponse(savedOrder);
         }
@@ -361,17 +441,23 @@ public class OrderService {
             productRepository.findById(item.getProductId()).ifPresent(product -> {
                 int currentSold = product.getSoldCount() != null ? product.getSoldCount() : 0;
                 product.setSoldCount(currentSold + quantity);
-
-                if (product.getStock() != null) {
-                    int newStock = product.getStock() - quantity;
-                    if (newStock < 0) {
-                        newStock = 0;
-                    }
-                    product.setStock(newStock);
-                    product.setInStock(newStock > 0);
-                }
-
                 productRepository.save(product);
+            });
+        }
+    }
+
+    private void restoreInventory(Order order) {
+        if (order == null || order.getItems() == null || order.getItems().isEmpty()) {
+            return;
+        }
+        for (Order.OrderItem item : order.getItems()) {
+            if (item == null || item.getProductId() == null || item.getQuantity() == null || item.getQuantity() <= 0) continue;
+            productRepository.findById(item.getProductId()).ifPresent(product -> {
+                if (product.getStock() != null) {
+                    product.setStock(product.getStock() + item.getQuantity());
+                    product.setInStock(product.getStock() > 0);
+                    productRepository.save(product);
+                }
             });
         }
     }

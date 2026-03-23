@@ -28,6 +28,7 @@ public class AdminDashboardService {
     OrderRepository orderRepository;
     ProductRepository productRepository;
     UserRepository userRepository;
+    org.springframework.data.mongodb.core.MongoTemplate mongoTemplate;
 
     /**
      * Lấy toàn bộ dữ liệu dashboard
@@ -90,10 +91,15 @@ public class AdminDashboardService {
 
     private DashboardResponse.OverviewStats buildOverviewStats() {
         // Tổng doanh thu từ đơn đã thanh toán
-        List<Order> paidOrders = orderRepository.findAllPaidOrders();
-        double totalRevenue = paidOrders.stream()
-                .mapToDouble(Order::getTotalAmount)
-                .sum();
+        org.springframework.data.mongodb.core.aggregation.Aggregation agg = org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation(
+                org.springframework.data.mongodb.core.aggregation.Aggregation.match(org.springframework.data.mongodb.core.query.Criteria.where("paymentStatus").is("PAID")),
+                org.springframework.data.mongodb.core.aggregation.Aggregation.group().sum("totalAmount").as("totalRevenue")
+        );
+        org.springframework.data.mongodb.core.aggregation.AggregationResults<org.bson.Document> results = mongoTemplate.aggregate(agg, Order.class, org.bson.Document.class);
+        double totalRevenue = 0.0;
+        if (results.getUniqueMappedResult() != null && results.getUniqueMappedResult().get("totalRevenue") != null) {
+            totalRevenue = ((Number) results.getUniqueMappedResult().get("totalRevenue")).doubleValue();
+        }
 
         // Doanh thu tháng hiện tại vs tháng trước
         YearMonth currentYM = YearMonth.now(ZoneId.of("Asia/Ho_Chi_Minh"));
@@ -150,17 +156,29 @@ public class AdminDashboardService {
             Instant start = ym.atDay(1).atStartOfDay(zone).toInstant();
             Instant end = ym.atEndOfMonth().atTime(LocalTime.MAX).atZone(zone).toInstant();
 
-            List<Order> ordersInMonth = orderRepository.findPaidOrdersBetween(start, end);
-            double revenue = ordersInMonth.stream()
-                    .mapToDouble(Order::getTotalAmount)
-                    .sum();
+            org.springframework.data.mongodb.core.aggregation.Aggregation aggMonth = org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation(
+                    org.springframework.data.mongodb.core.aggregation.Aggregation.match(org.springframework.data.mongodb.core.query.Criteria.where("paymentStatus").is("PAID")
+                            .and("createdAt").gte(start).lte(end)),
+                    org.springframework.data.mongodb.core.aggregation.Aggregation.group().sum("totalAmount").as("totalRevenue").count().as("orderCount")
+            );
+            org.springframework.data.mongodb.core.aggregation.AggregationResults<org.bson.Document> resultsMonth = mongoTemplate.aggregate(aggMonth, Order.class, org.bson.Document.class);
+            double revenue = 0.0;
+            long ordersInMonthSize = 0;
+            if (resultsMonth.getUniqueMappedResult() != null) {
+                if (resultsMonth.getUniqueMappedResult().get("totalRevenue") != null) {
+                    revenue = ((Number) resultsMonth.getUniqueMappedResult().get("totalRevenue")).doubleValue();
+                }
+                if (resultsMonth.getUniqueMappedResult().get("orderCount") != null) {
+                    ordersInMonthSize = ((Number) resultsMonth.getUniqueMappedResult().get("orderCount")).longValue();
+                }
+            }
 
             result.add(DashboardResponse.MonthlyRevenue.builder()
                     .year(ym.getYear())
                     .month(ym.getMonthValue())
                     .monthLabel("T" + ym.getMonthValue())
                     .revenue(revenue)
-                    .orderCount((long) ordersInMonth.size())
+                    .orderCount(ordersInMonthSize)
                     .build());
         }
 
@@ -230,16 +248,23 @@ public class AdminDashboardService {
         ZoneId zone = ZoneId.of("Asia/Ho_Chi_Minh");
         Instant start = ym.atDay(1).atStartOfDay(zone).toInstant();
         Instant end = ym.atEndOfMonth().atTime(LocalTime.MAX).atZone(zone).toInstant();
-        return orderRepository.findPaidOrdersBetween(start, end).stream()
-                .mapToDouble(Order::getTotalAmount)
-                .sum();
+        org.springframework.data.mongodb.core.aggregation.Aggregation aggMonth = org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation(
+                org.springframework.data.mongodb.core.aggregation.Aggregation.match(org.springframework.data.mongodb.core.query.Criteria.where("paymentStatus").is("PAID")
+                        .and("createdAt").gte(start).lte(end)),
+                org.springframework.data.mongodb.core.aggregation.Aggregation.group().sum("totalAmount").as("totalRevenue")
+        );
+        org.springframework.data.mongodb.core.aggregation.AggregationResults<org.bson.Document> resultsMonth = mongoTemplate.aggregate(aggMonth, Order.class, org.bson.Document.class);
+        if (resultsMonth.getUniqueMappedResult() != null && resultsMonth.getUniqueMappedResult().get("totalRevenue") != null) {
+            return ((Number) resultsMonth.getUniqueMappedResult().get("totalRevenue")).doubleValue();
+        }
+        return 0.0;
     }
 
     private long countOrdersForMonth(YearMonth ym) {
         ZoneId zone = ZoneId.of("Asia/Ho_Chi_Minh");
         Instant start = ym.atDay(1).atStartOfDay(zone).toInstant();
         Instant end = ym.atEndOfMonth().atTime(LocalTime.MAX).atZone(zone).toInstant();
-        return orderRepository.findByCreatedAtBetween(start, end).size();
+        return orderRepository.countByCreatedAtBetween(start, end);
     }
 
     private double calcGrowthPercent(double prev, double current) {
