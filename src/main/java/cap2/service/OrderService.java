@@ -140,15 +140,6 @@ public class OrderService {
 
         Order savedOrder = orderRepository.save(order);
 
-        // Cập nhật soldCount cho từng sản phẩm
-        for (Order.OrderItem item : orderItems) {
-            productRepository.findById(item.getProductId()).ifPresent(product -> {
-                int current = product.getSoldCount() != null ? product.getSoldCount() : 0;
-                product.setSoldCount(current + item.getQuantity());
-                productRepository.save(product);
-            });
-        }
-
         cart.getItems().clear();
         cart.setUpdatedAt(Instant.now());
         cartRepository.save(cart);
@@ -242,6 +233,7 @@ public class OrderService {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new AppException(ErrorCode.ORDER_NOT_FOUND));
 
+        boolean wasPaid = order.getPaymentStatus() == Order.PaymentStatus.PAID;
         Order.OrderStatus newStatus = parseOrderStatus(request.getStatus());
 
         // Kiểm tra đơn hàng đã hủy
@@ -277,6 +269,10 @@ public class OrderService {
 
         order.setUpdatedAt(Instant.now());
         Order savedOrder = orderRepository.save(order);
+
+        if (!wasPaid && savedOrder.getPaymentStatus() == Order.PaymentStatus.PAID) {
+            applyInventoryOnPaidOrder(savedOrder);
+        }
 
         log.info("Admin cập nhật trạng thái đơn hàng {} thành {}", order.getOrderCode(), newStatus);
         return mapToOrderResponse(savedOrder);
@@ -345,6 +341,39 @@ public class OrderService {
             case "SALE20" -> subtotal * 0.2;
             default -> 0;
         };
+    }
+
+    public void applyInventoryOnPaidOrder(Order order) {
+        if (order == null || order.getItems() == null || order.getItems().isEmpty()) {
+            return;
+        }
+
+        for (Order.OrderItem item : order.getItems()) {
+            if (item == null || item.getProductId() == null) {
+                continue;
+            }
+
+            int quantity = item.getQuantity() != null ? item.getQuantity() : 0;
+            if (quantity <= 0) {
+                continue;
+            }
+
+            productRepository.findById(item.getProductId()).ifPresent(product -> {
+                int currentSold = product.getSoldCount() != null ? product.getSoldCount() : 0;
+                product.setSoldCount(currentSold + quantity);
+
+                if (product.getStock() != null) {
+                    int newStock = product.getStock() - quantity;
+                    if (newStock < 0) {
+                        newStock = 0;
+                    }
+                    product.setStock(newStock);
+                    product.setInStock(newStock > 0);
+                }
+
+                productRepository.save(product);
+            });
+        }
     }
 
     private Order.PaymentMethod parsePaymentMethod(String method) {

@@ -140,6 +140,9 @@ public class ProfileService {
         if (request.getGender() != null) {
             profile.setGender(request.getGender());
         }
+        if (request.getDateOfBirth() != null) {
+            profile.setDateOfBirth(request.getDateOfBirth());
+        }
     }
 
 

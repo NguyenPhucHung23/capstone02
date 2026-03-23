@@ -5,6 +5,7 @@ import cap2.exception.AppException;
 import cap2.exception.ErrorCode;
 import cap2.repository.OrderRepository;
 import cap2.schema.Order;
+import cap2.service.OrderService;
 import cap2.service.VnPayService;
 import cap2.util.SecurityUtils;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ public class PaymentController {
 
     OrderRepository orderRepository;
     VnPayService vnPayService;
+    OrderService orderService;
 
     @PostMapping("/create/{orderId}")
     public ApiResponse<Map<String, String>> createPaymentUrl(@PathVariable String orderId,
@@ -192,6 +194,8 @@ public class PaymentController {
      * Chỉ khi CẢ HAI đều = "00" thì mới coi là thanh toán thành công
      */
     private void updateOrderPaymentStatus(Order order, String responseCode, String transactionStatus) {
+        boolean wasPaid = order.getPaymentStatus() == Order.PaymentStatus.PAID;
+
         // Phải check CẢ ResponseCode VÀ TransactionStatus
         if ("00".equals(responseCode) && "00".equals(transactionStatus)) {
             order.setPaymentStatus(Order.PaymentStatus.PAID);
@@ -210,6 +214,10 @@ public class PaymentController {
 
         order.setUpdatedAt(Instant.now());
         orderRepository.save(order);
+
+        if (!wasPaid && order.getPaymentStatus() == Order.PaymentStatus.PAID) {
+            orderService.applyInventoryOnPaidOrder(order);
+        }
     }
 
     private boolean isAmountValid(Order order, String callbackAmount) {

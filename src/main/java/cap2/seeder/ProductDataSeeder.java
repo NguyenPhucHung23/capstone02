@@ -33,10 +33,10 @@ public class ProductDataSeeder implements ApplicationRunner {
     @Override
     @SuppressWarnings("NullableProblems")
     public void run(ApplicationArguments args) {
-        if (productRepository.count() > 0) {
-            log.info("Product data already exists in database. Skipping seeding.");
-            return;
-        }
+        // if (productRepository.count() > 0) {
+        //     log.info("Product data already exists in database. Skipping seeding.");
+        //     return;
+        // }
 
         log.info("Checking product data...");
         // Check if products already exist to avoid duplicate seeding (optional logic inside service handles updates too)

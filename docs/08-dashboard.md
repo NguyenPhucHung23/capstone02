@@ -160,7 +160,7 @@ GET /admin/dashboard/products/best-selling?limit=5
 | `limit` | `5` | Số sản phẩm cần lấy |
 
 **Lưu ý:**
-- `soldCount` tăng mỗi khi có đơn hàng mới được tạo
+- `soldCount` tăng khi đơn thanh toán thành công
 - Sắp xếp theo `soldCount` giảm dần
 - `image` là ảnh đầu tiên trong `images` của sản phẩm
 
