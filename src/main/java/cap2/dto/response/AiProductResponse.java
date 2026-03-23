@@ -15,6 +15,7 @@ public class AiProductResponse {
     private AiProductDimensions dimensions;
     private List<String> colors;
     private String imageUrl;
+    private String reasoning;
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)

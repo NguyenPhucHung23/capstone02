@@ -62,6 +62,10 @@ public class DesignRequestService {
         // Call AI service
         AiRecommendResponse aiResponse = callAiService(designRequest, image);
 
+        if (aiResponse != null && aiResponse.getAnalysis() != null) {
+            designRequest.setReasoning(aiResponse.getAnalysis().getReasoning());
+        }
+
         List<String> recommendedProductIds = aiResponse != null ?
                 aiResponse.getProducts().stream().map(AiProductResponse::getId).collect(Collectors.toList())
                 : Collections.emptyList();
@@ -137,6 +141,7 @@ public class DesignRequestService {
                 .furnitureDensity(designRequest.getFurnitureDensity())
                 .gender(designRequest.getGender())
                 .imageUrl(designRequest.getImageUrl()) // Will be null, but keeping for consistency
+                .reasoning(designRequest.getReasoning())
                 .recommendedProducts(aiResponse != null ? aiResponse.getProducts() : Collections.emptyList())
                 .createdAt(designRequest.getCreatedAt())
                 .build();

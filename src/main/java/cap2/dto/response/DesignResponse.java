@@ -21,6 +21,7 @@ public class DesignResponse {
     private String furnitureDensity;
     private String gender;
     private String imageUrl;
+    private String reasoning;
     private List<AiProductResponse> recommendedProducts;
     private Instant createdAt;
 

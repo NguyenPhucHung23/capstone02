@@ -31,6 +31,8 @@ public class DesignRequest {
     private int age;
     private String imageUrl;
 
+    private String reasoning;
+
     private List<String> recommendedProductIds;
 
     @CreatedDate
