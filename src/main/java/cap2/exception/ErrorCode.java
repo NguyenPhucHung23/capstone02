@@ -23,6 +23,8 @@ public enum ErrorCode {
     UNAUTHORIZED(1010, "Bạn không có quyền truy cập", HttpStatus.FORBIDDEN),
     UNAUTHENTICATED(1011, "Chưa đăng nhập", HttpStatus.UNAUTHORIZED),
 
+    INVALID_INPUT(1033, "Số lượng sản phẩm trong giỏ hàng không được vượt quá 100", HttpStatus.BAD_REQUEST),
+
     PRODUCT_NOT_FOUND(1012, "Không tìm thấy sản phẩm", HttpStatus.NOT_FOUND),
     OUT_OF_STOCK(1026, "Sản phẩm không đủ số lượng trong kho", HttpStatus.BAD_REQUEST),
 

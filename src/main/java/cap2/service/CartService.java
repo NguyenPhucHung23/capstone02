@@ -60,7 +60,7 @@ public class CartService {
             // Nếu đã có → tăng số lượng
             int newQuantity = existingItem.get().getQuantity() + request.getQuantity();
             if (newQuantity > 100) {
-                throw new AppException(ErrorCode.INVALID_INPUT, "Số lượng sản phẩm trong giỏ hàng không được vượt quá 100");
+                throw new AppException(ErrorCode.INVALID_INPUT);
             }
             existingItem.get().setQuantity(newQuantity);
             log.info("Updated quantity for product {} in cart of user {}", request.getProductId(), userId);
