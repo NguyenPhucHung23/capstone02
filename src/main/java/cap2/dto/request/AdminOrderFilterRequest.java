@@ -8,8 +8,17 @@ import java.time.LocalDate;
 @Data
 public class AdminOrderFilterRequest {
 
-    /** Tìm kiếm theo mã đơn, tên khách hàng, email */
+    /** Tìm kiếm theo mã đơn, tên khách hàng, email (đa năng) */
     String keyword;
+
+    /** Lọc theo mã đơn cụ thể */
+    String orderCode;
+
+    /** Lọc theo tên khách hàng */
+    String customerName;
+
+    /** Lọc theo email khách hàng */
+    String customerEmail;
 
     /** Lọc theo trạng thái: PENDING, CONFIRMED, SHIPPING, DELIVERED, CANCELLED */
     String status;

@@ -239,4 +239,32 @@ PUT /admin/orders/{id}/status
     "statusDisplay": "Đang giao"
   }
 }
+
+---
+
+### 10. Tìm kiếm & Lọc đơn hàng nâng cao (Admin)
+`GET /admin/orders/search`
+
+Cung cấp cho quản trị viên công cụ mạnh mẽ để tìm kiếm và theo dõi các đơn hàng.
+
+**Các tiêu chí lọc (Query Parameters):**
+
+| Parameter | Mô tả | Ví dụ |
+|-----------|-------|-------|
+| `keyword` | Tìm theo mã đơn, tên khách, email (đa năng) | `Nguyễn Văn A` |
+| `orderCode` | Lọc theo mã đơn cụ thể | `ORD20240320...` |
+| `customerName` | Lọc theo tên khách hàng | `Nguyễn Văn A` |
+| `customerEmail` | Lọc theo email khách hàng | `user@example.com` |
+| `status` | Trạng thái đơn hàng | `PENDING` |
+| `paymentMethod`| Phương thức thanh toán | `COD` |
+| `paymentStatus`| Trạng thái thanh toán | `PAID` |
+| `fromDate` | Từ ngày (yyyy-MM-dd) | `2024-03-01` |
+| `toDate` | Đến ngày (yyyy-MM-dd) | `2024-03-31` |
+
+**Postman Examples:**
+
+- **Tìm theo trạng thái & thanh toán:** `{{base_url}}/admin/orders/search?status=PENDING&paymentMethod=COD`
+- **Tìm theo mã đơn:** `{{base_url}}/admin/orders/search?orderCode=ORD20240320`
+- **Tìm theo tên khách:** `{{base_url}}/admin/orders/search?customerName=Nguyen Van A`
+- **Tìm theo khoảng thời gian:** `{{base_url}}/admin/orders/search?fromDate=2024-03-01&toDate=2024-03-31`
 ```

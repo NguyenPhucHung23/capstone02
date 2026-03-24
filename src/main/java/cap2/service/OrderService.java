@@ -49,6 +49,7 @@ public class OrderService {
     ProfileRepository profileRepository;
     ProductRepository productRepository;
     MongoTemplate mongoTemplate;
+    EmailService emailService;
 
     public OrderResponse createOrder(CreateOrderRequest request) {
         String userId = SecurityUtils.getCurrentUserId();
@@ -165,6 +166,10 @@ public class OrderService {
         cartRepository.save(cart);
 
         log.info("Đơn hàng {} được tạo bởi user {}", savedOrder.getOrderCode(), userId);
+
+        // Gửi email xác nhận
+        emailService.sendOrderConfirmation(savedOrder);
+
         return mapToOrderResponse(savedOrder);
     }
 
@@ -226,6 +231,9 @@ public class OrderService {
         Order savedOrder = orderRepository.save(order);
         restoreInventory(savedOrder);
 
+        // Gửi email cập nhật trạng thái
+        emailService.sendOrderStatusUpdate(savedOrder);
+
         log.info("Đơn hàng {} đã bị hủy bởi {}", order.getOrderCode(),
                 SecurityUtils.isAdmin() ? "admin" : "user " + userId);
         return mapToOrderResponse(savedOrder);
@@ -264,6 +272,18 @@ public class OrderService {
                     Criteria.where("customerEmail").regex(kw, "i")
             );
             criteriaList.add(kwCriteria);
+        }
+
+        if (hasValue(request.getOrderCode())) {
+            criteriaList.add(Criteria.where("orderCode").regex(request.getOrderCode().trim(), "i"));
+        }
+
+        if (hasValue(request.getCustomerName())) {
+            criteriaList.add(Criteria.where("customerName").regex(request.getCustomerName().trim(), "i"));
+        }
+
+        if (hasValue(request.getCustomerEmail())) {
+            criteriaList.add(Criteria.where("customerEmail").regex(request.getCustomerEmail().trim(), "i"));
         }
 
         if (hasValue(request.getStatus())) {
@@ -353,6 +373,9 @@ public class OrderService {
         if (!wasPaid && savedOrder.getPaymentStatus() == Order.PaymentStatus.PAID) {
             applyInventoryOnPaidOrder(savedOrder);
         }
+
+        // Gửi email cập nhật trạng thái
+        emailService.sendOrderStatusUpdate(savedOrder);
 
         log.info("Admin cập nhật trạng thái đơn hàng {} thành {}", order.getOrderCode(), newStatus);
         return mapToOrderResponse(savedOrder);
