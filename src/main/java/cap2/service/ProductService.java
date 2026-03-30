@@ -449,7 +449,8 @@ public class ProductService {
                 .careInstructions(product.getCareInstructions())
                 .notes(product.getNotes())
                 .images(product.getImages())
-                // soldCount, sourceUrl, sourceProvider KHÔNG được map ra ngoài
+                .soldCount(product.getSoldCount() != null ? product.getSoldCount() : 0)
+                // sourceUrl, sourceProvider, createdAt, updatedAt KHÔNG được map ra ngoài
                 .avgRating(0.0) // Placeholder - logic added below
                 .reviewCount(0)
                 .build();
