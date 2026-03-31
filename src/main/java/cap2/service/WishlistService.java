@@ -43,7 +43,6 @@ public class WishlistService {
     public WishlistResponse addToWishlist(String productId) {
         String userId = SecurityUtils.getCurrentUserId();
 
-        // Kiểm tra sản phẩm tồn tại
         productRepository.findById(productId)
                 .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
 
@@ -87,8 +86,6 @@ public class WishlistService {
         Wishlist wishlist = getOrCreateWishlist(userId);
         return wishlist.getProductIds().contains(productId);
     }
-
-    // ===== Helpers =====
 
     private Wishlist getOrCreateWishlist(String userId) {
         return wishlistRepository.findByUserId(userId).orElseGet(() -> {

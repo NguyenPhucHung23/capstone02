@@ -7,8 +7,10 @@ import cap2.exception.AppException;
 import cap2.exception.ErrorCode;
 import cap2.repository.OrderRepository;
 import cap2.repository.ProductRepository;
+import cap2.repository.ProfileRepository;
 import cap2.repository.ReviewRepository;
 import cap2.schema.Order;
+import cap2.schema.Profile;
 import cap2.schema.Review;
 import cap2.util.SecurityUtils;
 import lombok.AccessLevel;
@@ -34,19 +36,14 @@ public class ReviewService {
     ReviewRepository reviewRepository;
     OrderRepository orderRepository;
     ProductRepository productRepository;
+    ProfileRepository profileRepository;
 
-    /**
-     * Tạo đánh giá mới.
-     * Ràng buộc: đơn hàng phải DELIVERED và sản phẩm phải có trong đơn hàng đó.
-     */
     public ReviewResponse createReview(ReviewRequest request) {
         String userId = SecurityUtils.getCurrentUserId();
 
-        // Kiểm tra sản phẩm tồn tại
         productRepository.findById(request.getProductId())
                 .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
 
-        // Kiểm tra đơn hàng tồn tại và đã giao
         Order order = orderRepository.findByOrderCode(request.getOrderCode())
                 .orElseThrow(() -> new AppException(ErrorCode.ORDER_NOT_FOUND));
 
@@ -54,19 +51,16 @@ public class ReviewService {
             throw new AppException(ErrorCode.ORDER_NOT_DELIVERED);
         }
 
-        // Kiểm tra đơn hàng thuộc về user đang đăng nhập
         if (!order.getUserId().equals(userId)) {
             throw new AppException(ErrorCode.UNAUTHORIZED);
         }
 
-        // Kiểm tra sản phẩm có trong đơn hàng không
         boolean productInOrder = order.getItems().stream()
                 .anyMatch(item -> item.getProductId().equals(request.getProductId()));
         if (!productInOrder) {
             throw new AppException(ErrorCode.REVIEW_NOT_YOUR_ORDER);
         }
 
-        // Kiểm tra đã review chưa
         if (reviewRepository.existsByUserIdAndProductId(userId, request.getProductId())) {
             throw new AppException(ErrorCode.REVIEW_ALREADY_EXISTS);
         }
@@ -84,18 +78,12 @@ public class ReviewService {
         return mapToResponse(saved);
     }
 
-    /**
-     * Xem danh sách đánh giá của 1 sản phẩm (PUBLIC)
-     */
     public PageResponse<ReviewResponse> getProductReviews(String productId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
         Page<Review> reviewPage = reviewRepository.findByProductId(productId, pageable);
         return buildPageResponse(reviewPage);
     }
 
-    /**
-     * Thống kê đánh giá: avgRating, reviewCount, phân bố sao
-     */
     public ReviewResponse.RatingSummary getProductRatingSummary(String productId) {
         Pageable all = PageRequest.of(0, Integer.MAX_VALUE);
         List<Review> reviews = reviewRepository.findByProductId(productId, all).getContent();
@@ -118,9 +106,6 @@ public class ReviewService {
                 .build();
     }
 
-    /**
-     * Xem đánh giá của mình
-     */
     public PageResponse<ReviewResponse> getMyReviews(int page, int size) {
         String userId = SecurityUtils.getCurrentUserId();
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
@@ -128,9 +113,6 @@ public class ReviewService {
         return buildPageResponse(reviewPage);
     }
 
-    /**
-     * Xóa đánh giá – User xóa của mình, Admin xóa tất cả
-     */
     public void deleteReview(String reviewId) {
         String userId = SecurityUtils.getCurrentUserId();
         Review review = reviewRepository.findById(reviewId)
@@ -144,13 +126,16 @@ public class ReviewService {
         log.info("Review {} đã bị xóa", reviewId);
     }
 
-    // ===== Helpers =====
-
     private ReviewResponse mapToResponse(Review review) {
+        String reviewerName = profileRepository.findByUserId(review.getUserId())
+                .map(Profile::getFullName)
+                .orElse("Người dùng ẩn danh");
+
         return ReviewResponse.builder()
                 .id(review.getId())
                 .productId(review.getProductId())
                 .userId(review.getUserId())
+                .reviewerName(reviewerName)
                 .orderCode(review.getOrderCode())
                 .rating(review.getRating())
                 .comment(review.getComment())

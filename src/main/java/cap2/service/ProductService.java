@@ -65,7 +65,6 @@ public class ProductService {
                 responses.add(response);
             } catch (Exception e) {
                 log.error("Error processing product: {} - {}", request.getName(), e.getMessage());
-                // Tiếp tục xử lý các product khác
             }
         }
         log.info("Batch import completed: {}/{} products", responses.size(), requests.size());
@@ -79,7 +78,6 @@ public class ProductService {
         String sourceProvider = request.getSourceProvider().trim();
         String sourceUrl = request.getSourceUrl().trim();
 
-        // Tìm product existing theo sourceProvider + sourceUrl
         Optional<Product> existingProduct = productRepository
                 .findBySourceProviderAndSourceUrl(sourceProvider, sourceUrl);
 
@@ -87,13 +85,11 @@ public class ProductService {
         boolean isUpdate = existingProduct.isPresent();
 
         if (isUpdate) {
-            // UPDATE existing product
             product = existingProduct.get();
             updateProductFields(product, request);
             product.setUpdatedAt(Instant.now());
             log.info("Updating existing product: {}", product.getId());
         } else {
-            // CREATE new product
             product = buildNewProduct(request);
             log.info("Creating new product with source: {} - {}", sourceProvider, sourceUrl);
         }
@@ -181,10 +177,8 @@ public class ProductService {
     public PageResponse<PublicProductResponse> searchProductsPublic(ProductSearchRequest request, int page, int size) {
         Query query = buildProductQuery(request);
 
-        // Count total
         long total = mongoTemplate.count(query, Product.class);
 
-        // Apply sort + pagination
         Sort sort = buildSort(request.getSortBy(), request.getSortDir());
         query.with(sort).skip((long) page * size).limit(size);
 
@@ -307,7 +301,6 @@ public class ProductService {
     }
 
     private void updateProductFields(Product product, ProductRequest request) {
-        // Update slug nếu name thay đổi
         if (!product.getName().equals(request.getName())) {
             product.setSlug(SlugUtils.toUniqueSlug(request.getName(),
                     String.valueOf(Instant.now().toEpochMilli())));
@@ -332,7 +325,6 @@ public class ProductService {
         product.setCareInstructions(request.getCareInstructions());
         product.setNotes(request.getNotes());
         product.setImages(request.getImages());
-        // Không update sourceUrl và sourceProvider (đây là key)
     }
 
     private Product.Color mapColorRequest(ProductRequest.ColorRequest colorRequest) {
@@ -450,12 +442,10 @@ public class ProductService {
                 .notes(product.getNotes())
                 .images(product.getImages())
                 .soldCount(product.getSoldCount() != null ? product.getSoldCount() : 0)
-                // sourceUrl, sourceProvider, createdAt, updatedAt KHÔNG được map ra ngoài
                 .avgRating(0.0) // Placeholder - logic added below
                 .reviewCount(0)
                 .build();
 
-        // Populate actual avgRating and reviewCount
         List<cap2.schema.Review> reviews = reviewRepository.findByProductId(product.getId(), org.springframework.data.domain.Pageable.unpaged()).getContent();
         if (!reviews.isEmpty()) {
             double avg = reviews.stream().mapToInt(cap2.schema.Review::getRating).average().orElse(0.0);
