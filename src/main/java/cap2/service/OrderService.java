@@ -409,10 +409,10 @@ public class OrderService {
     }
 
     private double calculateShippingFee(double subtotal) {
-        if (subtotal >= 10000000) {
+        if (subtotal > 500000) {
             return 0;
         }
-        return 500000;
+        return 300000;
     }
 
     private double calculateDiscount(String discountCode, double subtotal) {
@@ -421,7 +421,7 @@ public class OrderService {
         }
 
         return switch (discountCode.toUpperCase()) {
-            case "FREESHIP" -> 500000;
+            case "FREESHIP" -> 300000;
             case "SALE10" -> subtotal * 0.1;
             case "SALE20" -> subtotal * 0.2;
             default -> 0;
