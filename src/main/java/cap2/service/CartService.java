@@ -58,7 +58,11 @@ public class CartService {
 
         if (existingItem.isPresent()) {
             // Nếu đã có → tăng số lượng
-            existingItem.get().setQuantity(existingItem.get().getQuantity() + request.getQuantity());
+            int newQuantity = existingItem.get().getQuantity() + request.getQuantity();
+            if (newQuantity > 100) {
+                throw new AppException(ErrorCode.INVALID_INPUT);
+            }
+            existingItem.get().setQuantity(newQuantity);
             log.info("Updated quantity for product {} in cart of user {}", request.getProductId(), userId);
         } else {
             // Nếu chưa có → thêm mới

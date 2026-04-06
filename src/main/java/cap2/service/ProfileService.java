@@ -48,7 +48,6 @@ public class ProfileService {
                 .build();
     }
 
-    // Lấy profile của chính mình
     public ProfileResponse getMyProfile() {
         String currentUserId = SecurityUtils.getCurrentUserId();
         Profile profile = profileRepository.findByUserId(currentUserId)
@@ -56,7 +55,6 @@ public class ProfileService {
         return mapToProfileResponse(profile);
     }
 
-    // Lấy profile theo ID (chỉ xem của mình hoặc ADMIN)
     public ProfileResponse getProfileById(String id) {
         Profile profile = profileRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
@@ -64,7 +62,6 @@ public class ProfileService {
         return mapToProfileResponse(profile);
     }
 
-    // Lấy profile theo userId (chỉ xem của mình hoặc ADMIN)
     public ProfileResponse getProfileByUserId(String userId) {
         SecurityUtils.checkPermission(userId);
         Profile profile = profileRepository.findByUserId(userId)
@@ -72,7 +69,6 @@ public class ProfileService {
         return mapToProfileResponse(profile);
     }
 
-    // Cập nhật profile của chính mình
     public ProfileResponse updateMyProfile(UpdateProfileRequest request) {
         String currentUserId = SecurityUtils.getCurrentUserId();
         Profile profile = profileRepository.findByUserId(currentUserId)
@@ -84,7 +80,6 @@ public class ProfileService {
         return mapToProfileResponse(savedProfile);
     }
 
-    // Cập nhật profile theo ID (chỉ sửa của mình hoặc ADMIN)
     public ProfileResponse updateProfile(String id, UpdateProfileRequest request) {
         Profile profile = profileRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
@@ -96,7 +91,6 @@ public class ProfileService {
         return mapToProfileResponse(savedProfile);
     }
 
-    // Xóa profile của chính mình
     public void deleteMyProfile() {
         String currentUserId = SecurityUtils.getCurrentUserId();
         Profile profile = profileRepository.findByUserId(currentUserId)
@@ -105,7 +99,6 @@ public class ProfileService {
         log.info("Deleted my profile: {}", profile.getId());
     }
 
-    // Xóa profile theo ID (chỉ xóa của mình hoặc ADMIN)
     public void deleteProfile(String id) {
         Profile profile = profileRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_FOUND));
@@ -113,8 +106,6 @@ public class ProfileService {
         profileRepository.delete(profile);
         log.info("Deleted profile: {}", id);
     }
-
-    // === Helper methods ===
 
     private void updateProfileFields(Profile profile, UpdateProfileRequest request) {
         if (request.getFullName() != null) {
@@ -128,11 +119,11 @@ public class ProfileService {
         }
         if (request.getCity() != null) {
             profile.setCity(request.getCity());
-            profile.setProvince(null); // city và province không tồn tại cùng lúc
+            profile.setProvince(null);
         }
         if (request.getProvince() != null) {
             profile.setProvince(request.getProvince());
-            profile.setCity(null); // city và province không tồn tại cùng lúc
+            profile.setCity(null);
         }
         if (request.getWard() != null) {
             profile.setWard(request.getWard());
@@ -145,9 +136,7 @@ public class ProfileService {
         }
     }
 
-
     private ProfileResponse mapToProfileResponse(Profile profile) {
-        // Lấy email từ User
         String email = userRepository.findById(profile.getUserId())
                 .map(User::getEmail)
                 .orElse(null);

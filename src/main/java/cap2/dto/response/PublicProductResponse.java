@@ -10,8 +10,8 @@ import lombok.experimental.FieldDefaults;
 import java.util.List;
 
 /**
- * Response dành cho USER khi xem sản phẩm.
- * Ẩn các field nội bộ: soldCount, sourceUrl, sourceProvider, createdAt, updatedAt
+ * Response cho người dùng khi xem thông tin sản phẩm.
+ * Ẩn các trường thông tin nội bộ: sourceUrl, sourceProvider, createdAt, updatedAt
  */
 @Data
 @Builder
@@ -48,8 +48,17 @@ public class PublicProductResponse {
     List<String> notes;
 
     List<String> images;
+    
+    /** Số lượng đã bán */
+    Integer soldCount;
 
-    // KHÔNG có: soldCount, sourceUrl, sourceProvider, createdAt, updatedAt
+    /** Chấm sao trung bình */
+    Double avgRating;
+
+    /** Tổng số lượt đánh giá */
+    Integer reviewCount;
+
+    // KHÔNG có: sourceUrl, sourceProvider, createdAt, updatedAt
 
     @Data
     @Builder

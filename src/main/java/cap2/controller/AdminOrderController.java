@@ -53,4 +53,17 @@ public class AdminOrderController {
                 : "Cập nhật trạng thái đơn hàng thành công";
         return ApiResponse.ok(message, response);
     }
+
+    /**
+     * Tìm kiếm & lọc đơn hàng (Admin)
+     * GET /admin/orders/search
+     */
+    @GetMapping("/search")
+    public ApiResponse<PageResponse<OrderResponse>> searchOrders(
+            @ModelAttribute cap2.dto.request.AdminOrderFilterRequest request,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return ApiResponse.ok("Tìm kiếm đơn hàng thành công",
+                orderService.searchOrders(request, page, size));
+    }
 }

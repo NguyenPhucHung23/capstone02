@@ -29,7 +29,7 @@ public class AuthController {
     @PostMapping("/forgot-password")
     public ApiResponse<Void> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
         authService.forgotPassword(request);
-        return ApiResponse.ok("An OTP has been sent to your email.", null);
+        return ApiResponse.ok("OTP has been sent to your email. Please check your inbox.", null);
     }
 
     @PostMapping("/reset-password")

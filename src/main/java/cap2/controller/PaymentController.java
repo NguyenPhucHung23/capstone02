@@ -5,6 +5,7 @@ import cap2.exception.AppException;
 import cap2.exception.ErrorCode;
 import cap2.repository.OrderRepository;
 import cap2.schema.Order;
+import cap2.service.EmailService;
 import cap2.service.OrderService;
 import cap2.service.VnPayService;
 import cap2.util.SecurityUtils;
@@ -30,6 +31,7 @@ public class PaymentController {
     OrderRepository orderRepository;
     VnPayService vnPayService;
     OrderService orderService;
+    EmailService emailService;
 
     @PostMapping("/create/{orderId}")
     public ApiResponse<Map<String, String>> createPaymentUrl(@PathVariable String orderId,
@@ -195,6 +197,7 @@ public class PaymentController {
      */
     private void updateOrderPaymentStatus(Order order, String responseCode, String transactionStatus) {
         boolean wasPaid = order.getPaymentStatus() == Order.PaymentStatus.PAID;
+        Order.OrderStatus oldStatus = order.getStatus();
 
         // Phải check CẢ ResponseCode VÀ TransactionStatus
         if ("00".equals(responseCode) && "00".equals(transactionStatus)) {
@@ -214,6 +217,15 @@ public class PaymentController {
 
         order.setUpdatedAt(Instant.now());
         orderRepository.save(order);
+
+        // Gửi email nếu trạng thái đơn hàng thay đổi (ví dụ từ PENDING sang CONFIRMED)
+        if (order.getStatus() != oldStatus) {
+            if (order.getPaymentStatus() == Order.PaymentStatus.PAID) {
+                emailService.sendPaymentSuccessNotification(order);
+            } else {
+                emailService.sendOrderStatusUpdate(order);
+            }
+        }
 
         if (!wasPaid && order.getPaymentStatus() == Order.PaymentStatus.PAID) {
             orderService.applyInventoryOnPaidOrder(order);

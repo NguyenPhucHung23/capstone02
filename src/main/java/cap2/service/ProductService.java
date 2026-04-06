@@ -1,12 +1,14 @@
 package cap2.service;
 
 import cap2.dto.request.ProductRequest;
+import cap2.dto.request.ProductSearchRequest;
 import cap2.dto.response.PageResponse;
 import cap2.dto.response.ProductResponse;
 import cap2.dto.response.PublicProductResponse;
 import cap2.exception.AppException;
 import cap2.exception.ErrorCode;
 import cap2.repository.ProductRepository;
+import cap2.repository.ReviewRepository;
 import cap2.schema.Product;
 import cap2.util.SecurityUtils;
 import cap2.util.SlugUtils;
@@ -15,15 +17,20 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +39,8 @@ import java.util.Optional;
 public class ProductService {
 
     ProductRepository productRepository;
+    ReviewRepository reviewRepository;
+    MongoTemplate mongoTemplate;
 
     /**
      * Tạo hoặc cập nhật product
@@ -56,7 +65,6 @@ public class ProductService {
                 responses.add(response);
             } catch (Exception e) {
                 log.error("Error processing product: {} - {}", request.getName(), e.getMessage());
-                // Tiếp tục xử lý các product khác
             }
         }
         log.info("Batch import completed: {}/{} products", responses.size(), requests.size());
@@ -70,7 +78,6 @@ public class ProductService {
         String sourceProvider = request.getSourceProvider().trim();
         String sourceUrl = request.getSourceUrl().trim();
 
-        // Tìm product existing theo sourceProvider + sourceUrl
         Optional<Product> existingProduct = productRepository
                 .findBySourceProviderAndSourceUrl(sourceProvider, sourceUrl);
 
@@ -78,13 +85,11 @@ public class ProductService {
         boolean isUpdate = existingProduct.isPresent();
 
         if (isUpdate) {
-            // UPDATE existing product
             product = existingProduct.get();
             updateProductFields(product, request);
             product.setUpdatedAt(Instant.now());
             log.info("Updating existing product: {}", product.getId());
         } else {
-            // CREATE new product
             product = buildNewProduct(request);
             log.info("Creating new product with source: {} - {}", sourceProvider, sourceUrl);
         }
@@ -166,6 +171,101 @@ public class ProductService {
         log.info("Deleted product: {}", id);
     }
 
+    /**
+     * Tìm kiếm & lọc sản phẩm (PUBLIC – ẩn soldCount, sourceUrl)
+     */
+    public PageResponse<PublicProductResponse> searchProductsPublic(ProductSearchRequest request, int page, int size) {
+        Query query = buildProductQuery(request);
+
+        long total = mongoTemplate.count(query, Product.class);
+
+        Sort sort = buildSort(request.getSortBy(), request.getSortDir());
+        query.with(sort).skip((long) page * size).limit(size);
+
+        List<Product> products = mongoTemplate.find(query, Product.class);
+        List<PublicProductResponse> content = products.stream()
+                .map(this::mapToPublicProductResponse)
+                .toList();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<PublicProductResponse> pageResult = new PageImpl<>(content, pageable, total);
+
+        return PageResponse.<PublicProductResponse>builder()
+                .content(content)
+                .page(pageResult.getNumber())
+                .size(pageResult.getSize())
+                .totalElements(pageResult.getTotalElements())
+                .totalPages(pageResult.getTotalPages())
+                .first(pageResult.isFirst())
+                .last(pageResult.isLast())
+                .build();
+    }
+
+    /**
+     * Tìm kiếm & lọc sản phẩm (ADMIN – đầy đủ thông tin)
+     */
+    public PageResponse<ProductResponse> searchProductsAdmin(ProductSearchRequest request, int page, int size) {
+        SecurityUtils.checkAdminRole();
+        Query query = buildProductQuery(request);
+
+        long total = mongoTemplate.count(query, Product.class);
+        Sort sort = buildSort(request.getSortBy(), request.getSortDir());
+        query.with(sort).skip((long) page * size).limit(size);
+
+        List<Product> products = mongoTemplate.find(query, Product.class);
+        List<ProductResponse> content = products.stream()
+                .map(this::mapToProductResponse)
+                .toList();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<ProductResponse> pageResult = new PageImpl<>(content, pageable, total);
+
+        return PageResponse.<ProductResponse>builder()
+                .content(content)
+                .page(pageResult.getNumber())
+                .size(pageResult.getSize())
+                .totalElements(pageResult.getTotalElements())
+                .totalPages(pageResult.getTotalPages())
+                .first(pageResult.isFirst())
+                .last(pageResult.isLast())
+                .build();
+    }
+
+    // ===== Search helpers =====
+
+    private Query buildProductQuery(ProductSearchRequest request) {
+        List<Criteria> criteriaList = new ArrayList<>();
+
+        if (request.getQuery() != null && !request.getQuery().isBlank()) {
+            Pattern pattern = Pattern.compile(request.getQuery().trim(), Pattern.CASE_INSENSITIVE);
+            criteriaList.add(Criteria.where("name").regex(pattern));
+        }
+        if (request.getCategory() != null && !request.getCategory().isBlank()) {
+            criteriaList.add(Criteria.where("category").is(request.getCategory().trim()));
+        }
+        if (request.getMinPrice() != null) {
+            criteriaList.add(Criteria.where("price").gte(request.getMinPrice()));
+        }
+        if (request.getMaxPrice() != null) {
+            criteriaList.add(Criteria.where("price").lte(request.getMaxPrice()));
+        }
+        if (request.getInStock() != null) {
+            criteriaList.add(Criteria.where("inStock").is(request.getInStock()));
+        }
+
+        Query query = new Query();
+        if (!criteriaList.isEmpty()) {
+            query.addCriteria(new Criteria().andOperator(criteriaList.toArray(new Criteria[0])));
+        }
+        return query;
+    }
+
+    private Sort buildSort(String sortBy, String sortDir) {
+        String field = (sortBy != null && !sortBy.isBlank()) ? sortBy : "createdAt";
+        Sort.Direction direction = "asc".equalsIgnoreCase(sortDir) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        return Sort.by(direction, field);
+    }
+
     // ===== Helper methods =====
 
     private Product buildNewProduct(ProductRequest request) {
@@ -201,7 +301,6 @@ public class ProductService {
     }
 
     private void updateProductFields(Product product, ProductRequest request) {
-        // Update slug nếu name thay đổi
         if (!product.getName().equals(request.getName())) {
             product.setSlug(SlugUtils.toUniqueSlug(request.getName(),
                     String.valueOf(Instant.now().toEpochMilli())));
@@ -226,7 +325,6 @@ public class ProductService {
         product.setCareInstructions(request.getCareInstructions());
         product.setNotes(request.getNotes());
         product.setImages(request.getImages());
-        // Không update sourceUrl và sourceProvider (đây là key)
     }
 
     private Product.Color mapColorRequest(ProductRequest.ColorRequest colorRequest) {
@@ -309,7 +407,7 @@ public class ProductService {
      * Ẩn: soldCount, sourceUrl, sourceProvider, createdAt, updatedAt
      */
     private PublicProductResponse mapToPublicProductResponse(Product product) {
-        return PublicProductResponse.builder()
+        PublicProductResponse response = PublicProductResponse.builder()
                 .id(product.getId())
                 .name(product.getName())
                 .slug(product.getSlug())
@@ -343,7 +441,18 @@ public class ProductService {
                 .careInstructions(product.getCareInstructions())
                 .notes(product.getNotes())
                 .images(product.getImages())
-                // soldCount, sourceUrl, sourceProvider KHÔNG được map ra ngoài
+                .soldCount(product.getSoldCount() != null ? product.getSoldCount() : 0)
+                .avgRating(0.0) // Placeholder - logic added below
+                .reviewCount(0)
                 .build();
+
+        List<cap2.schema.Review> reviews = reviewRepository.findByProductId(product.getId(), org.springframework.data.domain.Pageable.unpaged()).getContent();
+        if (!reviews.isEmpty()) {
+            double avg = reviews.stream().mapToInt(cap2.schema.Review::getRating).average().orElse(0.0);
+            response.setAvgRating(Math.round(avg * 10.0) / 10.0);
+            response.setReviewCount(reviews.size());
+        }
+
+        return response;
     }
 }

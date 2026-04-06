@@ -23,8 +23,10 @@ public enum ErrorCode {
     UNAUTHORIZED(1010, "Bạn không có quyền truy cập", HttpStatus.FORBIDDEN),
     UNAUTHENTICATED(1011, "Chưa đăng nhập", HttpStatus.UNAUTHORIZED),
 
+    INVALID_INPUT(1033, "Số lượng sản phẩm trong giỏ hàng không được vượt quá 100", HttpStatus.BAD_REQUEST),
+
     PRODUCT_NOT_FOUND(1012, "Không tìm thấy sản phẩm", HttpStatus.NOT_FOUND),
-    DESIGN_REQUEST_NOT_FOUND(1026, "Không tìm thấy yêu cầu thiết kế", HttpStatus.NOT_FOUND),
+    OUT_OF_STOCK(1026, "Sản phẩm không đủ số lượng trong kho", HttpStatus.BAD_REQUEST),
 
     CART_NOT_FOUND(1013, "Không tìm thấy giỏ hàng", HttpStatus.NOT_FOUND),
     CART_ITEM_NOT_FOUND(1014, "Không tìm thấy sản phẩm trong giỏ hàng", HttpStatus.NOT_FOUND),
@@ -39,7 +41,17 @@ public enum ErrorCode {
     MISSING_SHIPPING_INFO(1022, "Vui lòng cung cấp đầy đủ thông tin giao hàng", HttpStatus.BAD_REQUEST),
     INVALID_SHIPPING_ADDRESS(1023, "Địa chỉ giao hàng không hợp lệ: không thể chọn cả city và province cùng lúc", HttpStatus.BAD_REQUEST),
     PROVINCE_NOT_FOUND(1024, "Không tìm thấy tỉnh/thành phố", HttpStatus.NOT_FOUND),
-    WARD_NOT_FOUND(1025, "Không tìm thấy phường/xã", HttpStatus.NOT_FOUND);
+    WARD_NOT_FOUND(1025, "Không tìm thấy phường/xã", HttpStatus.NOT_FOUND),
+
+    // Review
+    REVIEW_NOT_FOUND(1027, "Không tìm thấy đánh giá", HttpStatus.NOT_FOUND),
+    REVIEW_ALREADY_EXISTS(1028, "Bạn đã đánh giá sản phẩm này rồi", HttpStatus.BAD_REQUEST),
+    ORDER_NOT_DELIVERED(1029, "Chỉ có thể đánh giá sản phẩm trong đơn hàng đã giao", HttpStatus.BAD_REQUEST),
+    REVIEW_NOT_YOUR_ORDER(1030, "Sản phẩm này không có trong đơn hàng của bạn", HttpStatus.BAD_REQUEST),
+
+    // Wishlist
+    WISHLIST_ITEM_NOT_FOUND(1031, "Sản phẩm không có trong danh sách yêu thích", HttpStatus.NOT_FOUND),
+    WISHLIST_ITEM_ALREADY_EXISTS(1032, "Sản phẩm đã có trong danh sách yêu thích", HttpStatus.BAD_REQUEST);
 
     private final int code;
     private final String message;
