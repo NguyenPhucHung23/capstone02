@@ -83,6 +83,7 @@ public class AuthService {
             log.info("OTP sent to {}", user.getEmail());
         } catch (Exception e) {
             log.error("Failed to send OTP email to {}: {}", user.getEmail(), e.getMessage());
+            throw new AppException(ErrorCode.EMAIL_SEND_FAILED);
         }
     }
 

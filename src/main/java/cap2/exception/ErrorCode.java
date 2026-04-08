@@ -51,7 +51,9 @@ public enum ErrorCode {
 
     // Wishlist
     WISHLIST_ITEM_NOT_FOUND(1031, "Sản phẩm không có trong danh sách yêu thích", HttpStatus.NOT_FOUND),
-    WISHLIST_ITEM_ALREADY_EXISTS(1032, "Sản phẩm đã có trong danh sách yêu thích", HttpStatus.BAD_REQUEST);
+    WISHLIST_ITEM_ALREADY_EXISTS(1032, "Sản phẩm đã có trong danh sách yêu thích", HttpStatus.BAD_REQUEST),
+
+    EMAIL_SEND_FAILED(1034, "Lỗi khi gửi email OTP", HttpStatus.INTERNAL_SERVER_ERROR);
 
     private final int code;
     private final String message;
