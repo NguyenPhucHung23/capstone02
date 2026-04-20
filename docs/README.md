@@ -18,6 +18,10 @@
 | [07-payment.md](./07-payment.md) | 💳 Thanh toán VNPay |
 | [08-dashboard.md](./08-dashboard.md) | 📊 Admin Dashboard |
 | [09-errors.md](./09-errors.md) | ❌ Error Codes |
+| [10-product-search.md](./10-product-search.md) | 🔎 Tìm kiếm sản phẩm |
+| [11-review.md](./11-review.md) | ⭐ Đánh giá sản phẩm |
+| [12-wishlist.md](./12-wishlist.md) | ❤️ Wishlist |
+| [13-deployment.md](./13-deployment.md) | 🚀 Hướng dẫn deploy production |
 
 ---
 
