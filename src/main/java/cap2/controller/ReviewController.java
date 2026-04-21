@@ -41,6 +41,14 @@ public class ReviewController {
                 reviewService.getProductReviews(productId, page, size));
     }
 
+    @GetMapping("/all")
+    public ApiResponse<PageResponse<ReviewResponse>> getAllReview(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return ApiResponse.ok("Lấy tất cả đánh giá thành công",
+                reviewService.getAllReview(page, size));
+    }
+
     /**
      * Tổng hợp đánh giá của 1 sản phẩm (avgRating, reviewCount, phân bố sao) (PUBLIC)
      * GET /reviews/product/{productId}/summary
