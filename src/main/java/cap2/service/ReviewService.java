@@ -90,6 +90,14 @@ public class ReviewService {
         return mapToResponse(saved);
     }
 
+
+    public PageResponse<ReviewResponse> getAllReview(int page, int size) {
+        SecurityUtils.checkAdminRole();
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+        Page<Review> reviewPage = reviewRepository.findAll(pageable);
+        return buildPageResponse(reviewPage);
+    }
+
     public PageResponse<ReviewResponse> getProductReviews(String productId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
         Page<Review> reviewPage = reviewRepository.findByProductId(productId, pageable);
