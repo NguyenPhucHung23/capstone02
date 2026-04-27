@@ -12,6 +12,7 @@ import cap2.repository.ReviewRepository;
 import cap2.schema.Order;
 import cap2.schema.Profile;
 import cap2.schema.Review;
+import cap2.schema.UserBehaviorEvent;
 import cap2.util.SecurityUtils;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,7 @@ public class ReviewService {
     OrderRepository orderRepository;
     ProductRepository productRepository;
     ProfileRepository profileRepository;
+    BehaviorService behaviorService;
 
     public ReviewResponse createReview(ReviewRequest request) {
         String userId = SecurityUtils.getCurrentUserId();
@@ -74,6 +76,16 @@ public class ReviewService {
                 .build();
 
         Review saved = reviewRepository.save(review);
+
+        behaviorService.saveEventSafely(
+            userId,
+            request.getProductId(),
+            UserBehaviorEvent.EventType.RATING,
+            request.getRating(),
+            null,
+            null
+        );
+
         log.info("User {} đã đánh giá sản phẩm {}", userId, request.getProductId());
         return mapToResponse(saved);
     }

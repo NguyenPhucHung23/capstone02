@@ -20,4 +20,8 @@ public class AddToCartRequest {
     @Min(value = 1, message = "Số lượng phải lớn hơn 0")
     @jakarta.validation.constraints.Max(value = 100, message = "Số lượng không được vượt quá 100")
     Integer quantity;
+
+    // Optional metadata to attribute actions from AI recommendation results.
+    String designRequestId;
+    Double rankingScore;
 }

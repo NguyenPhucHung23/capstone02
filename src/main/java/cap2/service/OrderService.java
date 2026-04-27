@@ -15,6 +15,7 @@ import cap2.repository.ProductRepository;
 import cap2.schema.Cart;
 import cap2.schema.Order;
 import cap2.schema.Profile;
+import cap2.schema.UserBehaviorEvent;
 import cap2.schema.User;
 import cap2.util.SecurityUtils;
 import lombok.AccessLevel;
@@ -50,6 +51,7 @@ public class OrderService {
     ProductRepository productRepository;
     MongoTemplate mongoTemplate;
     EmailService emailService;
+    BehaviorService behaviorService;
 
     public OrderResponse createOrder(CreateOrderRequest request) {
         String userId = SecurityUtils.getCurrentUserId();
@@ -442,6 +444,15 @@ public class OrderService {
             if (quantity <= 0) {
                 continue;
             }
+
+            behaviorService.saveEventSafely(
+                    order.getUserId(),
+                    item.getProductId(),
+                    UserBehaviorEvent.EventType.PURCHASE,
+                    null,
+                    null,
+                    null
+            );
 
             productRepository.findById(item.getProductId()).ifPresent(product -> {
                 int currentSold = product.getSoldCount() != null ? product.getSoldCount() : 0;

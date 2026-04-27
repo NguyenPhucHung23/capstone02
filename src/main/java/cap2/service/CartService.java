@@ -9,6 +9,7 @@ import cap2.repository.CartRepository;
 import cap2.repository.ProductRepository;
 import cap2.schema.Cart;
 import cap2.schema.Product;
+import cap2.schema.UserBehaviorEvent;
 import cap2.util.SecurityUtils;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ public class CartService {
 
     CartRepository cartRepository;
     ProductRepository productRepository;
+        BehaviorService behaviorService;
 
     /**
      * Lấy giỏ hàng của user hiện tại
@@ -82,6 +84,16 @@ public class CartService {
 
         cart.setUpdatedAt(Instant.now());
         Cart savedCart = cartRepository.save(cart);
+
+        behaviorService.saveEventSafely(
+                userId,
+                product.getId(),
+                UserBehaviorEvent.EventType.ADD_TO_CART,
+                null,
+                request.getRankingScore(),
+                request.getDesignRequestId()
+        );
+
         return mapToCartResponse(savedCart);
     }
 
