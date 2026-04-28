@@ -158,6 +158,28 @@ public class OrderService {
 
         Order savedOrder = orderRepository.save(order);
 
+        // COD does not pass through VNPay callback, so record PURCHASE at checkout time.
+        if (paymentMethod == Order.PaymentMethod.COD) {
+            log.info("COD order {} created. Start tracking PURCHASE for {} item(s)",
+                    savedOrder.getOrderCode(),
+                    savedOrder.getItems() != null ? savedOrder.getItems().size() : 0);
+            for (Order.OrderItem item : savedOrder.getItems()) {
+                if (item == null || item.getProductId() == null) {
+                    continue;
+                }
+                log.info("Track PURCHASE for COD order {}. userId={}, productId={}",
+                        savedOrder.getOrderCode(), savedOrder.getUserId(), item.getProductId());
+                behaviorService.saveEventSafely(
+                        savedOrder.getUserId(),
+                        item.getProductId(),
+                        UserBehaviorEvent.EventType.PURCHASE,
+                        null,
+                        null,
+                        null
+                );
+            }
+        }
+
         cart.getItems().clear();
         cart.setUpdatedAt(Instant.now());
         cartRepository.save(cart);
@@ -435,6 +457,9 @@ public class OrderService {
             return;
         }
 
+        // COD orders are already tracked as PURCHASE on checkout.
+        boolean shouldTrackPurchase = order.getPaymentMethod() != Order.PaymentMethod.COD;
+
         for (Order.OrderItem item : order.getItems()) {
             if (item == null || item.getProductId() == null) {
                 continue;
@@ -445,14 +470,16 @@ public class OrderService {
                 continue;
             }
 
-            behaviorService.saveEventSafely(
-                    order.getUserId(),
-                    item.getProductId(),
-                    UserBehaviorEvent.EventType.PURCHASE,
-                    null,
-                    null,
-                    null
-            );
+            if (shouldTrackPurchase) {
+                behaviorService.saveEventSafely(
+                        order.getUserId(),
+                        item.getProductId(),
+                        UserBehaviorEvent.EventType.PURCHASE,
+                        null,
+                        null,
+                        null
+                );
+            }
 
             productRepository.findById(item.getProductId()).ifPresent(product -> {
                 int currentSold = product.getSoldCount() != null ? product.getSoldCount() : 0;
