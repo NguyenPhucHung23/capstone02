@@ -42,11 +42,7 @@ public class ProductService {
     ReviewRepository reviewRepository;
     MongoTemplate mongoTemplate;
 
-    /**
-     * Tạo hoặc cập nhật product
-     * Nếu đã tồn tại (sourceProvider + sourceUrl) → update
-     * Nếu chưa tồn tại → create
-     */
+
     public ProductResponse createOrUpdateProduct(ProductRequest request) {
         SecurityUtils.checkAdminRole();
         return processProductRequest(request);
@@ -100,18 +96,12 @@ public class ProductService {
         return mapToProductResponse(savedProduct);
     }
 
-    /**
-     * Lấy product theo ID (USER - ẩn soldCount, sourceUrl, sourceProvider)
-     */
     public PublicProductResponse getProductByIdPublic(String id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
         return mapToPublicProductResponse(product);
     }
 
-    /**
-     * Lấy danh sách products (USER - ẩn soldCount, sourceUrl, sourceProvider)
-     */
     public PageResponse<PublicProductResponse> getAllProductsPublic(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
         Page<Product> productPage = productRepository.findAll(pageable);
@@ -129,18 +119,14 @@ public class ProductService {
                 .build();
     }
 
-    /**
-     * Lấy product theo ID (ADMIN - đầy đủ thông tin)
-     */
+   
     public ProductResponse getProductById(String id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
         return mapToProductResponse(product);
     }
 
-    /**
-     * Lấy danh sách products (phân trang)
-     */
+  
     public PageResponse<ProductResponse> getAllProducts(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
         Page<Product> productPage = productRepository.findAll(pageable);
@@ -158,9 +144,6 @@ public class ProductService {
                 .build();
     }
 
-    /**
-     * Xóa product theo ID (chỉ ADMIN)
-     */
     public void deleteProduct(String id) {
         SecurityUtils.checkAdminRole();
 
