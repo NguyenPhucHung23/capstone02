@@ -14,5 +14,16 @@ public class AiRecommendResponse {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Analysis {
         private String reasoning;
+        private ImageAnalysis imageAnalysis;
+    }
+
+    @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class ImageAnalysis {
+        private List<String> dominantColors;
+        private String colorTone;
+        private String detectedStyle;
+        private String lightingType;
+        private List<String> existingFurnitureCategories;
     }
 }

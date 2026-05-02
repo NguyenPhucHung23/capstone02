@@ -23,6 +23,9 @@ public class DesignResponse {
     private String imageUrl;
     private String reasoning;
     private List<AiProductResponse> recommendedProducts;
+    private List<String> dominantColors;
+    private String colorTone;
+    private String detectedStyle;
     private Instant createdAt;
 
     @Data
