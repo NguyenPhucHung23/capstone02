@@ -127,23 +127,42 @@ public class DesignRequestService {
     }
 
     private DesignResponse convertToDesignResponse(DesignRequest designRequest, AiRecommendResponse aiResponse) {
-        DesignResponse.DimensionsResponse dimensionsResponse = DesignResponse.DimensionsResponse.builder()
-                .width(designRequest.getDimensions().getWidth())
-                .length(designRequest.getDimensions().getLength())
-                .height(designRequest.getDimensions().getHeight())
-                .build();
 
-        return DesignResponse.builder()
-                .id(designRequest.getId())
-                .roomType(designRequest.getRoomType())
-                .dimensions(dimensionsResponse)
-                .style(designRequest.getStyle())
-                .furnitureDensity(designRequest.getFurnitureDensity())
-                .gender(designRequest.getGender())
-                .imageUrl(designRequest.getImageUrl()) // Will be null, but keeping for consistency
-                .reasoning(designRequest.getReasoning())
-                .recommendedProducts(aiResponse != null ? aiResponse.getProducts() : Collections.emptyList())
-                .createdAt(designRequest.getCreatedAt())
-                .build();
+    DesignResponse.DimensionsResponse dimensionsResponse = DesignResponse.DimensionsResponse.builder()
+            .width(designRequest.getDimensions().getWidth())
+            .length(designRequest.getDimensions().getLength())
+            .height(designRequest.getDimensions().getHeight())
+            .build();
+
+    List<String> dominantColors = Collections.emptyList();
+    String colorTone = null;
+    String detectedStyle = null;
+
+    if (aiResponse != null &&
+        aiResponse.getAnalysis() != null &&
+        aiResponse.getAnalysis().getImageAnalysis() != null) {
+
+        dominantColors = aiResponse.getAnalysis().getImageAnalysis().getDominantColors();
+        colorTone = aiResponse.getAnalysis().getImageAnalysis().getColorTone();
+        detectedStyle = aiResponse.getAnalysis().getImageAnalysis().getDetectedStyle();
     }
+
+    return DesignResponse.builder()
+            .id(designRequest.getId())
+            .roomType(designRequest.getRoomType())
+            .dimensions(dimensionsResponse)
+            .style(designRequest.getStyle())
+            .furnitureDensity(designRequest.getFurnitureDensity())
+            .gender(designRequest.getGender())
+            .imageUrl(designRequest.getImageUrl())
+            .reasoning(designRequest.getReasoning())
+            .recommendedProducts(aiResponse != null ? aiResponse.getProducts() : Collections.emptyList())
+
+            .dominantColors(dominantColors)
+            .colorTone(colorTone)
+            .detectedStyle(detectedStyle)
+
+            .createdAt(designRequest.getCreatedAt())
+            .build();
+}
 }
