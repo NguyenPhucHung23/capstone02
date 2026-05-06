@@ -36,6 +36,7 @@ public class DesignRequestService {
 
     private final DesignRequestRepository designRequestRepository;
     private final RestTemplate restTemplate;
+    private final CloudinaryService cloudinaryService;
 
     @Value("${ai.api.url}")
     private String aiApiUrl;
@@ -59,6 +60,17 @@ public class DesignRequestService {
                 .age(request.getAge())
                 .build();
 
+        // Upload image to Cloudinary if provided
+        if (image != null && !image.isEmpty()) {
+            String imageUrl = cloudinaryService.uploadImage(image, "design-requests");
+            if (imageUrl != null) {
+                designRequest.setImageUrl(imageUrl);
+                log.info("Image uploaded to Cloudinary: {}", imageUrl);
+            } else {
+                log.warn("Failed to upload image to Cloudinary, continuing without image");
+            }
+        }
+
         // Call AI service
         AiRecommendResponse aiResponse = callAiService(designRequest, image);
 
@@ -70,6 +82,13 @@ public class DesignRequestService {
                 aiResponse.getProducts().stream().map(AiProductResponse::getId).collect(Collectors.toList())
                 : Collections.emptyList();
         designRequest.setRecommendedProductIds(recommendedProductIds);
+
+        if (aiResponse != null && aiResponse.getProducts() != null) {
+            List<DesignRequest.ProductSnapshot> snapshots = aiResponse.getProducts().stream()
+                .map(this::toProductSnapshot)
+                .collect(Collectors.toList());
+            designRequest.setRecommendedProductSnapshots(snapshots);
+        }
 
         DesignRequest savedDesignRequest = designRequestRepository.save(designRequest);
         log.info("Design request {} created for user {}", savedDesignRequest.getId(), userId);
@@ -147,7 +166,11 @@ public class DesignRequestService {
         detectedStyle = aiResponse.getAnalysis().getImageAnalysis().getDetectedStyle();
     }
 
-    return DesignResponse.builder()
+        List<AiProductResponse> recommendedProducts = aiResponse != null
+            ? aiResponse.getProducts()
+            : fromProductSnapshots(designRequest.getRecommendedProductSnapshots());
+
+        return DesignResponse.builder()
             .id(designRequest.getId())
             .roomType(designRequest.getRoomType())
             .dimensions(dimensionsResponse)
@@ -156,7 +179,7 @@ public class DesignRequestService {
             .gender(designRequest.getGender())
             .imageUrl(designRequest.getImageUrl())
             .reasoning(designRequest.getReasoning())
-            .recommendedProducts(aiResponse != null ? aiResponse.getProducts() : Collections.emptyList())
+            .recommendedProducts(recommendedProducts)
 
             .dominantColors(dominantColors)
             .colorTone(colorTone)
@@ -165,4 +188,37 @@ public class DesignRequestService {
             .createdAt(designRequest.getCreatedAt())
             .build();
 }
+
+    private DesignRequest.ProductSnapshot toProductSnapshot(AiProductResponse product) {
+        return DesignRequest.ProductSnapshot.builder()
+                .productId(product.getId())
+                .name(product.getName())
+                .category(product.getCategory())
+                .price(product.getPrice())
+                .imageUrl(product.getImageUrl())
+                .reasoning(product.getReasoning())
+                .rankingScore(null)
+                .styles(product.getStyles())
+                .colors(product.getColors())
+                .build();
+    }
+
+    private List<AiProductResponse> fromProductSnapshots(List<DesignRequest.ProductSnapshot> snapshots) {
+        if (snapshots == null || snapshots.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return snapshots.stream().map(snapshot -> {
+            AiProductResponse product = new AiProductResponse();
+            product.setId(snapshot.getProductId());
+            product.setName(snapshot.getName());
+            product.setCategory(snapshot.getCategory());
+            product.setPrice(snapshot.getPrice());
+            product.setImageUrl(snapshot.getImageUrl());
+            product.setReasoning(snapshot.getReasoning());
+            product.setStyles(snapshot.getStyles());
+            product.setColors(snapshot.getColors());
+            return product;
+        }).collect(Collectors.toList());
+    }
 }

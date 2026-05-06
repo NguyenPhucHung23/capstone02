@@ -34,6 +34,7 @@ public class DesignRequest {
     private String reasoning;
 
     private List<String> recommendedProductIds;
+    private List<ProductSnapshot> recommendedProductSnapshots;
 
     @CreatedDate
     private Instant createdAt;
@@ -46,5 +47,21 @@ public class DesignRequest {
         private double width;
         private double length;
         private double height;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ProductSnapshot {
+        private String productId;
+        private String name;
+        private String category;
+        private Double price;
+        private String imageUrl;
+        private String reasoning;
+        private Double rankingScore;
+        private List<String> styles;
+        private List<String> colors;
     }
 }
