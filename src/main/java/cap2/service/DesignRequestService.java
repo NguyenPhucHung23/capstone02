@@ -28,6 +28,9 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +40,7 @@ public class DesignRequestService {
     private final DesignRequestRepository designRequestRepository;
     private final RestTemplate restTemplate;
     private final CloudinaryService cloudinaryService;
+    private final AiLayoutService aiLayoutService;
 
     @Value("${ai.api.url}")
     private String aiApiUrl;
@@ -89,6 +93,10 @@ public class DesignRequestService {
                 .collect(Collectors.toList());
             designRequest.setRecommendedProductSnapshots(snapshots);
         }
+
+        // Gọi FastAPI layout 
+        Map<String, Object> layout = callAiLayoutService(designRequest, aiResponse);
+        designRequest.setLayout(layout);
 
         DesignRequest savedDesignRequest = designRequestRepository.save(designRequest);
         log.info("Design request {} created for user {}", savedDesignRequest.getId(), userId);
@@ -184,7 +192,8 @@ public class DesignRequestService {
             .dominantColors(dominantColors)
             .colorTone(colorTone)
             .detectedStyle(detectedStyle)
-
+            .layout(designRequest.getLayout())
+            
             .createdAt(designRequest.getCreatedAt())
             .build();
 }
@@ -220,5 +229,107 @@ public class DesignRequestService {
             product.setColors(snapshot.getColors());
             return product;
         }).collect(Collectors.toList());
+    }
+
+    private Map<String, Object> callAiLayoutService(DesignRequest designRequest, AiRecommendResponse aiResponse) {
+    if (aiResponse == null || aiResponse.getProducts() == null || aiResponse.getProducts().isEmpty()) {
+        return Collections.emptyMap();
+    }
+
+    Map<String, Object> payload = buildAiLayoutPayload(designRequest, aiResponse);
+
+    try {
+        return aiLayoutService.generateLayout(payload);
+    } catch (Exception e) {
+        log.error("Error calling AI layout service: {}", e.getMessage(), e);
+        return Collections.emptyMap();
+    }
+}
+
+    private Map<String, Object> buildAiLayoutPayload(DesignRequest designRequest, AiRecommendResponse aiResponse) {
+        Map<String, Object> payload = new LinkedHashMap<>();
+
+        Map<String, Object> room = new LinkedHashMap<>();
+        room.put("widthM", designRequest.getDimensions().getWidth());
+        room.put("lengthM", designRequest.getDimensions().getLength());
+        room.put("heightM", designRequest.getDimensions().getHeight());
+        room.put("type", normalizeRoomType(designRequest.getRoomType()));
+        room.put("style", designRequest.getStyle());
+
+        Map<String, Object> recommendation = new LinkedHashMap<>();
+        recommendation.put("analysis", aiResponse.getAnalysis());
+        recommendation.put("products", aiResponse.getProducts());
+
+        payload.put("room", room);
+        payload.put("recommendation", recommendation);
+        payload.put("topK", 8);
+        payload.put("minScore", 0.2);
+        payload.put("modelUrlById", buildModelUrlById(aiResponse.getProducts()));
+
+        return payload;
+    }
+
+    private String normalizeRoomType(String roomType) {
+        if (roomType == null) {
+            return "living_room";
+        }
+
+        return switch (roomType.trim().toLowerCase()) {
+            case "living room", "phòng khách", "phong khach", "living_room" -> "living_room";
+            case "bedroom", "phòng ngủ", "phong ngu" -> "bedroom";
+            default -> roomType.trim().toLowerCase().replace(" ", "_");
+        };
+    }
+
+    private Map<String, String> buildModelUrlById(List<AiProductResponse> products) {
+        Map<String, String> modelUrlById = new LinkedHashMap<>();
+
+        if (products == null) {
+            return modelUrlById;
+        }
+
+        for (AiProductResponse product : products) {
+            String modelUrl = getDefaultModelUrlByCategory(product.getCategory());
+
+            if (modelUrl != null && !modelUrl.isBlank()) {
+                modelUrlById.put(product.getId(), modelUrl);
+            }
+        }
+
+        return modelUrlById;
+    }
+
+    private String getDefaultModelUrlByCategory(String category) {
+        if (category == null) {
+            return null;
+        }
+
+        String normalized = category.trim().toLowerCase();
+
+        if (normalized.contains("sofa")) {
+            return "https://example.com/models/sofa.glb";
+        }
+
+        if (normalized.contains("bàn nước") || normalized.contains("ban nuoc") || normalized.contains("coffee")) {
+            return "https://example.com/models/coffee-table.glb";
+        }
+
+        if (normalized.contains("ghế") || normalized.contains("ghe") || normalized.contains("chair")) {
+            return "https://example.com/models/chair.glb";
+        }
+
+        if (normalized.contains("giường") || normalized.contains("giuong") || normalized.contains("bed")) {
+            return "https://example.com/models/bed.glb";
+        }
+
+        if (normalized.contains("tủ") || normalized.contains("tu") || normalized.contains("cabinet") || normalized.contains("wardrobe")) {
+            return "https://example.com/models/cabinet.glb";
+        }
+
+        if (normalized.contains("tivi") || normalized.contains("tv")) {
+            return "https://example.com/models/tv.glb";
+        }
+
+        return null;
     }
 }

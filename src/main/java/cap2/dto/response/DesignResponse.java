@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Builder
@@ -26,6 +27,9 @@ public class DesignResponse {
     private List<String> dominantColors;
     private String colorTone;
     private String detectedStyle;
+
+    private Map<String, Object> layout;
+    
     private Instant createdAt;
 
     @Data
