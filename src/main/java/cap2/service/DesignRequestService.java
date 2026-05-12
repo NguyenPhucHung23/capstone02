@@ -26,7 +26,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -79,12 +82,23 @@ public class DesignRequestService {
         AiRecommendResponse aiResponse = callAiService(designRequest, image);
 
         if (aiResponse != null && aiResponse.getAnalysis() != null) {
-            designRequest.setReasoning(aiResponse.getAnalysis().getReasoning());
+            designRequest.setReasoning(formatReasoning(aiResponse.getAnalysis().getReasoning()));
+            
+            // Store detailed reasoning for granular display
+            if (aiResponse.getAnalysis().getReasoning() != null) {
+                Map<String, String> reasoningDetails = new HashMap<>();
+                var reasoning = aiResponse.getAnalysis().getReasoning();
+                reasoningDetails.put("styleJustification", reasoning.getStyleJustification() != null ? reasoning.getStyleJustification() : "");
+                reasoningDetails.put("colorJustification", reasoning.getColorJustification() != null ? reasoning.getColorJustification() : "");
+                reasoningDetails.put("densityJustification", reasoning.getDensityJustification() != null ? reasoning.getDensityJustification() : "");
+                reasoningDetails.put("userProfileNote", reasoning.getUserProfileNote() != null ? reasoning.getUserProfileNote() : "");
+                designRequest.setReasoningDetails(reasoningDetails);
+            }
         }
 
-        List<String> recommendedProductIds = aiResponse != null ?
-                aiResponse.getProducts().stream().map(AiProductResponse::getId).collect(Collectors.toList())
-                : Collections.emptyList();
+        List<String> recommendedProductIds = aiResponse != null && aiResponse.getProducts() != null ?
+            aiResponse.getProducts().stream().map(AiProductResponse::getId).collect(Collectors.toList())
+            : Collections.emptyList();
         designRequest.setRecommendedProductIds(recommendedProductIds);
 
         if (aiResponse != null && aiResponse.getProducts() != null) {
@@ -141,6 +155,21 @@ public class DesignRequestService {
         }
     }
 
+    private String formatReasoning(AiRecommendResponse.AnalysisReasoning reasoning) {
+        if (reasoning == null) {
+            return null;
+        }
+
+        return Stream.of(
+            reasoning.getStyleJustification(),
+            reasoning.getColorJustification(),
+            reasoning.getDensityJustification(),
+            reasoning.getUserProfileNote()
+        )
+        .filter(value -> value != null && !value.isBlank())
+        .collect(Collectors.joining("\n"));
+    }
+
     public Page<DesignResponse> getDesignRequestsByUserId(String userId, Pageable pageable) {
         Page<DesignRequest> designRequests = designRequestRepository.findByUserId(userId, pageable);
         return designRequests.map(dr -> convertToDesignResponse(dr, null)); // AI response not needed for history
@@ -164,6 +193,7 @@ public class DesignRequestService {
     List<String> dominantColors = Collections.emptyList();
     String colorTone = null;
     String detectedStyle = null;
+    Map<String, String> reasoningDetails = new HashMap<>();
 
     if (aiResponse != null &&
         aiResponse.getAnalysis() != null &&
@@ -172,6 +202,21 @@ public class DesignRequestService {
         dominantColors = aiResponse.getAnalysis().getImageAnalysis().getDominantColors();
         colorTone = aiResponse.getAnalysis().getImageAnalysis().getColorTone();
         detectedStyle = aiResponse.getAnalysis().getImageAnalysis().getDetectedStyle();
+    }
+
+    if (aiResponse != null &&
+        aiResponse.getAnalysis() != null &&
+        aiResponse.getAnalysis().getReasoning() != null) {
+        var reasoning = aiResponse.getAnalysis().getReasoning();
+        reasoningDetails.put("styleJustification", reasoning.getStyleJustification() != null ? reasoning.getStyleJustification() : "");
+        reasoningDetails.put("colorJustification", reasoning.getColorJustification() != null ? reasoning.getColorJustification() : "");
+        reasoningDetails.put("densityJustification", reasoning.getDensityJustification() != null ? reasoning.getDensityJustification() : "");
+        reasoningDetails.put("userProfileNote", reasoning.getUserProfileNote() != null ? reasoning.getUserProfileNote() : "");
+    }
+    
+    // Also store reasoning details in DesignRequest for persistence
+    if (!reasoningDetails.isEmpty() && designRequest.getReasoningDetails() == null) {
+        designRequest.setReasoningDetails(reasoningDetails);
     }
 
         List<AiProductResponse> recommendedProducts = aiResponse != null
@@ -187,8 +232,8 @@ public class DesignRequestService {
             .gender(designRequest.getGender())
             .imageUrl(designRequest.getImageUrl())
             .reasoning(designRequest.getReasoning())
+            .reasoningDetails(designRequest.getReasoningDetails() != null ? designRequest.getReasoningDetails() : reasoningDetails)
             .recommendedProducts(recommendedProducts)
-
             .dominantColors(dominantColors)
             .colorTone(colorTone)
             .detectedStyle(detectedStyle)

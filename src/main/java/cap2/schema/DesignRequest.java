@@ -33,6 +33,7 @@ public class DesignRequest {
     private String imageUrl;
 
     private String reasoning;
+    private Map<String, String> reasoningDetails;
 
     private List<String> recommendedProductIds;
     private List<ProductSnapshot> recommendedProductSnapshots;

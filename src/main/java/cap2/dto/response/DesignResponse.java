@@ -23,6 +23,7 @@ public class DesignResponse {
     private String gender;
     private String imageUrl;
     private String reasoning;
+    private java.util.Map<String, String> reasoningDetails;
     private List<AiProductResponse> recommendedProducts;
     private List<String> dominantColors;
     private String colorTone;

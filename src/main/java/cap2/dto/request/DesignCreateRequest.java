@@ -35,8 +35,16 @@ public class DesignCreateRequest {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class DimensionsRequest {
+        @jakarta.validation.constraints.DecimalMin(value = "2.0", message = "Width phải từ 2m trở lên")
+        @jakarta.validation.constraints.DecimalMax(value = "10.0", message = "Width không được vượt quá 10m")
         private double width;
+
+        @jakarta.validation.constraints.DecimalMin(value = "2.0", message = "Length phải từ 2m trở lên")
+        @jakarta.validation.constraints.DecimalMax(value = "12.0", message = "Length không được vượt quá 12m")
         private double length;
+
+        @jakarta.validation.constraints.DecimalMin(value = "2.0", message = "Height phải từ 2m trở lên")
+        @jakarta.validation.constraints.DecimalMax(value = "4.0", message = "Height không được vượt quá 4m")
         private double height;
     }
 }
