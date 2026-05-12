@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 @Document(collection = "design_requests")
 @Data
@@ -32,6 +33,7 @@ public class DesignRequest {
     private String imageUrl;
 
     private String reasoning;
+    private Map<String, String> reasoningDetails;
 
     private List<String> recommendedProductIds;
     private List<ProductSnapshot> recommendedProductSnapshots;
