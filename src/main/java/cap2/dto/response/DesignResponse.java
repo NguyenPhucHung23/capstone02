@@ -28,6 +28,9 @@ public class DesignResponse {
     private List<String> dominantColors;
     private String colorTone;
     private String detectedStyle;
+
+    private Map<String, Object> layout;
+    
     private Instant createdAt;
 
     @Data

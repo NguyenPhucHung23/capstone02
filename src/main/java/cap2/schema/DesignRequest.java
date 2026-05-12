@@ -38,6 +38,8 @@ public class DesignRequest {
     private List<String> recommendedProductIds;
     private List<ProductSnapshot> recommendedProductSnapshots;
 
+    private Map<String, Object> layout;
+    
     @CreatedDate
     private Instant createdAt;
 
