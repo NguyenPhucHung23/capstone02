@@ -28,6 +28,8 @@ public class DesignResponse {
     private List<String> dominantColors;
     private String colorTone;
     private String detectedStyle;
+    private String warning;
+    private String densityApplied;
 
     private Map<String, Object> layout;
     

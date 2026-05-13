@@ -34,6 +34,8 @@ public class DesignRequest {
 
     private String reasoning;
     private Map<String, String> reasoningDetails;
+    private String warning;
+    private String densityApplied;
 
     private List<String> recommendedProductIds;
     private List<ProductSnapshot> recommendedProductSnapshots;

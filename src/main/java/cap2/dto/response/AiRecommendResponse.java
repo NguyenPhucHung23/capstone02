@@ -9,6 +9,8 @@ import java.util.List;
 public class AiRecommendResponse {
     private Analysis analysis;
     private List<AiProductResponse> products;
+    private String warning;
+    private String densityApplied;
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)

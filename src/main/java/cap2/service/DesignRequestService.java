@@ -96,6 +96,11 @@ public class DesignRequestService {
             }
         }
 
+        if (aiResponse != null) {
+            designRequest.setWarning(aiResponse.getWarning());
+            designRequest.setDensityApplied(aiResponse.getDensityApplied());
+        }
+
         List<String> recommendedProductIds = aiResponse != null && aiResponse.getProducts() != null ?
             aiResponse.getProducts().stream().map(AiProductResponse::getId).collect(Collectors.toList())
             : Collections.emptyList();
@@ -124,11 +129,13 @@ public class DesignRequestService {
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        double areaM2 = designRequest.getDimensions().getWidth() * designRequest.getDimensions().getLength();
         body.add("room_type", designRequest.getRoomType());
         body.add("style", designRequest.getStyle());
         body.add("width", designRequest.getDimensions().getWidth());
         body.add("length", designRequest.getDimensions().getLength());
         body.add("height", designRequest.getDimensions().getHeight());
+        body.add("area_m2", areaM2);
         body.add("furniture_density", designRequest.getFurnitureDensity());
         body.add("gender", designRequest.getGender());
         body.add("age", designRequest.getAge());
@@ -237,6 +244,8 @@ public class DesignRequestService {
             .dominantColors(dominantColors)
             .colorTone(colorTone)
             .detectedStyle(detectedStyle)
+            .warning(designRequest.getWarning())
+            .densityApplied(designRequest.getDensityApplied())
             .layout(designRequest.getLayout())
             
             .createdAt(designRequest.getCreatedAt())
