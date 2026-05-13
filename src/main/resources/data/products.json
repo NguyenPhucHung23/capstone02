@@ -14,7 +14,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -56,7 +58,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 51,
@@ -98,7 +103,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 71,
@@ -140,7 +148,11 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 45,
@@ -182,7 +194,9 @@
       "name": "Xanh dương",
       "hex": "#0000FF"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -224,7 +238,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 30,
@@ -266,7 +282,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -308,7 +327,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -350,7 +373,9 @@
       "name": "Hồng",
       "hex": "#FFC0CB"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -392,7 +417,9 @@
       "name": "Đen",
       "hex": "#000000"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 86,
@@ -434,7 +461,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -476,7 +505,9 @@
       "name": "Taupe",
       "hex": "#483C32"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 24.8,
@@ -518,7 +549,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 160,
@@ -560,7 +595,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 11,
@@ -602,7 +640,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 93,
@@ -644,7 +684,11 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 43,
@@ -686,7 +730,10 @@
       "name": "Hồng",
       "hex": "#FFC0CB"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -728,7 +775,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -770,7 +819,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -812,7 +864,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Minimalist"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -854,7 +909,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -896,7 +954,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -938,7 +998,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -980,7 +1044,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 15,
@@ -1022,7 +1088,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 95,
@@ -1064,7 +1132,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 90,
@@ -1106,7 +1176,10 @@
       "name": "Xám",
       "hex": "#808080"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -1148,7 +1221,10 @@
       "name": "Hồng",
       "hex": "#FFC0CB"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 105,
@@ -1190,7 +1266,10 @@
       "name": "Khác nhau cùng tone với màu da. ghế aida phù hợp cho phòng ăn hiện đại và sang trọng.\" />",
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 44.5,
@@ -1232,7 +1311,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1274,7 +1355,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 43,
@@ -1316,7 +1399,10 @@
       "name": "Màu linen tự nhiên",
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1358,7 +1444,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1400,7 +1489,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 85,
@@ -1442,7 +1533,9 @@
       "name": "Taupe",
       "hex": "#483C32"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1484,7 +1577,9 @@
       "name": "Hồng",
       "hex": "#FFC0CB"
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 75,
@@ -1526,7 +1621,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -1569,7 +1667,8 @@
       "hex": null
     },
     "styles": [
-      "Hiện đại"
+      "Modern",
+      "Scandinavian"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -1612,7 +1711,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1654,7 +1755,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1696,7 +1799,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1738,7 +1844,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 54.4,
@@ -1780,7 +1888,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1822,7 +1933,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1864,7 +1977,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1906,7 +2023,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -1948,7 +2069,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 90,
@@ -1990,7 +2114,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2032,7 +2158,9 @@
       "name": "Xanh dương",
       "hex": "#0000FF"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2074,7 +2202,10 @@
       "name": "Vàng gold",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2116,7 +2247,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -2158,7 +2293,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2200,7 +2337,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2243,7 +2382,8 @@
       "hex": null
     },
     "styles": [
-      "Classic"
+      "Classic",
+      "Luxury"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -2286,7 +2426,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 12,
@@ -2328,7 +2470,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2370,7 +2514,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2412,7 +2559,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2454,7 +2603,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 85,
@@ -2497,7 +2649,8 @@
       "hex": null
     },
     "styles": [
-      "Công nghiệp"
+      "Industrial",
+      "Luxury"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -2540,7 +2693,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Modern",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -2582,7 +2738,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2624,7 +2783,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 17,
@@ -2666,7 +2828,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2708,7 +2873,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 10,
@@ -2750,7 +2919,9 @@
       "name": "Taupe",
       "hex": "#483C32"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 16,
@@ -2792,7 +2963,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -2834,7 +3007,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2876,7 +3051,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -2918,7 +3095,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -2960,7 +3140,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 85,
@@ -3002,7 +3186,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3044,7 +3230,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3086,7 +3275,9 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3128,7 +3319,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 80,
@@ -3170,7 +3363,9 @@
       "name": "Cam",
       "hex": "#FFA500"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3212,7 +3407,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 74,
@@ -3254,7 +3451,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3296,7 +3495,10 @@
       "name": "Vàng gold",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3338,7 +3540,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 60,
@@ -3380,7 +3584,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 80,
@@ -3422,7 +3628,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 100,
@@ -3464,7 +3674,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3506,7 +3718,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 57.5,
@@ -3548,7 +3762,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 16,
@@ -3590,7 +3806,10 @@
       "name": "Vàng gold",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3632,7 +3851,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3674,7 +3897,10 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3716,7 +3942,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3758,7 +3987,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3800,7 +4031,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3842,7 +4075,9 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -3884,7 +4119,10 @@
       "name": "Xám",
       "hex": "#808080"
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 58,
@@ -3926,7 +4164,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 10,
@@ -3968,7 +4209,10 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 35,
@@ -4010,7 +4254,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -4052,7 +4299,10 @@
       "name": "Taupe",
       "hex": "#483C32"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 104,
@@ -4094,7 +4344,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 10,
@@ -4136,7 +4389,10 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -4178,7 +4434,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -4220,7 +4478,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 100,
@@ -4262,7 +4522,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 57.5,
@@ -4304,7 +4566,9 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -4346,7 +4610,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 69,
@@ -4388,7 +4655,9 @@
       "name": "Trắng ngà",
       "hex": "#FFFFF0"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 60,
@@ -4430,7 +4699,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 59,
@@ -4472,7 +4744,9 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 42,
@@ -4514,7 +4788,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -4556,7 +4832,10 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 30,
@@ -4598,7 +4877,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 45,
@@ -4640,7 +4923,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -4682,7 +4967,10 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -4724,7 +5012,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -4766,7 +5058,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 88,
@@ -4808,7 +5103,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 63,
@@ -4850,7 +5148,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 21,
@@ -4892,7 +5193,9 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -4934,7 +5237,10 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 110,
@@ -4976,7 +5282,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -5018,7 +5326,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -5060,7 +5370,11 @@
       "name": "Đen",
       "hex": "#000000"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 38,
@@ -5102,7 +5416,11 @@
       "name": "Vàng gold",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -5144,7 +5462,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -5186,7 +5507,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -5228,7 +5552,10 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -5270,7 +5597,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -5312,7 +5642,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -5354,7 +5687,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -5396,7 +5731,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 60,
@@ -5438,7 +5775,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -5480,7 +5819,10 @@
       "name": "Xanh dương",
       "hex": "#0000FF"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -5522,7 +5864,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 52,
@@ -5564,7 +5908,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 67,
@@ -5606,7 +5953,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -5648,7 +5998,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 80,
@@ -5690,7 +6043,10 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -5732,7 +6088,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -5774,7 +6132,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 52,
@@ -5816,7 +6176,9 @@
       "name": "Cam",
       "hex": "#FFA500"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 16,
@@ -5858,7 +6220,10 @@
       "name": "Vàng gold",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -5900,7 +6265,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -5942,7 +6309,10 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -5984,7 +6354,10 @@
       "name": "Xanh biển",
       "hex": "#006994"
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 61.5,
@@ -6026,7 +6399,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 80,
@@ -6068,7 +6444,9 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6110,7 +6488,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 22,
@@ -6152,7 +6532,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6194,7 +6577,10 @@
       "name": "Xanh dương",
       "hex": "#0000FF"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6236,7 +6622,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6278,7 +6667,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6320,7 +6711,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 42,
@@ -6362,7 +6755,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6404,7 +6799,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 35,
@@ -6446,7 +6844,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 60,
@@ -6488,7 +6890,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 45,
@@ -6530,7 +6935,10 @@
       "name": "Đen",
       "hex": "#000000"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 37,
@@ -6572,7 +6980,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6614,7 +7024,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 15,
@@ -6656,7 +7068,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6698,7 +7112,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6740,7 +7156,9 @@
       "name": "Của ngăn kéo giữa và ngăn xếp nâng. là...\" />",
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 65,
@@ -6783,7 +7201,8 @@
       "hex": null
     },
     "styles": [
-      "Vintage"
+      "Classic",
+      "Luxury"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -6826,7 +7245,9 @@
       "name": "Vàng gold",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6868,7 +7289,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -6910,7 +7333,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -6952,7 +7379,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 67.5,
@@ -6994,7 +7424,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -7036,7 +7469,12 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Industrial",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -7078,7 +7516,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 72,
@@ -7120,7 +7560,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -7162,7 +7605,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 74.5,
@@ -7204,7 +7650,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -7246,7 +7694,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -7288,7 +7738,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 15.5,
@@ -7330,7 +7783,11 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 52,
@@ -7372,7 +7829,10 @@
       "name": "Đồng",
       "hex": "#CD7F32"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 10,
@@ -7414,7 +7874,9 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -7456,7 +7918,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 88,
@@ -7498,7 +7962,11 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 43.5,
@@ -7540,7 +8008,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 63,
@@ -7582,7 +8053,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -7624,7 +8098,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 17,
@@ -7666,7 +8142,10 @@
       "name": "Xám",
       "hex": "#808080"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 16,
@@ -7708,7 +8187,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 37.6,
@@ -7750,7 +8231,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 160,
@@ -7792,7 +8276,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -7834,7 +8321,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 76,
@@ -7876,7 +8366,9 @@
       "name": "Đỏ",
       "hex": "#FF0000"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -7918,7 +8410,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -7960,7 +8454,9 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 18,
@@ -8002,7 +8498,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 170,
@@ -8044,7 +8544,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 100,
@@ -8086,7 +8588,9 @@
       "name": "Xám",
       "hex": "#808080"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 46,
@@ -8128,7 +8632,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -8170,7 +8676,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -8212,7 +8721,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -8254,7 +8765,10 @@
       "name": "Đen",
       "hex": "#000000"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 65.8,
@@ -8296,7 +8810,9 @@
       "name": "Xanh dương",
       "hex": "#0000FF"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -8338,7 +8854,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 95,
@@ -8380,7 +8898,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 100,
@@ -8422,7 +8943,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 15,
@@ -8464,7 +8987,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 53,
@@ -8506,7 +9031,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -8549,7 +9076,9 @@
       "hex": "#8B4513"
     },
     "styles": [
-      "Nhiệt đới"
+      "Boho",
+      "Luxury",
+      "Tropical"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -8592,7 +9121,9 @@
       "name": "Xanh navy",
       "hex": "#000080"
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -8634,7 +9165,9 @@
       "name": "Hồng",
       "hex": "#FFC0CB"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 20,
@@ -8676,7 +9209,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -8718,7 +9254,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 99,
@@ -8760,7 +9298,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 45,
@@ -8802,7 +9342,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -8844,7 +9387,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -8886,7 +9432,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 42,
@@ -8928,7 +9476,9 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 13.5,
@@ -8970,7 +9520,10 @@
       "name": "Đen",
       "hex": "#000000"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -9012,7 +9565,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -9054,7 +9610,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 62,
@@ -9096,7 +9654,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Modern",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -9138,7 +9699,10 @@
       "name": "Đen",
       "hex": "#000000"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -9180,7 +9744,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 12,
@@ -9222,7 +9788,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -9264,7 +9832,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -9306,7 +9876,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -9348,7 +9920,9 @@
       "name": "Taupe",
       "hex": "#483C32"
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 61,
@@ -9390,7 +9964,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -9432,7 +10008,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 57,
@@ -9475,7 +10053,8 @@
       "hex": "#FFFFFF"
     },
     "styles": [
-      "Hiện đại"
+      "Luxury",
+      "Modern"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -9518,7 +10097,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 61.5,
@@ -9560,7 +10141,9 @@
       "name": "Cam",
       "hex": "#FFA500"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -9603,7 +10186,8 @@
       "hex": "#0000FF"
     },
     "styles": [
-      "Vintage"
+      "Classic",
+      "Luxury"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -9646,7 +10230,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -9688,7 +10274,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 42,
@@ -9730,7 +10318,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -9772,7 +10363,9 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -9814,7 +10407,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 28,
@@ -9856,7 +10451,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 42,
@@ -9898,7 +10495,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -9940,7 +10539,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Minimalist"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 42,
@@ -9982,7 +10584,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -10024,7 +10629,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -10066,7 +10674,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 25,
@@ -10108,7 +10719,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -10150,7 +10764,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 130,
@@ -10192,7 +10809,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 60,
@@ -10234,7 +10854,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -10276,7 +10899,9 @@
       "name": "Đồng",
       "hex": "#CD7F32"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 52,
@@ -10318,7 +10943,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 88.9,
@@ -10360,7 +10988,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -10402,7 +11033,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -10444,7 +11079,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 76,
@@ -10486,7 +11123,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -10528,7 +11167,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 1800,
@@ -10570,7 +11212,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -10612,7 +11256,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -10654,7 +11300,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -10696,7 +11344,9 @@
       "name": "Xanh dương",
       "hex": "#0000FF"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -10738,7 +11388,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -10780,7 +11434,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -10822,7 +11478,11 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -10864,7 +11524,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 52,
@@ -10906,7 +11568,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -10948,7 +11612,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 95,
@@ -10990,7 +11656,10 @@
       "name": "Cam",
       "hex": "#FFA500"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 81.5,
@@ -11032,7 +11701,10 @@
       "name": "Khác nhau cùng tone với màu da. ghế aida phù hợp cho phòng ăn hiện đại và sang trọng.\" />",
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 57.5,
@@ -11074,7 +11746,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -11116,7 +11791,9 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -11158,7 +11835,10 @@
       "name": "Xám",
       "hex": "#808080"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 86,
@@ -11200,7 +11880,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -11242,7 +11924,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Tropical"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 62,
@@ -11284,7 +11969,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -11326,7 +12014,9 @@
       "name": "Xám",
       "hex": "#808080"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -11368,7 +12058,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 29,
@@ -11410,7 +12102,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Classic",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 21,
@@ -11452,7 +12147,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -11494,7 +12192,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 100,
@@ -11537,7 +12237,8 @@
       "hex": null
     },
     "styles": [
-      "Hiện đại"
+      "Luxury",
+      "Modern"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -11580,7 +12281,10 @@
       "name": "Kem",
       "hex": "#FFFDD0"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -11622,7 +12326,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 42,
@@ -11664,7 +12370,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 45,
@@ -11706,7 +12414,10 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -11748,7 +12459,9 @@
       "name": "Hồng",
       "hex": "#FFC0CB"
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -11790,7 +12503,10 @@
       "name": "Nature (màu vải tự nhiên)",
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -11832,7 +12548,10 @@
       "name": "Đen",
       "hex": "#000000"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -11875,7 +12594,8 @@
       "hex": "#FFFFFF"
     },
     "styles": [
-      "Hiện đại"
+      "Luxury",
+      "Modern"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -11918,7 +12638,9 @@
       "name": "Cam",
       "hex": "#FFA500"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 16,
@@ -11960,7 +12682,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 30,
@@ -12002,7 +12726,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12044,7 +12771,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12086,7 +12815,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 30,
@@ -12128,7 +12859,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12170,7 +12905,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12212,7 +12949,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 45,
@@ -12254,7 +12993,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 19,
@@ -12296,7 +13037,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12338,7 +13081,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12380,7 +13125,9 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 65,
@@ -12422,7 +13169,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12464,7 +13213,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 22,
@@ -12506,7 +13257,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 104,
@@ -12548,7 +13302,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12590,7 +13347,9 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 95,
@@ -12632,7 +13391,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12674,7 +13435,11 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 45,
@@ -12716,7 +13481,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12758,7 +13525,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12800,7 +13569,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -12842,7 +13614,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 13,
@@ -12884,7 +13658,10 @@
       "name": "Tím",
       "hex": "#800080"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -12926,7 +13703,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 48,
@@ -12968,7 +13749,10 @@
       "name": "Đen",
       "hex": "#000000"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -13010,7 +13794,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 30,
@@ -13052,7 +13838,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 100,
@@ -13094,7 +13883,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 95,
@@ -13136,7 +13928,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -13178,7 +13973,10 @@
       "name": "Đỏ",
       "hex": "#FF0000"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -13220,7 +14018,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -13262,7 +14063,9 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 14,
@@ -13304,7 +14107,9 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 16.5,
@@ -13346,7 +14151,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -13388,7 +14195,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 24,
@@ -13430,7 +14239,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 90,
@@ -13472,7 +14284,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -13514,7 +14329,9 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -13556,7 +14373,10 @@
       "name": "Đồng",
       "hex": "#CD7F32"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 24,
@@ -13598,7 +14418,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -13640,7 +14463,10 @@
       "name": "Taupe",
       "hex": "#483C32"
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 57,
@@ -13682,7 +14508,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -13724,7 +14553,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -13766,7 +14598,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 55,
@@ -13808,7 +14643,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 58,
@@ -13850,7 +14688,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -13892,7 +14732,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 54,
@@ -13934,7 +14777,9 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 17,
@@ -13976,7 +14821,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -14018,7 +14865,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -14060,7 +14909,9 @@
       "name": "Kem",
       "hex": "#FFFDD0"
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 83,
@@ -14102,7 +14953,9 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 48,
@@ -14144,7 +14997,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -14186,7 +15043,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 98,
@@ -14228,7 +15087,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -14270,7 +15131,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 80,
@@ -14312,7 +15175,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -14354,7 +15219,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -14396,7 +15263,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 101,
@@ -14438,7 +15307,10 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 46,
@@ -14480,7 +15352,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 80,
@@ -14522,7 +15396,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 52.5,
@@ -14564,7 +15440,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 22,
@@ -14606,7 +15485,10 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -14648,7 +15530,9 @@
       "name": "Đỏ",
       "hex": "#FF0000"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -14690,7 +15574,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -14732,7 +15618,10 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -14774,7 +15663,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 88.9,
@@ -14816,7 +15707,9 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 76,
@@ -14858,7 +15751,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -14900,7 +15796,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -14942,7 +15840,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -14984,7 +15885,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -15026,7 +15929,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 60,
@@ -15068,7 +15973,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 42,
@@ -15110,7 +16017,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 84,
@@ -15152,7 +16061,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -15194,7 +16105,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -15236,7 +16150,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -15278,7 +16195,10 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -15320,7 +16240,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -15362,7 +16284,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 14,
@@ -15404,7 +16328,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -15446,7 +16374,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -15488,7 +16418,10 @@
       "name": "Cà phê",
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 24.5,
@@ -15530,7 +16463,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 52,
@@ -15572,7 +16507,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -15614,7 +16552,10 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -15656,7 +16597,9 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 17,
@@ -15698,7 +16641,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 19,
@@ -15740,7 +16685,10 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 15,
@@ -15782,7 +16730,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -15824,7 +16775,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 110,
@@ -15866,7 +16820,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -15908,7 +16865,10 @@
       "name": "Vàng gold",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 13,
@@ -15950,7 +16910,10 @@
       "name": "Đen",
       "hex": "#000000"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 37.5,
@@ -15992,7 +16955,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16034,7 +16999,10 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16076,7 +17044,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16118,7 +17089,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16160,7 +17134,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16202,7 +17178,11 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 35,
@@ -16244,7 +17224,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16286,7 +17268,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16328,7 +17312,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 88,
@@ -16370,7 +17356,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -16412,7 +17401,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 54,
@@ -16454,7 +17445,10 @@
       "name": "Đồng",
       "hex": "#CD7F32"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 32,
@@ -16496,7 +17490,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50.5,
@@ -16538,7 +17534,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 85,
@@ -16580,7 +17578,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 41,
@@ -16622,7 +17622,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16665,7 +17668,8 @@
       "hex": null
     },
     "styles": [
-      "Luxury"
+      "Luxury",
+      "Scandinavian"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -16708,7 +17712,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 15,
@@ -16750,7 +17756,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16792,7 +17800,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16834,7 +17844,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 42,
@@ -16876,7 +17888,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -16918,7 +17932,10 @@
       "name": "Vàng gold",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -16960,7 +17977,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -17002,7 +18021,9 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 20,
@@ -17044,7 +18065,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 45,
@@ -17086,7 +18109,9 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 25,
@@ -17128,7 +18153,9 @@
       "name": "Xanh dương",
       "hex": "#0000FF"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -17170,7 +18197,10 @@
       "name": "Đỏ",
       "hex": "#FF0000"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -17212,7 +18242,9 @@
       "name": "Taupe",
       "hex": "#483C32"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -17254,7 +18286,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 40,
@@ -17296,7 +18331,9 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 54,
@@ -17338,7 +18375,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -17380,7 +18420,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 90,
@@ -17422,7 +18464,9 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 82,
@@ -17464,7 +18508,10 @@
       "name": "Xanh dương",
       "hex": "#0000FF"
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -17506,7 +18553,10 @@
       "name": "Xám",
       "hex": "#808080"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -17548,7 +18598,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 16.5,
@@ -17590,7 +18642,10 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 59,
@@ -17632,7 +18687,10 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 29.5,
@@ -17674,7 +18732,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -17716,7 +18776,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -17758,7 +18820,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -17800,7 +18864,9 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 15,
@@ -17842,7 +18908,10 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 28,
@@ -17884,7 +18953,9 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 30,
@@ -17926,7 +18997,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 45,
@@ -17969,7 +19042,8 @@
       "hex": null
     },
     "styles": [
-      "Luxury"
+      "Luxury",
+      "Scandinavian"
     ],
     "origin": "Vietnam",
     "dimensions": {
@@ -18012,7 +19086,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 17,
@@ -18054,7 +19130,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 180,
@@ -18096,7 +19174,10 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 32,
@@ -18138,7 +19219,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -18180,7 +19264,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -18222,7 +19308,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -18264,7 +19353,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -18306,7 +19398,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -18348,7 +19442,10 @@
       "name": "Xanh lá",
       "hex": "#00FF00"
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 10,
@@ -18390,7 +19487,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 85,
@@ -18432,7 +19532,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Classic"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 75,
@@ -18474,7 +19577,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -18516,7 +19621,9 @@
       "name": "Xám",
       "hex": "#808080"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 68,
@@ -18558,7 +19665,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 80,
@@ -18600,7 +19709,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 57,
@@ -18642,7 +19753,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -18684,7 +19797,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 60,
@@ -18729,7 +19846,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 100,
@@ -18771,7 +19890,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -18813,7 +19934,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -18855,7 +19978,11 @@
       "name": "Cognac r1",
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 90,
@@ -18897,7 +20024,11 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -18939,7 +20070,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -18981,7 +20114,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 70,
@@ -19023,7 +20158,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 90,
@@ -19065,7 +20203,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -19107,7 +20248,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 50,
@@ -19149,7 +20292,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 99,
@@ -19191,7 +20337,9 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 80,
@@ -19233,7 +20381,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 80,
@@ -19275,7 +20425,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -19317,7 +20469,9 @@
       "name": "Trắng ngà",
       "hex": "#FFFFF0"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 88.9,
@@ -19359,7 +20513,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -19401,7 +20557,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 99,
@@ -19443,7 +20602,9 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 59.5,
@@ -19485,7 +20646,9 @@
       "name": "Tím",
       "hex": "#800080"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 16,
@@ -19527,7 +20690,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -19569,7 +20734,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 60.5,
@@ -19611,7 +20778,10 @@
       "name": "Mặt...\" />",
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 90,
@@ -19653,7 +20823,10 @@
       "name": "Vàng gold",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 36,
@@ -19695,7 +20868,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -19737,7 +20913,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 17.1,
@@ -19779,7 +20957,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -19821,7 +21002,9 @@
       "name": "Hồng",
       "hex": "#FFC0CB"
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -19863,7 +21046,9 @@
       "name": "Vàng",
       "hex": "#FFD700"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 21,
@@ -19905,7 +21090,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -19947,7 +21134,9 @@
       "name": "Nâu",
       "hex": "#8B4513"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 14,
@@ -19989,7 +21178,9 @@
       "name": "Trắng",
       "hex": "#FFFFFF"
     },
-    "styles": [],
+    "styles": [
+      "Industrial"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 65,
@@ -20031,7 +21222,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 45,
@@ -20073,7 +21266,9 @@
       "name": "Be",
       "hex": "#F5F5DC"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -20115,7 +21310,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -20157,7 +21355,10 @@
       "name": "Màu cát tự nhiên",
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -20199,7 +21400,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 84,
@@ -20241,7 +21444,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury",
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 85,
@@ -20283,7 +21489,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 81,
@@ -20325,7 +21533,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Scandinavian"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 76,
@@ -20367,7 +21577,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 52,
@@ -20409,7 +21622,9 @@
       "name": "Trắng ngà",
       "hex": "#FFFFF0"
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -20451,7 +21666,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Modern"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 47,
@@ -20493,7 +21710,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Natural"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -20535,7 +21754,10 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Industrial",
+      "Luxury"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": 53,
@@ -20577,7 +21799,9 @@
       "name": null,
       "hex": null
     },
-    "styles": [],
+    "styles": [
+      "Boho"
+    ],
     "origin": "Vietnam",
     "dimensions": {
       "width": null,
@@ -20620,8 +21844,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -20662,6 +21886,8 @@
       "hex": "#A0A0A0"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -20702,6 +21928,7 @@
       "hex": null
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -20742,6 +21969,7 @@
       "hex": null
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -20783,6 +22011,7 @@
       "hex": "#8B4513"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -20830,6 +22059,7 @@
       "hex": "#F5F0E8"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -20871,8 +22101,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -20914,6 +22144,7 @@
       "hex": "#F5F0E8"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -20955,6 +22186,8 @@
       "hex": "#A0A0A0"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21002,6 +22235,8 @@
       "hex": "#A0A0A0"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21048,6 +22283,8 @@
       "hex": "#800020"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21095,6 +22332,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21142,6 +22381,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21189,6 +22430,7 @@
       "hex": "#A0A0A0"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21236,6 +22478,8 @@
       "hex": "#A0A0A0"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21283,8 +22527,9 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Luxury",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -21330,8 +22575,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -21376,8 +22621,9 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Luxury",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -21421,6 +22667,8 @@
       "hex": null
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21462,6 +22710,7 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21502,6 +22751,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21542,6 +22792,7 @@
       "hex": null
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21582,6 +22833,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21622,6 +22874,7 @@
       "hex": "#F5F5DC"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21663,6 +22916,7 @@
       "hex": null
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21703,6 +22957,8 @@
       "hex": "#8B4513"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21748,6 +23004,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21793,6 +23051,8 @@
       "hex": "#D2B48C"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21838,6 +23098,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21883,6 +23145,8 @@
       "hex": "#8B4513"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21928,6 +23192,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -21973,8 +23239,8 @@
       "hex": "#8B4513"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -22019,6 +23285,7 @@
       "hex": "#F5F5DC"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22066,6 +23333,7 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22113,6 +23381,7 @@
       "hex": "#FFFFFF"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22160,6 +23429,7 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22201,8 +23471,8 @@
       "hex": "#FFC0CB"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -22250,6 +23520,9 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22290,6 +23563,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22337,6 +23611,7 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22377,6 +23652,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22418,6 +23695,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22459,6 +23738,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22500,6 +23781,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22540,6 +23823,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22580,6 +23865,9 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22622,6 +23910,9 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22664,6 +23955,9 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22706,6 +24000,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22746,6 +24042,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -22789,8 +24087,8 @@
       "hex": "#5C3317"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -22835,8 +24133,8 @@
       "hex": "#5C3317"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -22881,8 +24179,8 @@
       "hex": "#5C3317"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -22927,8 +24225,8 @@
       "hex": "#5C3317"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -22973,8 +24271,8 @@
       "hex": "#C4A257"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -23019,8 +24317,8 @@
       "hex": "#C4A257"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -23066,8 +24364,8 @@
       "hex": "#C4A257"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -23112,8 +24410,8 @@
       "hex": "#C4A257"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -23158,6 +24456,9 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23200,6 +24501,9 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23241,6 +24545,9 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23282,6 +24589,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23324,6 +24633,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23365,6 +24676,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23405,6 +24718,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23446,6 +24761,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23487,6 +24804,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23528,6 +24847,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23569,6 +24890,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23610,6 +24933,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23653,6 +24978,9 @@
       "hex": "#808080"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23694,6 +25022,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23735,6 +25065,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23776,6 +25108,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23818,6 +25152,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -23859,8 +25195,8 @@
       "hex": "#5C3317"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -23902,8 +25238,8 @@
       "hex": "#C4A257"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -23946,8 +25282,8 @@
       "hex": "#5C3317"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -23991,8 +25327,8 @@
       "hex": "#5C3317"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24034,8 +25370,8 @@
       "hex": "#5C3317"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24078,8 +25414,8 @@
       "hex": "#C4A257"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24121,8 +25457,8 @@
       "hex": "#C4A257"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24164,6 +25500,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -24205,6 +25543,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -24246,6 +25586,8 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -24287,6 +25629,7 @@
       "hex": null
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -24334,8 +25677,9 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Luxury",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24377,6 +25721,7 @@
       "hex": "#C4A882"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -24418,6 +25763,7 @@
       "hex": "#C4A882"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -24459,6 +25805,7 @@
       "hex": "#C4A882"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -24500,8 +25847,8 @@
       "hex": "#5C3317"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24544,6 +25891,8 @@
       "hex": "#8B4513"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -24589,8 +25938,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24636,8 +25985,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24683,8 +26032,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24730,8 +26079,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24777,8 +26126,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24821,8 +26170,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24868,8 +26217,8 @@
       "hex": "#8B4513"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24913,8 +26262,9 @@
       "hex": null
     },
     "styles": [
+      "Japanese",
       "Minimalist",
-      "Natural"
+      "Modern"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -24959,8 +26309,9 @@
       "hex": null
     },
     "styles": [
+      "Japanese",
       "Minimalist",
-      "Natural"
+      "Modern"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25006,8 +26357,9 @@
       "hex": null
     },
     "styles": [
+      "Japanese",
       "Minimalist",
-      "Natural"
+      "Modern"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25055,6 +26407,8 @@
       "hex": "#000000"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25102,6 +26456,7 @@
       "hex": "#000000"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25149,6 +26504,7 @@
       "hex": "#000000"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25196,6 +26552,7 @@
       "hex": "#8B4513"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25241,8 +26598,8 @@
       "hex": "#5C3317"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25287,8 +26644,8 @@
       "hex": "#8B4513"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25331,8 +26688,8 @@
       "hex": "#D2B48C"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25375,6 +26732,8 @@
       "hex": null
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25422,8 +26781,8 @@
       "hex": "#8B4513"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25466,8 +26825,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25509,8 +26868,8 @@
       "hex": "#808080"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25552,8 +26911,8 @@
       "hex": "#8B4513"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25596,8 +26955,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25639,8 +26998,8 @@
       "hex": "#808080"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -25681,6 +27040,7 @@
       "hex": "#F5F5DC"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25725,6 +27085,7 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25770,6 +27131,8 @@
       "hex": "#0070C0"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25816,6 +27179,8 @@
       "hex": "#0070C0"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25862,6 +27227,8 @@
       "hex": "#0070C0"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25908,6 +27275,8 @@
       "hex": "#FFD700"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -25954,6 +27323,8 @@
       "hex": "#FFD700"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26000,6 +27371,8 @@
       "hex": "#FFD700"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26046,6 +27419,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26092,6 +27467,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26138,6 +27515,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26184,8 +27563,9 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Luxury",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -26230,8 +27610,9 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Luxury",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -26279,8 +27660,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -26325,6 +27706,7 @@
       "hex": "#FFFFF0"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26372,6 +27754,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26420,6 +27804,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26464,8 +27849,8 @@
       "hex": "#D2B48C"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -26509,6 +27894,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26550,6 +27936,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26593,6 +27980,8 @@
       "hex": "#FFFFFF"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26635,6 +28024,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26682,6 +28073,7 @@
       "hex": "#F5F0E8"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26730,8 +28122,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -26777,8 +28169,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -26822,8 +28214,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -26871,8 +28263,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -26918,6 +28310,7 @@
       "hex": "#F5F0E8"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -26966,8 +28359,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27014,8 +28407,8 @@
       "hex": "#F5F5DC"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27063,8 +28456,9 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Luxury",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27110,8 +28504,8 @@
       "hex": "#C4A257"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27155,8 +28549,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27201,8 +28595,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27247,7 +28641,9 @@
       "hex": "#FFFFFF"
     },
     "styles": [
-      "Minimalist"
+      "Japanese",
+      "Minimalist",
+      "Modern"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27289,6 +28685,9 @@
       "hex": "#0070C0"
     },
     "styles": [
+      "Boho",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -27335,8 +28734,8 @@
       "hex": "#FFC0CB"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27384,8 +28783,8 @@
       "hex": "#FFC0CB"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27433,8 +28832,8 @@
       "hex": "#FFC0CB"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27482,8 +28881,8 @@
       "hex": "#FFC0CB"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27531,8 +28930,8 @@
       "hex": "#FFC0CB"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27580,8 +28979,10 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Boho",
+      "Classic",
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27623,6 +29024,7 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -27665,6 +29067,7 @@
       "hex": "#000000"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -27705,6 +29108,7 @@
       "hex": "#C4A882"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -27752,6 +29156,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -27799,6 +29204,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -27846,6 +29252,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -27889,8 +29296,8 @@
       "hex": "#C4A257"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -27933,6 +29340,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -27977,7 +29385,9 @@
       "hex": "#808080"
     },
     "styles": [
-      "Minimalist"
+      "Japanese",
+      "Minimalist",
+      "Modern"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -28024,6 +29434,7 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28071,6 +29482,7 @@
       "hex": "#8B4513"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28118,8 +29530,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -28164,8 +29576,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -28210,8 +29622,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -28255,8 +29667,8 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -28302,8 +29714,9 @@
       "hex": "#C4A882"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Luxury",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -28351,6 +29764,7 @@
       "hex": "#FAF0E6"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28395,8 +29809,8 @@
       "hex": "#D2B48C"
     },
     "styles": [
-      "Minimalist",
-      "Natural"
+      "Japanese",
+      "Minimalist"
     ],
     "origin": "Japan",
     "dimensions": {
@@ -28440,6 +29854,9 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28480,6 +29897,9 @@
       "hex": "#C0C0C0"
     },
     "styles": [
+      "Industrial",
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28520,6 +29940,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28567,6 +29988,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28614,6 +30036,8 @@
       "hex": null
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28660,6 +30084,8 @@
       "hex": "#C4A882"
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28706,6 +30132,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28753,6 +30181,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28800,6 +30230,8 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
+      "Luxury",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28847,6 +30279,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28894,6 +30327,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28941,6 +30375,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -28988,6 +30423,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -29034,6 +30470,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -29081,6 +30518,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -29125,6 +30563,8 @@
       "hex": null
     },
     "styles": [
+      "Boho",
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -29166,6 +30606,7 @@
       "hex": "#000080"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -29209,6 +30650,7 @@
       "hex": "#808080"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -29252,6 +30694,7 @@
       "hex": "#FFFFFF"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -29296,6 +30739,7 @@
       "hex": null
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
@@ -29337,6 +30781,7 @@
       "hex": "#F5F5F5"
     },
     "styles": [
+      "Japanese",
       "Minimalist"
     ],
     "origin": "Japan",
