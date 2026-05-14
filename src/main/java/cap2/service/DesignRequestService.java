@@ -260,7 +260,7 @@ public class DesignRequestService {
                 .price(product.getPrice())
                 .imageUrl(product.getImageUrl())
                 .reasoning(product.getReasoning())
-                .rankingScore(null)
+                .rankingScore(product.getRankingScore())
                 .styles(product.getStyles())
                 .colors(product.getColors())
                 .build();

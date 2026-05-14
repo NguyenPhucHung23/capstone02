@@ -1,6 +1,7 @@
 package cap2.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import java.util.List;
 
@@ -16,6 +17,8 @@ public class AiProductResponse {
     private List<String> colors;
     private String imageUrl;
     private String reasoning;
+    @JsonProperty("ranking_score")
+    private Double rankingScore;
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)

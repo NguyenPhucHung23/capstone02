@@ -40,6 +40,15 @@ public class DesignRequestController {
         return ApiResponse.ok(designRequests);
     }
 
+    @GetMapping("/users/{userId}")
+    public ApiResponse<Page<DesignResponse>> getDesignRequestsByUserId(
+            @PathVariable String userId,
+            @PageableDefault(size = 10, sort = "createdAt,desc") Pageable pageable) {
+        SecurityUtils.checkPermission(userId);
+        Page<DesignResponse> designRequests = designRequestService.getDesignRequestsByUserId(userId, pageable);
+        return ApiResponse.ok(designRequests);
+    }
+
     @GetMapping("/{id}")
     public ApiResponse<DesignResponse> getDesignRequestById(@PathVariable String id) {
         DesignResponse designRequest = designRequestService.getDesignRequestById(id);
