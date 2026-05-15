@@ -16,14 +16,23 @@ public class CorsConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of("http://localhost:5173"));
-        config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
+        // Local dev + FE Vercel
+        config.setAllowedOrigins(List.of(
+                "http://localhost:5173",                     // Dev
+                "https://virtualspace-lyart.vercel.app"     // Production
+        ));
+
+        // Cho phép các method thường dùng
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+
+        // Cho phép tất cả headers
         config.setAllowedHeaders(List.of("*"));
+
+        // Cho phép gửi cookie/token nếu cần
         config.setAllowCredentials(true);
 
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
-
+        // Áp dụng cho tất cả URL
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
 
         return source;
