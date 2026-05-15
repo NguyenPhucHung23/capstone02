@@ -101,17 +101,20 @@ public class DesignRequestService {
             designRequest.setDensityApplied(aiResponse.getDensityApplied());
         }
 
-        List<String> recommendedProductIds = aiResponse != null && aiResponse.getProducts() != null ?
-            aiResponse.getProducts().stream().map(AiProductResponse::getId).collect(Collectors.toList())
-            : Collections.emptyList();
+        List<AiProductResponse> aiProducts = safeProducts(aiResponse);
+
+        List<String> recommendedProductIds = aiProducts.stream()
+                .map(AiProductResponse::getId)
+                .filter(id -> id != null && !id.isBlank())
+                .collect(Collectors.toList());
+
         designRequest.setRecommendedProductIds(recommendedProductIds);
 
-        if (aiResponse != null && aiResponse.getProducts() != null) {
-            List<DesignRequest.ProductSnapshot> snapshots = aiResponse.getProducts().stream()
+        List<DesignRequest.ProductSnapshot> snapshots = aiProducts.stream()
                 .map(this::toProductSnapshot)
                 .collect(Collectors.toList());
-            designRequest.setRecommendedProductSnapshots(snapshots);
-        }
+
+        designRequest.setRecommendedProductSnapshots(snapshots);
 
         // Gọi FastAPI layout 
         Map<String, Object> layout = callAiLayoutService(designRequest, aiResponse);
@@ -122,6 +125,13 @@ public class DesignRequestService {
 
 
         return convertToDesignResponse(savedDesignRequest, aiResponse);
+    }
+
+    private List<AiProductResponse> safeProducts(AiRecommendResponse aiResponse) {
+        if (aiResponse == null || aiResponse.getProducts() == null) {
+            return Collections.emptyList();
+        }
+        return aiResponse.getProducts();
     }
 
     private AiRecommendResponse callAiService(DesignRequest designRequest, MultipartFile image) throws IOException {
@@ -261,9 +271,41 @@ public class DesignRequestService {
                 .imageUrl(product.getImageUrl())
                 .reasoning(product.getReasoning())
                 .rankingScore(null)
+                .styleScore(product.getStyleScore())
+                .colorScore(product.getColorScore())
                 .styles(product.getStyles())
                 .colors(product.getColors())
+                .modelUrl(product.getModelUrl())
+                .dimensions(toProductDimensionsSnapshot(product.getDimensions()))
                 .build();
+    }
+
+    private DesignRequest.ProductDimensionsSnapshot toProductDimensionsSnapshot(
+            AiProductResponse.AiProductDimensions dimensions
+    ) {
+        if (dimensions == null) {
+            return null;
+        }
+
+        return DesignRequest.ProductDimensionsSnapshot.builder()
+                .width(dimensions.getWidth())
+                .depth(dimensions.getDepth())
+                .height(dimensions.getHeight())
+                .build();
+    }
+
+    private AiProductResponse.AiProductDimensions fromProductDimensionsSnapshot(
+            DesignRequest.ProductDimensionsSnapshot dimensions
+    ) {
+        if (dimensions == null) {
+            return null;
+        }
+
+        AiProductResponse.AiProductDimensions response = new AiProductResponse.AiProductDimensions();
+        response.setWidth(dimensions.getWidth());
+        response.setDepth(dimensions.getDepth());
+        response.setHeight(dimensions.getHeight());
+        return response;
     }
 
     private List<AiProductResponse> fromProductSnapshots(List<DesignRequest.ProductSnapshot> snapshots) {
@@ -281,12 +323,17 @@ public class DesignRequestService {
             product.setReasoning(snapshot.getReasoning());
             product.setStyles(snapshot.getStyles());
             product.setColors(snapshot.getColors());
+            product.setModelUrl(snapshot.getModelUrl());
+            product.setRankingScore(snapshot.getRankingScore());
+            product.setStyleScore(snapshot.getStyleScore());
+            product.setColorScore(snapshot.getColorScore());
+            product.setDimensions(fromProductDimensionsSnapshot(snapshot.getDimensions()));
             return product;
         }).collect(Collectors.toList());
     }
 
     private Map<String, Object> callAiLayoutService(DesignRequest designRequest, AiRecommendResponse aiResponse) {
-    if (aiResponse == null || aiResponse.getProducts() == null || aiResponse.getProducts().isEmpty()) {
+        if (safeProducts(aiResponse).isEmpty()) {
         return Collections.emptyMap();
     }
 
@@ -310,16 +357,19 @@ public class DesignRequestService {
         room.put("type", normalizeRoomType(designRequest.getRoomType()));
         room.put("style", designRequest.getStyle());
 
+        List<AiProductResponse> products = safeProducts(aiResponse);
+
         Map<String, Object> recommendation = new LinkedHashMap<>();
         recommendation.put("analysis", aiResponse.getAnalysis());
-        recommendation.put("products", aiResponse.getProducts());
+        recommendation.put("products", products);
 
         payload.put("room", room);
         payload.put("recommendation", recommendation);
-        payload.put("topK", 8);
+        payload.put("furnitureDensity", designRequest.getFurnitureDensity());
+        int layoutTopK = Math.min(products.size(), 6);
+        payload.put("topK", Math.max(layoutTopK, 1));
         payload.put("minScore", 0.2);
-        payload.put("modelUrlById", buildModelUrlById(aiResponse.getProducts()));
-
+        payload.put("modelUrlById", buildModelUrlById(products));
         return payload;
     }
 
@@ -343,9 +393,9 @@ public class DesignRequestService {
         }
 
         for (AiProductResponse product : products) {
-            String modelUrl = getDefaultModelUrlByCategory(product.getCategory());
+            String modelUrl = product.getModelUrl();
 
-            if (modelUrl != null && !modelUrl.isBlank()) {
+            if (product.getId() != null && modelUrl != null && !modelUrl.isBlank()) {
                 modelUrlById.put(product.getId(), modelUrl);
             }
         }
@@ -353,37 +403,4 @@ public class DesignRequestService {
         return modelUrlById;
     }
 
-    private String getDefaultModelUrlByCategory(String category) {
-        if (category == null) {
-            return null;
-        }
-
-        String normalized = category.trim().toLowerCase();
-
-        if (normalized.contains("sofa")) {
-            return "https://example.com/models/sofa.glb";
-        }
-
-        if (normalized.contains("bàn nước") || normalized.contains("ban nuoc") || normalized.contains("coffee")) {
-            return "https://example.com/models/coffee-table.glb";
-        }
-
-        if (normalized.contains("ghế") || normalized.contains("ghe") || normalized.contains("chair")) {
-            return "https://example.com/models/chair.glb";
-        }
-
-        if (normalized.contains("giường") || normalized.contains("giuong") || normalized.contains("bed")) {
-            return "https://example.com/models/bed.glb";
-        }
-
-        if (normalized.contains("tủ") || normalized.contains("tu") || normalized.contains("cabinet") || normalized.contains("wardrobe")) {
-            return "https://example.com/models/cabinet.glb";
-        }
-
-        if (normalized.contains("tivi") || normalized.contains("tv")) {
-            return "https://example.com/models/tv.glb";
-        }
-
-        return null;
-    }
 }

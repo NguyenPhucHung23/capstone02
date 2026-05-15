@@ -67,7 +67,21 @@ public class DesignRequest {
         private String imageUrl;
         private String reasoning;
         private Double rankingScore;
+        private Double styleScore;
+        private Double colorScore;
         private List<String> styles;
         private List<String> colors;
+        private String modelUrl;
+        private ProductDimensionsSnapshot dimensions;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ProductDimensionsSnapshot {
+        private Double width;
+        private Double depth;
+        private Double height;
     }
 }
