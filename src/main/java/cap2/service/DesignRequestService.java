@@ -21,8 +21,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -80,6 +83,12 @@ public class DesignRequestService {
 
         // Call AI service
         AiRecommendResponse aiResponse = callAiService(designRequest, image);
+
+        // If AI service fails (e.g., invalid image 422), don't save the design request
+        if (aiResponse == null) {
+            log.warn("AI service returned null for design request, not saving to database");
+            throw new RuntimeException("AI service failed: unable to analyze the provided image or room data");
+        }
 
         if (aiResponse != null && aiResponse.getAnalysis() != null) {
             designRequest.setReasoning(formatReasoning(aiResponse.getAnalysis().getReasoning()));
@@ -166,9 +175,13 @@ public class DesignRequestService {
         try {
             ResponseEntity<AiRecommendResponse> response = restTemplate.postForEntity(aiApiUrl, requestEntity, AiRecommendResponse.class);
             return response.getBody();
+        } catch (HttpClientErrorException e) {
+            // Catch 4xx errors from AI service (e.g., 422 INVALID_IMAGE)
+            log.error("AI service returned error status {}: {}", e.getStatusCode(), e.getResponseBodyAsString());
+            throw new ResponseStatusException(e.getStatusCode(), e.getResponseBodyAsString());
         } catch (Exception e) {
             log.error("Error calling AI service: {}", e.getMessage(), e);
-            return null;
+            throw new RuntimeException("AI service connection failed: " + e.getMessage());
         }
     }
 
@@ -270,9 +283,7 @@ public class DesignRequestService {
                 .price(product.getPrice())
                 .imageUrl(product.getImageUrl())
                 .reasoning(product.getReasoning())
-                .rankingScore(null)
-                .styleScore(product.getStyleScore())
-                .colorScore(product.getColorScore())
+                .rankingScore(product.getRankingScore())
                 .styles(product.getStyles())
                 .colors(product.getColors())
                 .modelUrl(product.getModelUrl())
