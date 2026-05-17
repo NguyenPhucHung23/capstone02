@@ -108,6 +108,12 @@ public class DesignRequestService {
         if (aiResponse != null) {
             designRequest.setWarning(aiResponse.getWarning());
             designRequest.setDensityApplied(aiResponse.getDensityApplied());
+
+            if (aiResponse.getAnalysis() != null && aiResponse.getAnalysis().getImageAnalysis() != null) {
+                designRequest.setDominantColors(aiResponse.getAnalysis().getImageAnalysis().getDominantColors());
+                designRequest.setColorTone(aiResponse.getAnalysis().getImageAnalysis().getColorTone());
+                designRequest.setDetectedStyle(aiResponse.getAnalysis().getImageAnalysis().getDetectedStyle());
+            }
         }
 
         List<AiProductResponse> aiProducts = safeProducts(aiResponse);
@@ -232,6 +238,16 @@ public class DesignRequestService {
         dominantColors = aiResponse.getAnalysis().getImageAnalysis().getDominantColors();
         colorTone = aiResponse.getAnalysis().getImageAnalysis().getColorTone();
         detectedStyle = aiResponse.getAnalysis().getImageAnalysis().getDetectedStyle();
+    }
+
+    if ((dominantColors == null || dominantColors.isEmpty()) && designRequest.getDominantColors() != null) {
+        dominantColors = designRequest.getDominantColors();
+    }
+    if (colorTone == null) {
+        colorTone = designRequest.getColorTone();
+    }
+    if (detectedStyle == null) {
+        detectedStyle = designRequest.getDetectedStyle();
     }
 
     if (aiResponse != null &&

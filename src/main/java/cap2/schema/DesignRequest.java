@@ -32,6 +32,10 @@ public class DesignRequest {
     private int age;
     private String imageUrl;
 
+    private List<String> dominantColors;
+    private String colorTone;
+    private String detectedStyle;
+
     private String reasoning;
     private Map<String, String> reasoningDetails;
     private String warning;
