@@ -20,6 +20,8 @@ public class Project3DResponse {
     private String userId;
     private String name;
     private Map<String, Object> sceneData;
+    private String reasoning;
+    private Map<String, String> reasoningDetails;
     private List<EditedProductResponse> editedProducts;
     private Instant createdAt;
     private Instant updatedAt;

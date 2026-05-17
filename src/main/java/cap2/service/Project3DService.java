@@ -38,6 +38,8 @@ public class Project3DService {
                 .userId(designRequest.getUserId())
                 .name(request.getName() != null && !request.getName().isBlank() ? request.getName() : defaultProjectName(designRequest))
                 .sceneData(request.getSceneData() != null ? request.getSceneData() : designRequest.getLayout())
+                .reasoning(request.getReasoning() != null ? request.getReasoning() : designRequest.getReasoning())
+                .reasoningDetails(request.getReasoningDetails() != null ? request.getReasoningDetails() : designRequest.getReasoningDetails())
                 .editedProducts(new ArrayList<>())
                 .createdAt(now)
                 .updatedAt(now)
@@ -82,6 +84,12 @@ public class Project3DService {
         if (request.getSceneData() != null) {
             // Fixed: allow the client to persist the final scene snapshot after product edits.
             project.setSceneData(request.getSceneData());
+        }
+        if (request.getReasoning() != null) {
+            project.setReasoning(request.getReasoning());
+        }
+        if (request.getReasoningDetails() != null) {
+            project.setReasoningDetails(request.getReasoningDetails());
         }
         project.setUpdatedAt(Instant.now());
 
@@ -140,6 +148,8 @@ public class Project3DService {
                 .userId(project.getUserId())
                 .name(project.getName())
                 .sceneData(project.getSceneData())
+                .reasoning(project.getReasoning())
+                .reasoningDetails(project.getReasoningDetails())
                 .editedProducts(editedProducts)
                 .createdAt(project.getCreatedAt())
                 .updatedAt(project.getUpdatedAt())

@@ -21,4 +21,6 @@ public class CreateProject3DRequest {
 
     // Fixed: allow the client to save the generated layout snapshot as a 3D project.
     private Map<String, Object> sceneData;
+    private String reasoning;
+    private Map<String, String> reasoningDetails;
 }

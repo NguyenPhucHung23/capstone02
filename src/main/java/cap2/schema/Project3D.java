@@ -28,6 +28,8 @@ public class Project3D {
 
     // Fixed: store the final 3D scene/layout snapshot separately from the original design request.
     private Map<String, Object> sceneData;
+    private String reasoning;
+    private Map<String, String> reasoningDetails;
 
     // Fixed: store edited products after user adjusts positions in the 3D scene.
     @Builder.Default

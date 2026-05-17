@@ -22,6 +22,8 @@ public class SaveEditedProductsRequest {
 
     // Fixed: optional layout snapshot update so the scene can be persisted together with product edits.
     private Map<String, Object> sceneData;
+    private String reasoning;
+    private Map<String, String> reasoningDetails;
 
     @Data
     @Builder
