@@ -1,97 +1,99 @@
 package cap2.service;
-
+ 
 import cap2.schema.Order;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
-import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
-import java.io.UnsupportedEncodingException;
+import org.springframework.web.client.RestTemplate;
+ 
 import java.text.NumberFormat;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
-
+ 
 @Service
-@RequiredArgsConstructor
 @Slf4j
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class EmailService {
-
-    JavaMailSender mailSender;
-
-    @Value("${spring.mail.username}")
-    @NonFinal
-    String fromEmail;
-
+ 
+    @Value("${brevo.api.key}")
+    private String apiKey;
+ 
+    @Value("${brevo.from.email}")
+    private String fromEmail;
+ 
+    private final RestTemplate restTemplate = new RestTemplate();
+    private static final String BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
     private static final String SENDER_NAME = "Virtual Shop";
-
+ 
+    // DTO records for Brevo direct REST API call
+    private record Sender(String name, String email) {}
+    private record Recipient(String email) {}
+    private record BrevoEmailRequest(Sender sender, List<Recipient> to, String subject, String htmlContent) {}
+ 
+    private void sendEmail(String toEmail, String subject, String htmlContent) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            headers.set("api-key", apiKey);
+ 
+            Sender sender = new Sender(SENDER_NAME, fromEmail);
+            Recipient recipient = new Recipient(toEmail);
+            BrevoEmailRequest requestBody = new BrevoEmailRequest(
+                    sender,
+                    Collections.singletonList(recipient),
+                    subject,
+                    htmlContent
+            );
+ 
+            HttpEntity<BrevoEmailRequest> request = new HttpEntity<>(requestBody, headers);
+ 
+            log.info("Gửi email tới: {} qua Brevo REST API...", toEmail);
+            ResponseEntity<String> response = restTemplate.postForEntity(BREVO_API_URL, request, String.class);
+ 
+            if (response.getStatusCode().is2xxSuccessful()) {
+                log.info("Đã gửi email tới: {}. Response: {}", toEmail, response.getBody());
+            } else {
+                log.error("Lỗi khi gửi email tới: {}. Status: {}, Response: {}", toEmail, response.getStatusCode(), response.getBody());
+            }
+        } catch (Exception e) {
+            log.error("Lỗi khi gửi email tới {} qua Brevo REST API: {}", toEmail, e.getMessage());
+        }
+    }
+ 
+    @Async
+    public void sendOtp(String to, String otp) {
+        String subject = "Mã OTP của bạn";
+        String htmlContent = "<h1>Mã OTP xác thực của bạn là: " + otp + "</h1><p>Mã này sẽ hết hạn sau 1 giờ.</p>";
+        sendEmail(to, subject, htmlContent);
+    }
+ 
     @Async
     public void sendOrderConfirmation(Order order) {
-        try {
-            MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-            helper.setFrom(fromEmail, SENDER_NAME);
-            helper.setTo(order.getCustomerEmail());
-            helper.setSubject("Xác nhận đơn hàng #" + order.getOrderCode());
-
-            String content = buildOrderConfirmationContent(order);
-            helper.setText(content, true);
-
-            mailSender.send(message);
-            log.info("Đã gửi email xác nhận đơn hàng cho: {}", order.getCustomerEmail());
-        } catch (MessagingException | UnsupportedEncodingException e) {
-            log.error("Lỗi khi gửi email xác nhận đơn hàng: {}", e.getMessage());
-        }
+        String subject = "Xác nhận đơn hàng #" + order.getOrderCode();
+        String htmlContent = buildOrderConfirmationContent(order);
+        sendEmail(order.getCustomerEmail(), subject, htmlContent);
     }
-
+ 
     @Async
     public void sendOrderStatusUpdate(Order order) {
-        try {
-            MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-            helper.setFrom(fromEmail, SENDER_NAME);
-            helper.setTo(order.getCustomerEmail());
-            helper.setSubject("Cập nhật trạng thái đơn hàng #" + order.getOrderCode());
-
-            String content = buildOrderStatusUpdateContent(order);
-            helper.setText(content, true);
-
-            mailSender.send(message);
-            log.info("Đã gửi email cập nhật trạng thái đơn hàng cho: {}", order.getCustomerEmail());
-        } catch (MessagingException | UnsupportedEncodingException e) {
-            log.error("Lỗi khi gửi email cập nhật trạng thái đơn hàng: {}", e.getMessage());
-        }
+        String subject = "Cập nhật trạng thái đơn hàng #" + order.getOrderCode();
+        String htmlContent = buildOrderStatusUpdateContent(order);
+        sendEmail(order.getCustomerEmail(), subject, htmlContent);
     }
-
+ 
     @Async
     public void sendPaymentSuccessNotification(Order order) {
-        try {
-            MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-            helper.setFrom(fromEmail, SENDER_NAME);
-            helper.setTo(order.getCustomerEmail());
-            helper.setSubject("Thanh toán thành công cho đơn hàng #" + order.getOrderCode());
-
-            String content = buildPaymentSuccessContent(order);
-            helper.setText(content, true);
-
-            mailSender.send(message);
-            log.info("Đã gửi email thông báo thanh toán thành công cho: {}", order.getCustomerEmail());
-        } catch (MessagingException | UnsupportedEncodingException e) {
-            log.error("Lỗi khi gửi email thông báo thanh toán thành công: {}", e.getMessage());
-        }
+        String subject = "Thanh toán thành công cho đơn hàng #" + order.getOrderCode();
+        String htmlContent = buildPaymentSuccessContent(order);
+        sendEmail(order.getCustomerEmail(), subject, htmlContent);
     }
-
+ 
     private String buildOrderConfirmationContent(Order order) {
         StringBuilder sb = new StringBuilder();
         sb.append("<div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>");
@@ -131,7 +133,7 @@ public class EmailService {
         sb.append("</div>");
         return sb.toString();
     }
-
+ 
     private String buildOrderStatusUpdateContent(Order order) {
         StringBuilder sb = new StringBuilder();
         sb.append("<div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>");
@@ -147,7 +149,7 @@ public class EmailService {
         sb.append("</div>");
         return sb.toString();
     }
-
+ 
     private String buildPaymentSuccessContent(Order order) {
         StringBuilder sb = new StringBuilder();
         sb.append("<div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>");
@@ -163,7 +165,7 @@ public class EmailService {
         sb.append("</div>");
         return sb.toString();
     }
-
+ 
     private String getStatusDisplay(Order.OrderStatus status) {
         return switch (status) {
             case PENDING -> "Đang chờ xử lý";
@@ -173,7 +175,7 @@ public class EmailService {
             case CANCELLED -> "Đã hủy";
         };
     }
-
+ 
     private String formatCurrency(Double amount) {
         if (amount == null) return "0 ₫";
         NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
