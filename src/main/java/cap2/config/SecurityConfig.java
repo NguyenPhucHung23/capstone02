@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers("/payments/vnpay/return", "/payments/vnpay/ipn").permitAll()
                         .requestMatchers("/locations/**").permitAll()
+                        .requestMatchers("/reviews/product/{productId}").permitAll()
                         
 
                         .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
