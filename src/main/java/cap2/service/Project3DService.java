@@ -3,10 +3,14 @@ package cap2.service;
 import cap2.dto.request.CreateProject3DRequest;
 import cap2.dto.request.SaveEditedProductsRequest;
 import cap2.dto.response.Project3DResponse;
+import cap2.exception.AppException;
+import cap2.exception.ErrorCode;
 import cap2.exception.NotFoundException;
 import cap2.repository.DesignRequestRepository;
+import cap2.repository.ProductRepository;
 import cap2.repository.Project3DRepository;
 import cap2.schema.DesignRequest;
+import cap2.schema.Product;
 import cap2.schema.Project3D;
 import cap2.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +21,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +31,7 @@ public class Project3DService {
 
     private final Project3DRepository project3DRepository;
     private final DesignRequestRepository designRequestRepository;
+    private final ProductRepository productRepository;
 
     public Project3DResponse createProject(CreateProject3DRequest request) {
         DesignRequest designRequest = designRequestRepository.findById(request.getDesignRequestId())
@@ -55,9 +62,31 @@ public class Project3DService {
 
         SecurityUtils.checkPermission(project.getUserId());
 
-        List<Project3D.EditedProduct> editedProducts = request.getEditedProducts() == null
+        List<SaveEditedProductsRequest.EditedProductRequest> requestProducts = request.getEditedProducts() == null
                 ? new ArrayList<>()
-                : request.getEditedProducts().stream()
+                : request.getEditedProducts();
+
+        List<String> productIds = requestProducts.stream()
+                .map(SaveEditedProductsRequest.EditedProductRequest::getProductId)
+                .filter(id -> id != null && !id.isBlank())
+                .distinct()
+                .toList();
+
+        if (!productIds.isEmpty()) {
+            Set<String> existingProductIds = productRepository.findAllById(productIds).stream()
+                    .map(Product::getId)
+                    .collect(Collectors.toSet());
+
+            List<String> missingProductIds = productIds.stream()
+                    .filter(id -> !existingProductIds.contains(id))
+                    .toList();
+
+            if (!missingProductIds.isEmpty()) {
+                throw new AppException(ErrorCode.PRODUCT_NOT_FOUND);
+            }
+        }
+
+        List<Project3D.EditedProduct> editedProducts = requestProducts.stream()
                 .map(item -> Project3D.EditedProduct.builder()
                         .productId(item.getProductId())
                         .name(item.getName())
